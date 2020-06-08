@@ -5,9 +5,12 @@
 import getopt
 import sys
 
+import numpy as np
 import cv2
 from openvino.inference_engine import IECore
 # from openvino.inference_engine import IENetwork, IEPlugin
+
+import cProfile
 
 
 def parse(argv: str) -> dict:
@@ -89,8 +92,8 @@ def main(argv):
             if key_stroke == ord('q'):
                 break
 
-        cv2.imshow('frame', frame)
-
+        # cv2.imshow('frame', frame)
+        # (aux) frame matrix format: BGR todo check if desirable
         ret, frame = cap.retrieve()
         if not ret:
             raise NotImplementedError("end of visual feed")
@@ -118,12 +121,11 @@ def main(argv):
                               weights='/home/k16/vboxshared/face-detection-0100.bin')
 
         # I/O blobs
+        # (aux) net.inputs -> dict of DataPtr obj
+        # (aux) described in model - different types of input sources for NN
+        # (aux) get the keyword of first element in dict
         input_blob = next(iter(net.inputs))
         out_blob = next(iter(net.outputs))
-
-
-        # Load model to plugin
-        exec_net = ie.load_network(network=net, device_name='CPU')
 
         # pre process image input
         n, c, h, w = net.inputs[input_blob].shape
@@ -132,16 +134,40 @@ def main(argv):
 
         if frame.shape[:-1] != (h, w):
             # log.warning("Image {} is resized from {} to {}".format(args.input[i], frame.shape[:-1], (h, w)))
-            frame = cv2.resize(frame, (w, h))
-        frame = frame.transpose((2, 0, 1))  # Change data layout from HWC to CHW
+            trans_frame = cv2.resize(frame, (w, h), interpolation=cv2.INTER_AREA)
+            # cv2.imshow("resized image", frame)
+        # Change data layout from HWC to CHW
+        trans_frame = trans_frame.transpose((2, 0, 1))  # (determined by net.inputs['image'].layout)
 
-            # images[i] = frame
+        # images[i] = frame
         # log.info("Batch size is {}".format(n))
 
-        # performe inference
-        res = exec_net.infer(inputs={input_blob: frame})
+        # Load model to plugin
+        exec_net = ie.load_network(network=net, device_name='CPU')
 
-        print(res)
+        # performe inference
+        res = exec_net.infer(inputs={input_blob: trans_frame})
+        res = res[out_blob]
+        res = np.squeeze(res)
+
+        # mark face
+        # todo properly redo it
+        # Change data layout from CHW back to HWC
+        # frame = frame.transpose((1, 2, 0))
+        i = 0
+        while res[i][0] != -1:
+            if res[i][2] > 0.5:
+                pt1 = (int(round(frame.shape[:-1][1] * res[i][3])), int(round(frame.shape[:-1][0] * res[i][4])))
+                pt2 = (int(round(frame.shape[:-1][1] * res[i][5])), int(round(frame.shape[:-1][0] * res[i][6])))
+                rgb = (0, 255, 0)
+                img = cv2.imread('/home/k16/Pictures/lenna.png')
+                # cv2.rectangle(frame, pt1, pt2, rgb, thickness=3)
+                frame = cv2.rectangle(img=frame, pt1=pt1, pt2=pt2, color=rgb, thickness=2)
+                pos = (int(round(frame.shape[:-1][1] * res[i][3])), int(round(frame.shape[:-1][0] * res[i][6]) + 10))
+                frame = cv2.putText(frame, '{}%'.format(int(round(res[i][2] * 100))),
+                                    pos, cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
+            i += 1
+        cv2.imshow('face', frame)
 
         # supported_layers = ie.query_network(net, "CPU")
         # not_supported_layers = [l for l in net.layers.keys() if l not in supported_layers]
@@ -153,4 +179,5 @@ def main(argv):
 
 
 if __name__ == '__main__':
+    # cProfile.run(main(sys.argv[1:]))
     main(sys.argv[1:])
