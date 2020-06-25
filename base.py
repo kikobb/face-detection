@@ -7,6 +7,7 @@ import sys
 
 import numpy as np
 import cv2
+
 from openvino.inference_engine import IECore
 # from openvino.inference_engine import IENetwork, IEPlugin
 
@@ -32,6 +33,8 @@ def parse(argv: str) -> dict:
         opts, args = getopt.getopt(argv, shortopts)
         if len(args) != 0:
             raise getopt.GetoptError("unsupported or too many parameters")
+        if len(opts) == 0:
+            raise getopt.GetoptError("no parameters")
         # check for mutually excluded options
         for group in opt_groups:
             count = 0
@@ -41,7 +44,7 @@ def parse(argv: str) -> dict:
             if count > 1:
                 raise getopt.GetoptError("mutually excluded parameters occurred")
         # validate argument parameters
-        if not next(i for i in opts if i[0][1] in opt_groups[2])[1] in valid_opt_formats['device']:
+        if not next((i for i in opts if i[0][1] in opt_groups[2]), None)[1] in valid_opt_formats['device']:
             raise getopt.GetoptError("unsupported format of -m")
     except getopt.GetoptError as e:
         print(e, file=sys.stderr)
@@ -51,11 +54,11 @@ def parse(argv: str) -> dict:
 
     return {
         # input chanel (photo, video, camera)
-        'input': next(i for i in opts if i[0][1] in opt_groups[0]),
+        'input': next((i for i in opts if i[0][1] in opt_groups[0]), None),
         # Intermediate Representation of cnn model for face localization
-        'localize-model': next(i for i in opts if i[0][1] in opt_groups[1]),
+        'localize-model': next((i for i in opts if i[0][1] in opt_groups[1]), None),
         # hw device to perform detection
-        'device': next(i for i in opts if i[0][1] in opt_groups[2])
+        'device': next((i for i in opts if i[0][1] in opt_groups[2]), None)
     }
 
 
@@ -79,6 +82,28 @@ def main(argv):
     if not ret:
         raise IOError("no fame received")
 
+    # plugin = IEPlugin(device='CPU')
+
+    # load plugin
+    ie = IECore()
+
+    # read model IR
+    net = ie.read_network(model='/home/openvino/face/models/intel/face-detection-0100/FP32/face-detection-0100.xml',
+                          weights='/home/openvino/face/models/intel/face-detection-0100/FP32/face-detection-0100.bin')
+
+    # I/O blobs
+    # (aux) net.inputs -> dict of DataPtr obj
+    # (aux) described in model - different types of input sources for NN
+    # (aux) get the keyword of first element in dict
+    input_blob = next(iter(net.inputs))
+    out_blob = next(iter(net.outputs))
+
+    # pre process image input
+    n, c, h, w = net.inputs[input_blob].shape
+
+    # Load model to plugin
+    exec_net = ie.load_network(network=net, device_name=opts['device'][1])
+
     # main app loop
     while True:
         # ---- Read input frame
@@ -98,40 +123,6 @@ def main(argv):
         if not ret:
             raise NotImplementedError("end of visual feed")
 
-        # ---- Load plugins for inference engine
-        # plugins_for_devices = {'': 0}  # todo change variable
-        # plugins_for_devices = {str: }  # todo change variable
-        # cmd_options = [(opts['device'], opts['localize-model'])]  # todo may be redundant
-        #
-        # for option in cmd_options:
-        #     device_name = option[0]     # todo may be redundant
-        #     network_name = option[0]    # todo may be redundant
-        #
-        #     if device_name == '' or network_name == '':
-        #         continue
-        #     if
-
-        # plugin = IEPlugin(device='CPU')
-
-        # load plugin
-        ie = IECore()
-
-        # read model IR
-        net = ie.read_network(model='/home/k16/vboxshared/face-detection-0100.xml',
-                              weights='/home/k16/vboxshared/face-detection-0100.bin')
-
-        # I/O blobs
-        # (aux) net.inputs -> dict of DataPtr obj
-        # (aux) described in model - different types of input sources for NN
-        # (aux) get the keyword of first element in dict
-        input_blob = next(iter(net.inputs))
-        out_blob = next(iter(net.outputs))
-
-        # pre process image input
-        n, c, h, w = net.inputs[input_blob].shape
-        # images = np.ndarray(shape=(n, c, h, w))
-        # for i in range(n):
-
         if frame.shape[:-1] != (h, w):
             # log.warning("Image {} is resized from {} to {}".format(args.input[i], frame.shape[:-1], (h, w)))
             trans_frame = cv2.resize(frame, (w, h), interpolation=cv2.INTER_AREA)
@@ -142,13 +133,11 @@ def main(argv):
         # images[i] = frame
         # log.info("Batch size is {}".format(n))
 
-        # Load model to plugin
-        exec_net = ie.load_network(network=net, device_name='CPU')
-
-        # performe inference
-        res = exec_net.infer(inputs={input_blob: trans_frame})
-        res = res[out_blob]
-        res = np.squeeze(res)
+        # perform inference
+        # ininntialize imput layer to picture values
+        # extract values form last layer
+        # get rid of single element dimensions from n-D output
+        res = np.squeeze(exec_net.infer(inputs={input_blob: trans_frame})[out_blob])
 
         # mark face
         # todo properly redo it
