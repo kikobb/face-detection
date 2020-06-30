@@ -88,8 +88,8 @@ def main(argv):
     ie = IECore()
 
     # read model IR
-    net = ie.read_network(model='/home/openvino/face/models/intel/face-detection-0100/FP32/face-detection-0100.xml',
-                          weights='/home/openvino/face/models/intel/face-detection-0100/FP32/face-detection-0100.bin')
+    net = ie.read_network(model='/home/openvino/face/models/intel/face-detection-0106/FP32/face-detection-0106.xml',
+                          weights='/home/openvino/face/models/intel/face-detection-0106/FP32/face-detection-0106.bin')
 
     # I/O blobs
     # (aux) net.inputs -> dict of DataPtr obj
@@ -137,7 +137,11 @@ def main(argv):
         # ininntialize imput layer to picture values
         # extract values form last layer
         # get rid of single element dimensions from n-D output
-        res = np.squeeze(exec_net.infer(inputs={input_blob: trans_frame})[out_blob])
+        # res = np.squeeze(exec_net.infer(inputs={input_blob: trans_frame})[out_blob])
+
+        res = exec_net.infer(inputs={input_blob: trans_frame})
+        res = res[out_blob]
+        res = np.squeeze(res)
 
         # mark face
         # todo properly redo it

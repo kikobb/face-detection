@@ -17,7 +17,7 @@ WORKDIR /opt/intel/openvino/install_dependencies/
 RUN chmod +x install_openvino_dependencies.sh
 RUN ./install_openvino_dependencies.sh
 WORKDIR /opt/intel/openvino/deployment_tools/model_optimizer/install_prerequisites/
-RUN chmod +x install_prerequisites.sh
+RUN chmod +x install_prerequisites.sh 
 RUN ./install_prerequisites.sh
 
 #setup ssh connection
@@ -28,14 +28,14 @@ RUN echo 'root:root' | chpasswd
 #opencv test app
 ENV PROJECT_DIR=/home/openvino/face
 ENV MODEL_DIR=$PROJECT_DIR/models
-ENV MODEL_NAME=face-detection-0100
+ENV MODEL_NAMES=face-detection-0100,face-detection-0106
 COPY display_test.py $PROJECT_DIR/..
 
 #project folder
 RUN mkdir $PROJECT_DIR
 RUN mkdir $MODEL_DIR
 WORKDIR /opt/intel/openvino_2020.3.194/deployment_tools/open_model_zoo/tools/downloader
-RUN ./downloader.py --name $MODEL_NAME --output_dir $MODEL_DIR --precisions FP32,FP16,INT8
+RUN for MODEL in $(echo $MODEL_NAMES | tr ',' '\n'); do ./downloader.py --name $MODEL --output_dir $MODEL_DIR --precisions FP32,FP16,INT8; done
 # COPY neural-networks /home/openvino/neural-networks
 
 COPY docker_entrypoint.sh /usr/local/bin/
