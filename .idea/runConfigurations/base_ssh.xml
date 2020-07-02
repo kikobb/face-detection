@@ -18,7 +18,7 @@
       <env name="PYTHONPATH" value="/opt/intel/openvino/python/python3.6:/opt/intel/openvino/python/python3:/opt/intel/openvino/deployment_tools/open_model_zoo/tools/accuracy_checker:/opt/intel/openvino/deployment_tools/model_optimizer:/opt/intel/openvino/data_processing/dl_streamer/python:/opt/intel/openvino/data_processing/gstreamer/lib/python3.6/site-packages:" />
       <env name="GST_PLUGIN_SCANNER" value="/opt/intel/openvino/data_processing/gstreamer/bin/gstreamer-1.0/gst-plugin-scanner" />
       <env name="INTEL_OPENVINO_DIR" value="/opt/intel/openvino" />
-      <env name="DISPLAY" value=":0" />
+      <env name="DISPLAY" value=":1" />
     </envs>
     <option name="SDK_HOME" value="sftp://root@172.17.0.2:22/usr/bin/python3" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../../openvino/face" />
@@ -31,6 +31,7 @@
         <list>
           <mapping local-root="/tmp/.X11-unix" remote-root="/tmp/.X11-unix" />
           <mapping local-root="/dev" remote-root="/dev" />
+          <mapping local-root="/dev/video0" remote-root="/dev/video0" />
         </list>
       </option>
     </PathMappingSettings>

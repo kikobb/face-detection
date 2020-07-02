@@ -4,6 +4,7 @@
 """
 import getopt
 import sys
+import os
 
 import numpy as np
 import cv2
@@ -66,6 +67,8 @@ def main(argv):
     opts = parse(argv)
     # index = [i for i, v in enumerate(opts) if v[0][1] in 'civ'][0]
 
+    face_detection_version = 0
+
     # open input visual feed
     try:
         cap = cv2.VideoCapture(int(opts['input'][1]) if opts['input'][0] == '-c' else opts['input'][1])
@@ -88,15 +91,20 @@ def main(argv):
     ie = IECore()
 
     # read model IR
-    net = ie.read_network(model='/home/openvino/face/models/intel/face-detection-0106/FP32/face-detection-0106.xml',
-                          weights='/home/openvino/face/models/intel/face-detection-0106/FP32/face-detection-0106.bin')
+    net = ie.read_network(model='/home/openvino/face/models/intel/face-detection-010{0}/FP32/face-detection-010{0}.xml'
+                          .format(face_detection_version),
+                          weights='/home/openvino/face/models/intel/face-detection-010{0}/FP32/face-detection-010{0}.bin'
+                          .format(face_detection_version))
 
     # I/O blobs
     # (aux) net.inputs -> dict of DataPtr obj
     # (aux) described in model - different types of input sources for NN
     # (aux) get the keyword of first element in dict
-    input_blob = next(iter(net.inputs))
-    out_blob = next(iter(net.outputs))
+    input_blob = list(net.inputs)[0]
+    if face_detection_version == 0:
+        out_blob = list(net.outputs)[0]
+    else:
+        out_blob = list(net.outputs)[1]
 
     # pre process image input
     n, c, h, w = net.inputs[input_blob].shape
@@ -140,26 +148,54 @@ def main(argv):
         # res = np.squeeze(exec_net.infer(inputs={input_blob: trans_frame})[out_blob])
 
         res = exec_net.infer(inputs={input_blob: trans_frame})
-        res = res[out_blob]
-        res = np.squeeze(res)
 
+        rec_color = (0, 255, 0)
         # mark face
         # todo properly redo it
         # Change data layout from CHW back to HWC
         # frame = frame.transpose((1, 2, 0))
-        i = 0
-        while res[i][0] != -1:
-            if res[i][2] > 0.5:
-                pt1 = (int(round(frame.shape[:-1][1] * res[i][3])), int(round(frame.shape[:-1][0] * res[i][4])))
-                pt2 = (int(round(frame.shape[:-1][1] * res[i][5])), int(round(frame.shape[:-1][0] * res[i][6])))
-                rgb = (0, 255, 0)
-                img = cv2.imread('/home/k16/Pictures/lenna.png')
-                # cv2.rectangle(frame, pt1, pt2, rgb, thickness=3)
-                frame = cv2.rectangle(img=frame, pt1=pt1, pt2=pt2, color=rgb, thickness=2)
-                pos = (int(round(frame.shape[:-1][1] * res[i][3])), int(round(frame.shape[:-1][0] * res[i][6]) + 10))
-                frame = cv2.putText(frame, '{}%'.format(int(round(res[i][2] * 100))),
-                                    pos, cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
-            i += 1
+        if face_detection_version == 0:
+            res = res[out_blob]
+            res = np.squeeze(res)
+            i = 0
+            while res[i][0] != -1:
+                if res[i][2] > 0.5:
+                    pt1 = (int(round(frame.shape[:-1][1] * res[i][3])), int(round(frame.shape[:-1][0] * res[i][4])))
+                    pt2 = (int(round(frame.shape[:-1][1] * res[i][5])), int(round(frame.shape[:-1][0] * res[i][6])))
+                    img = cv2.imread('/home/k16/Pictures/lenna.png')
+                    # cv2.rectangle(frame, pt1, pt2, rgb, thickness=3)
+                    frame = cv2.rectangle(img=frame, pt1=pt1, pt2=pt2, color=rec_color, thickness=2)
+                    frame = cv2.putText(frame, '{}%'.format(int(round(res[i][2] * 100))),
+                                        (pt1[0], pt2[1] + 10), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
+                i += 1
+        elif face_detection_version >= 5:
+            i = 0
+            while res['labels'][i] != -1:
+                if res[out_blob][i][4] > 0.5:
+                    pt1 = (
+                    int(round(frame.shape[:-1][1] * ((100 / w * res[out_blob][i][0]) / 100))), int(round(frame.shape[:-1][0] * ((100 / h * res[out_blob][i][1]) / 100))))
+                    pt2 = (
+                    int(round(frame.shape[:-1][1] * ((100 / w *res[out_blob][i][2]) / 100))), int(round(frame.shape[:-1][0] * ((100 / h * res[out_blob][i][3]) / 100))))
+                    img = cv2.imread('/home/k16/Pictures/lenna.png')
+                    # cv2.rectangle(frame, pt1, pt2, rgb, thickness=3)
+                    frame = cv2.rectangle(img=frame, pt1=pt1, pt2=pt2, color=rec_color, thickness=2)
+                    frame = cv2.putText(frame, '{}%'.format(int(round(res[out_blob][i][4] * 100))),
+                                        (pt1[0], pt2[1] + 10), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
+                i += 1
+        elif face_detection_version == 6:
+            i = 0
+            # while res['labels'][i] != -1:
+            #     if res[out_blob][i][4] > 0.5:
+            #         pt1 = (int(round(res[out_blob][i][0])), int(round(frame.shape[:-1][0] * (100 / h * res[out_blob][i][1]))))
+            #         pt2 = (int(round(res[out_blob][i][2])), int(round(frame.shape[:-1][0] * (100 / h * res[out_blob][i][3]))))
+            #         img = cv2.imread('/home/k16/Pictures/lenna.png')
+            #         # cv2.rectangle(frame, pt1, pt2, rgb, thickness=3)
+            #         frame = cv2.rectangle(img=frame, pt1=pt1, pt2=pt2, color=rec_color, thickness=2)
+            #         frame = cv2.putText(frame, '{}%'.format(int(round(res[out_blob][i][4] * 100))),
+            #                             (pt1[0], pt2[1] + 10), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
+            #     i += 1
+        else:
+            raise IOError("model not found") # TODO: change classification of this exception
         cv2.imshow('face', frame)
 
         # supported_layers = ie.query_network(net, "CPU")

@@ -19,6 +19,7 @@ RUN ./install_openvino_dependencies.sh
 WORKDIR /opt/intel/openvino/deployment_tools/model_optimizer/install_prerequisites/
 RUN chmod +x install_prerequisites.sh 
 RUN ./install_prerequisites.sh
+RUN apt-get -y install x11-xserver-utils
 
 #setup ssh connection
 RUN echo "" >> /etc/ssh/sshd_config
@@ -28,7 +29,7 @@ RUN echo 'root:root' | chpasswd
 #opencv test app
 ENV PROJECT_DIR=/home/openvino/face
 ENV MODEL_DIR=$PROJECT_DIR/models
-ENV MODEL_NAMES=face-detection-0100,face-detection-0106
+ENV MODEL_NAMES=face-detection-0100,face-detection-0105,face-detection-0106
 COPY display_test.py $PROJECT_DIR/..
 
 #project folder
@@ -43,6 +44,10 @@ RUN chmod +x /usr/local/bin/docker_entrypoint.sh
 RUN ln -s /usr/local/bin/docker_entrypoint.sh / # backwards compat
 ENTRYPOINT ["docker_entrypoint.sh"]
 
+# add apssword to user openvino
+RUN echo "openvino:openvino" | chpasswd
+
+# USER openvino
 WORKDIR $PROJECT_DIR
 CMD ["/bin/bash"]
 
