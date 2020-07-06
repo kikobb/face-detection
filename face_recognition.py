@@ -11,28 +11,36 @@ from openvino.inference_engine import IECore
 class ReadableFile(argparse.Action):
     def __call__(self, parser, namespace, values, option_string=None):
         path = values
+
+        # if model path check for weights too
+        if self.container.title == 'Models':
+            path_w = os.path.splitext(path)[0] + ".bin"
+            if not os.path.isfile(path_w):
+                raise argparse.ArgumentError(self, 'fire: \'{}\' does not exist'.format(path_w))
+            elif not os.access(path_w, os.R_OK):
+                raise argparse.ArgumentError(self, 'fie: \'{}\' is not a readable file'.format(path_w))
+
         if not os.path.isfile(path):
             raise argparse.ArgumentError(self, 'fire: \'{}\' does not exist'.format(path))
         elif not os.access(path, os.R_OK):
             raise argparse.ArgumentError(self, 'fie: \'{}\' is not a readable file'.format(path))
         else:
-            print('dest: {}, values: {}'.format(self.dest, path))
             setattr(namespace, self.dest, path)
 
 
 def create_argparser():
     p = argparse.ArgumentParser()
     input_group = p.add_mutually_exclusive_group()
-    input_group.add_argument('-i', '--image', action=ReadableFile)
+    input_group.add_argument('-i', '--image', action=ReadableFile, nargs=1)
     input_group.add_argument('-c', '--camera', const=0, nargs='?')
-    input_group.add_argument('-v', '--video', action=ReadableFile)
+    input_group.add_argument('-v', '--video', action=ReadableFile, nargs=1)
 
     models = p.add_argument_group('Models')
-    models.add_argument('-dm', '--detection_model', action=ReadableFile)
-    models.add_argument('-lm', '--landmarks_model', action=ReadableFile)
-    models.add_argument('-im', '--identification_model', action=ReadableFile)
+    models.add_argument('-dm', '--detection_model', action=ReadableFile, nargs=1)
+    models.add_argument('-lm', '--landmarks_model', action=ReadableFile, nargs=1)
+    models.add_argument('-im', '--identification_model', action=ReadableFile, nargs=1)
 
-    p.add_argument('-d', '--device', choices=['CPU', 'MYRIAD'], required=True)
+    p.add_argument('-d', '--device', choices=['CPU', 'MYRIAD'], required=True, nargs=1)
 
     return p
 
@@ -83,10 +91,13 @@ class ProcessImage:
 
     def __init__(self, args: Dict):
         self.ie = IECore()
-        net_face_detect = self.load_network(args['detection_model'])
+        net_face_detect = self.prepare_network(args['detection_model'])
 
-    def load_network(self, model_path: str):
-        return 0
+    def prepare_network(self, model_path: str) -> IECore.IENetwork:
+        model_path = os.path.abspath(model_path)
+        model = self.ie.read_network(model=model_path, weights=os.path.splitext(model_path)[0] + ".bin")
+        return model
+
 
 def main():
     p = create_argparser()

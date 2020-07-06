@@ -121,7 +121,7 @@ def main(argv):
     # pre process image input
     n, c, h, w = net_face_detect.inputs[input_blob].shape
 
-    # Load model to plugin
+    # Load model to plugin ExecutableNetwork
     exec_net = ie.load_network(network=net_face_detect, device_name=opts['device'][1])
 
 # TMP test
