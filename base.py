@@ -184,7 +184,8 @@ def main(argv):
 
         res = exec_net.infer(inputs={input_blob: trans_frame})
         # TMP test
-        res2 = exec_net2.infer(inputs={input_blob: trans_frame2})
+        # res2 = exec_net2.infer(inputs={input_blob: trans_frame2})
+        exec_net2.requests[0].infer(inputs={input_blob: trans_frame2})
 
         rec_color = (0, 255, 0)
         #sotres cropped faces

@@ -46,6 +46,7 @@ def create_argparser():
 
 
 def check_args(args, p: any):
+    # todo check for combined max model size NCS 500MB (320MB)
     if not (args.image or args.camera or args.video):
         p.error('At least one option (--image|--camera|--video) is required.')
 
@@ -68,7 +69,7 @@ class IOChanel:
         # it is guaranteed that at least one option is valid
         return cls.camera, int(args['camera'])
 
-    def __open_i_feed(self):
+    def __open_i_feed(self) -> None:
         try:
             self.feed = cv2.VideoCapture(self.i_source)
         except ValueError:
@@ -92,6 +93,7 @@ class ProcessImage:
     def __init__(self, args: Dict):
         self.ie = IECore()
         net_face_detect = self.prepare_network(args['detection_model'])
+        # todo other models
 
     def prepare_network(self, model_path: str) -> IECore.IENetwork:
         model_path = os.path.abspath(model_path)
