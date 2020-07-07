@@ -7,6 +7,8 @@ from typing import Dict, Union, Tuple
 import argparse
 from openvino.inference_engine import IECore
 
+from face_locator import FaceLocator
+
 
 class ReadableFile(argparse.Action):
     def __call__(self, parser, namespace, values, option_string=None):
@@ -37,6 +39,7 @@ def create_argparser():
 
     models = p.add_argument_group('Models')
     models.add_argument('-dm', '--detection_model', action=ReadableFile, nargs=1)
+    models.add_argument('-dm_t', '--detection_model_threshold', metavar='[0..1]', type=float, default=0.5, nargs=1)
     models.add_argument('-lm', '--landmarks_model', action=ReadableFile, nargs=1)
     models.add_argument('-im', '--identification_model', action=ReadableFile, nargs=1)
 
@@ -58,6 +61,7 @@ class IOChanel:
 
     def __init__(self, args: Dict):
         self.i_type, self.i_source = IOChanel.input_source_converter(args)
+        self.feed = None
         self.__open_i_feed()
 
     @classmethod
@@ -95,6 +99,11 @@ class ProcessImage:
         net_face_detect = self.prepare_network(args['detection_model'])
         # todo other models
 
+        self.face_locator = FaceLocator(net_face_detect, args['detection_model_threshold'])
+        # todo other models
+
+        self.face_locator.deploy_network(args['device'], self.ie)   # load network to device
+
     def prepare_network(self, model_path: str) -> IECore.IENetwork:
         model_path = os.path.abspath(model_path)
         model = self.ie.read_network(model=model_path, weights=os.path.splitext(model_path)[0] + ".bin")
@@ -107,9 +116,13 @@ def main():
     check_args(args, p)
 
     io = IOChanel(vars(args))
+    proc = ProcessImage(vars(args))
 
     while True:
-        io.show_frame('frame', io.get_frame())
+        # io.show_frame('frame', io.get_frame())
+        frame = io.get_frame()
+
+
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 

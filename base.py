@@ -162,10 +162,10 @@ def main(argv):
         if frame2.shape[:-1] != (h2, w2):
             # log.warning("Image {} is resized from {} to {}".format(args.input[i], frame.shape[:-1], (h, w)))
             trans_frame2 = cv2.resize(frame2, (w2, h2), interpolation=cv2.INTER_AREA)
-            # cv2.imshow("resized image", frame)
+            # cv2.imshow("resized image", trans_frame2)
         # Change data layout from HWC to CHW
         trans_frame2 = trans_frame2.transpose((2, 0, 1))  # (determined by net_face_detect.inputs['image'].layout)
-
+        # trans_frame2 = trans_frame2.reshape(net_face_detect2.inputs[input_blob].shape)
         if frame.shape[:-1] != (h, w):
             # log.warning("Image {} is resized from {} to {}".format(args.input[i], frame.shape[:-1], (h, w)))
             trans_frame = cv2.resize(frame, (w, h), interpolation=cv2.INTER_AREA)
@@ -184,8 +184,8 @@ def main(argv):
 
         res = exec_net.infer(inputs={input_blob: trans_frame})
         # TMP test
-        # res2 = exec_net2.infer(inputs={input_blob: trans_frame2})
-        exec_net2.requests[0].infer(inputs={input_blob: trans_frame2})
+        res2 = exec_net2.infer(inputs={input_blob: trans_frame2})
+        # exec_net2.requests[0].infer(inputs={input_blob: trans_frame2})
 
         rec_color = (0, 255, 0)
         #sotres cropped faces
