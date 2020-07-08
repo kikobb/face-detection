@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" promptOnRemoteOverwrite="CHECK_TIMESTAMP" serverName="root@172.17.0.2:22" autoUploadExternalChanges="true">
+  <component name="PublishConfigData" promptOnRemoteOverwrite="CHECK_TIMESTAMP" serverName="root@172.17.0.2:22" preserveTimestamps="false" compareModeInSync="TEXT">
     <serverData>
       <paths name="root@172.17.0.2:22">
         <serverdata>
           <mappings>
-            <mapping deploy="/home/openvino/face" local="$PROJECT_DIR$" />
+            <mapping deploy="/home/openvino/face" local="$PROJECT_DIR$" web="" />
           </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/Docker" />
+            <excludedPath local="true" path="$PROJECT_DIR$/models" />
+            <excludedPath local="true" path="$PROJECT_DIR$/venv" />
+          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>
-    <option name="myAutoUpload" value="ALWAYS" />
   </component>
 </project>

@@ -12,7 +12,7 @@ class FaceLocator(NetworkModel):
         self.input_blob = list(model.inputs)[input_blob_index]
         self.input_shape = model.inputs[self.input_blob].shape  # [n, c, h, w]
         self.output_blob = list(model.outputs)[output_blob_index]
-        self.output_shape = model.inputs[self.output_blob].shape
+        self.output_shape = model.outputs[self.output_blob].shape
         self.detection_threshold = detection_threshold
 
     def __prepare_input(self, frame: np.ndarray) -> np.ndarray:

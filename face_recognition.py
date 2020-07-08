@@ -104,7 +104,7 @@ class IOChanel:
             # todo implement other input sources
             raise NotImplementedError('other input sources than camera not implemented')
 
-    def get_frame(self) -> cv2.UMat:
+    def get_frame(self) -> np.ndarray:
         received, frame = self.i_feed.read()
         if not received:
             raise IOError("no fame received")
@@ -152,7 +152,7 @@ class ProcessFrame:
         self.face_locator = FaceLocator(net_face_detect, args['detection_model_threshold'])
         # todo other models
 
-        self.face_locator.deploy_network(args['device'], self.ie)  # load network to device
+        self.face_locator.deploy_network(next(iter(args['device'])), self.ie)  # load network to device
         # todo other models or load separately
 
     def __prepare_network(self, model_path: str) -> IENetwork:
@@ -175,7 +175,7 @@ def main():
 
     while True:
         # io.show_frame('frame', io.get_frame())
-        frame = io.get_frame().get()
+        frame = io.get_frame()
         findings = proc.process_frame(frame)
         frame = io.draw_findings(frame, findings)
         io.write_output(frame)
