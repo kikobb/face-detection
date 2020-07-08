@@ -18,7 +18,7 @@ class FaceLocator(NetworkModel):
     def __prepare_input(self, frame: np.ndarray) -> np.ndarray:
         ret = copy.deepcopy(frame)  # so as not to change original frame
         ret = cv2.resize(ret, (self.input_shape[3], self.input_shape[2]))
-        ret = ret.transpose((2, 0, 1))  # set correct dimension order [h, w, c] to [c, h, w]
+        ret = ret.transpose((2, 0, 1))  # set correct dimension order from [h, w, c] to [c, h, w]
         ret = ret.reshape(self.input_shape)
         return ret
 
@@ -49,7 +49,7 @@ class FaceLocator(NetworkModel):
 
             self.input_shape = input_shape  # [n, c, h, w]
 
-        def __fit_to_frame_ration(self, frame_width: int, frame_height: int):
+        def __fit_to_frame_ratio(self, frame_width: int, frame_height: int):
             """
             method for face position normalized to [0..1] interval
             :param frame:
@@ -75,9 +75,7 @@ class FaceLocator(NetworkModel):
         def fit_to_frame(self, frame: np.ndarray):
             """
             :param input_shape:
-            :param frame: cv2.UMat
-                same frame which is going to be shown later by openCV
-                expected format: [h, w, c]
+            :param frame: same frame which is going to be shown later by openCV expected format: [h, w, c]
             :return:
             """
             frame_width = frame.shape[-2]
@@ -87,7 +85,7 @@ class FaceLocator(NetworkModel):
                 self.__fit_to_frame_abs_pos(frame_width, frame_height)
             else:
                 # normalized to [0..1] interval
-                self.__fit_to_frame_ration(frame_width, frame_height)
+                self.__fit_to_frame_ratio(frame_width, frame_height)
 
             # trim out of frame rectangles
             for key in self.rect.keys():

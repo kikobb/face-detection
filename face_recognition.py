@@ -42,10 +42,10 @@ def create_argparser():
     output_group.add_argument('-of', '--output_file', nargs=1)
 
     models = p.add_argument_group('Models')
-    models.add_argument('-dm', '--detection_model', action=ReadableFile, nargs=1)
+    models.add_argument('-dm', '--detection_model', action=ReadableFile, nargs=1, required=True)
     models.add_argument('-dm_t', '--detection_model_threshold', metavar='[0..1]', type=float, default=0.5, nargs=1)
     models.add_argument('-lm', '--landmarks_model', action=ReadableFile, nargs=1)
-    models.add_argument('-im', '--identification_model', action=ReadableFile, nargs=1)
+    models.add_argument('-rm', '--recognition_model', action=ReadableFile, nargs=1)
 
     p.add_argument('-d', '--device', choices=['CPU', 'MYRIAD'], required=True, nargs=1)
 
@@ -58,6 +58,7 @@ def check_args(args, p: any):
         p.error('At least one option ( --input_image| --input_camera| --input_video) is required.')
     if not (args.output_display or args.output_file):
         p.error('At least one option ( --output_display| --output_file) is required.')
+    if
 
 
 class IOChanel:
@@ -146,14 +147,42 @@ class ProcessFrame:
 
     def __init__(self, args: Dict):
         self.ie = IECore()
+        self.modes = self.__determine_processing_mode(args)
+        net_face_detect = net_landmarks_detect = net_recognize_face = None
+        if not self.modes['detect']: raise ValueError('detection model undefined')
+        
+        
         net_face_detect = self.__prepare_network(args['detection_model'])
-        # todo other models
+        if self.modes['landmark']:
+            net_landmarks_detect = self.__prepare_network(args['landmarks_model'])
+        if self.modes['recognize']:
+            net_recognize_face = self.__prepare_network(args['recognition_model'])
 
         self.face_locator = FaceLocator(net_face_detect, args['detection_model_threshold'])
+        self.landmarks_locator =
         # todo other models
 
         self.face_locator.deploy_network(next(iter(args['device'])), self.ie)  # load network to device
         # todo other models or load separately
+
+    @staticmethod
+    def __determine_processing_mode(args: Dict) -> Dict[str: bool]:
+        ret = {}
+        if args['detection_model']:
+            ret['detect'] = True
+        else:
+            ret['detect'] = False
+
+        if args['landmarks_model']:
+            ret['landmark'] = True
+        else:
+            ret['landmark'] = False
+
+        if args['recognition_model']:
+            ret['recognize'] = True
+        else:
+            ret['recognize'] = False
+        return ret
 
     def __prepare_network(self, model_path: str) -> IENetwork:
         model_path = os.path.abspath(model_path)

@@ -12,6 +12,8 @@ import time
 from typing import Dict
 
 from openvino.inference_engine import IECore
+
+
 # from openvino.inference_engine import IENetwork, IEPlugin
 
 
@@ -66,7 +68,7 @@ def parse(argv: str) -> Dict:
 def init_landmarks(ie: IECore, loc: Dict[str, str]) -> Dict:
     # 5 face landmarks detection
     landmarks_net = ie.read_network(model='{0}/{1}/FP32/{1}.xml'.format(loc['dir'], loc['name']),
-                                         weights='{0}/{1}/FP32/{1}.bin'.format(loc['dir'], loc['name']))
+                                    weights='{0}/{1}/FP32/{1}.bin'.format(loc['dir'], loc['name']))
     i_blob_name = list(landmarks_net.inputs)[0]
     # get input dimensions
     n, c, h, w = landmarks_net.inputs[i_blob_name].shape
@@ -76,10 +78,10 @@ def main(argv):
     opts = parse(argv)
     # index = [i for i, v in enumerate(opts) if v[0][1] in 'civ'][0]
 
-    models_dir = '/home/openvino/face/models/intel'                     # directory of all models
-    fce_det_v = 0                                                       # version of face detection model
-    fce_det_n = 'face-detection-010{}'.format(fce_det_v)                # name of face detection model
-    fce_landmarks_n = 'landmarks-regression-retail-0009'                # name of face landmarks detection model
+    models_dir = '/home/openvino/face/models/intel'  # directory of all models
+    fce_det_v = 0  # version of face detection model
+    fce_det_n = 'face-detection-010{}'.format(fce_det_v)  # name of face detection model
+    fce_landmarks_n = 'landmarks-regression-retail-0009'  # name of face landmarks detection model
 
     # open input visual feed
     try:
@@ -124,23 +126,24 @@ def main(argv):
     # Load model to plugin ExecutableNetwork
     exec_net = ie.load_network(network=net_face_detect, device_name=opts['device'][1])
 
-# TMP test
+    # TMP test
     net_face_detect2 = ie.read_network(model='{0}/face-detection-0105/FP32/face-detection-0105.xml'.format(models_dir),
-                                      weights='{0}/face-detection-0105/FP32/face-detection-0105.bin'.format(models_dir))
+                                       weights='{0}/face-detection-0105/FP32/face-detection-0105.bin'.format(
+                                           models_dir))
     exec_net2 = ie.load_network(network=net_face_detect2, device_name=opts['device'][1])
     out_blob2 = list(net_face_detect2.outputs)[1]
     n2, c2, h2, w2 = net_face_detect2.inputs[input_blob].shape
 
-# TMP load plugin timer
-#     for i in range(10):
-#         start_load = time.time()
-#         exec_net = ie.load_network(network=net_face_detect, device_name=opts['device'][1])
-#         stop_load = time.time()
-#         print('load {0} duration: {1}ns'.format(i, stop_load - start_load))
+    # TMP load plugin timer
+    #     for i in range(10):
+    #         start_load = time.time()
+    #         exec_net = ie.load_network(network=net_face_detect, device_name=opts['device'][1])
+    #         stop_load = time.time()
+    #         print('load {0} duration: {1}ns'.format(i, stop_load - start_load))
 
     # main app loop
     while True:
-        start_time = time.time()  # start time of the loop (fps)
+        start_time = time.time()  # start time ofread_network the loop (fps)
         # ---- Read input frame
         if not cap.grab():
             raise IOError("no fame received")
@@ -157,7 +160,7 @@ def main(argv):
         ret, frame = cap.retrieve()
         if not ret:
             raise NotImplementedError("end of visual feed")
-#TMP test
+        # TMP test
         frame2 = frame.copy()
         if frame2.shape[:-1] != (h2, w2):
             # log.warning("Image {} is resized from {} to {}".format(args.input[i], frame.shape[:-1], (h, w)))
@@ -188,7 +191,7 @@ def main(argv):
         # exec_net2.requests[0].infer(inputs={input_blob: trans_frame2})
 
         rec_color = (0, 255, 0)
-        #sotres cropped faces
+        # sotres cropped faces
         faces = []
         # mark face
         # todo properly redo it
@@ -208,7 +211,7 @@ def main(argv):
                 frame = cv2.putText(frame, '{}%'.format(int(round(res[i][2] * 100))),
                                     (pt1[0], pt2[1] + 10), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
                 i += 1
-            #TMP test
+            # TMP test
             j = 0
             while res2[out_blob2][j][4] > 0.5:
                 pt1 = (
@@ -220,7 +223,7 @@ def main(argv):
                 # cv2.rectangle(frame, pt1, pt2, rgb, thickness=3)
                 frame2 = cv2.rectangle(img=frame2, pt1=pt1, pt2=pt2, color=rec_color, thickness=2)
                 frame2 = cv2.putText(frame2, '{}%'.format(int(round(res2[out_blob2][j][4] * 100))),
-                                    (pt1[0], pt2[1] + 10), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
+                                     (pt1[0], pt2[1] + 10), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
 
                 j += 1
         elif fce_det_v >= 5:
@@ -252,20 +255,20 @@ def main(argv):
             #                             (pt1[0], pt2[1] + 10), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
             #     i += 1
         else:
-            raise IOError("model not found") # TODO: change classification of this exception
+            raise IOError("model not found")  # TODO: change classification of this exception
 
         frame = cv2.putText(frame, 'FPS: {:.2f}'.format(1.0 / (time.time() - start_time)),
                             (10, 10), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
         cv2.imshow('frame', frame)
-        #TMP test
+        # TMP test
         frame2 = cv2.putText(frame2, 'FPS: {:.2f}'.format(1.0 / (time.time() - start_time)),
-                            (10, 10), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
+                             (10, 10), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
         cv2.imshow('frame2', frame2)
         # faces = np.asarray(faces)
-        #corpp image for landmarks detection
+        # corpp image for landmarks detection
         i = 0
         for face in faces:
-            if face.size !=0: cv2.imshow('face{}'.format(i), face)
+            if face.size != 0: cv2.imshow('face{}'.format(i), face)
             i += 1
 
     return
