@@ -8,8 +8,9 @@ from face_locator import FaceLocator
 from network_model import NetworkModel
 from openvino.inference_engine import IECore, IENetwork
 
+
 class LandmarksLocator(NetworkModel):
-    
+
     def __init__(self, model: IENetwork, input_blob_index=0, output_blob_index=0):
         super(LandmarksLocator, self).__init__(model)
         self.input_blob = list(model.inputs)[input_blob_index]
@@ -32,46 +33,50 @@ class LandmarksLocator(NetworkModel):
         :return: 
         """
         frame = frame.transpose((2, 0, 1))  # set correct dimension order from [h, w, c] to [c, h, w]
-        faces = [np.array(frame[ :,
-                           face.rect['y_min']:face.rect['y_max'],
-                           face.rect['x_min']:face.rect['x_max']])
-                  for face in face_locations]
-        return [cv2.resize(face, (self.input_shape[3], self.input_shape[2])).reshape(self.input_shape)
-                for face in faces]
+        prepared_face_frames = []
+        for face in face_locations:
+            prepared_face_frame = np.empty(self.input_shape[1:])
+            crop = np.array(frame[:,
+                            face.rect['y_min']:face.rect['y_max'],
+                            face.rect['x_min']:face.rect['x_max']])
+            for i, chanel in enumerate(crop):
+                prepared_face_frame[i] = cv2.resize(chanel, (self.input_shape[3], self.input_shape[2]))
+                pass
+            prepared_face_frames.append(prepared_face_frame.reshape(self.input_shape))
+        return prepared_face_frames
 
-    def sync_infer(self, frame: np.ndarray, face_locations: List[FaceLocator.FacePosition]) -> List[Dict[str, np.ndarray]]:
+    def sync_infer(self, frame: np.ndarray, face_locations: List[FaceLocator.FacePosition]) -> List[
+            Dict[str, np.ndarray]]:
         return [super(LandmarksLocator, self).sync_infer({self.input_blob: face})
                 for face in self.__prepare_input(frame, face_locations)]
 
-    def get_landmarks(self, frame: np.ndarray, face_locations: List[FaceLocator.FacePosition]):
-        index = 0
+    def get_landmarks(self, frame: np.ndarray, face_locations: List[FaceLocator.FacePosition]) \
+            -> List['LandmarksLocator.FaceLandmarks']:
         faces_landmarks = []
-        for landmarks in np.squeeze(self.sync_infer(frame, face_locations)[self.output_blob]):
-            face_landmarks = LandmarksLocator.FaceLandmarks(landmarks, face_locations[index])
-            face_landmarks.fit_to_frame(frame)
+        for i, face_location in enumerate(face_locations):
+            coordinates = np.squeeze(self.sync_infer(frame, face_locations)[i][self.output_blob])
+
+            face_landmarks = LandmarksLocator.FaceLandmarks(coordinates, face_location)
+            face_landmarks.fit_to_frame()
             faces_landmarks.append(face_landmarks)
-            index += 1
         return faces_landmarks
 
     class FaceLandmarks:
-        def __init__(self, landmarks: List[float], face_location: FaceLocator.FacePosition):
+        def __init__(self, landmarks: np.ndarray, face_location: FaceLocator.FacePosition):
             self.face_location = face_location
             # classic coordinate notation (x,y)
             self.left_eye = landmarks[0:2]
             self.right_eye = landmarks[2:4]
             self.nose = landmarks[4:6]
             self.mouth = landmarks[6:10]
-            
-        def fit_to_frame(self, frame: np.ndarray) -> None:
 
-            frame_width = frame.shape[-2]
-            frame_height = frame.shape[-3]
-
+        def fit_to_frame(self) -> None:
             face_width = self.face_location.rect['x_max'] - self.face_location.rect['x_min']
             face_height = self.face_location.rect['y_max'] - self.face_location.rect['y_min']
-            
-            for landmark in (self.face_location, self.left_eye, self.right_eye,
-                             self.nose, self.mouth[:2], self.mouth[-2:]):
+
+            for landmark in self.get_points():
                 landmark[0] = self.face_location.rect['x_min'] + int(round(face_width * landmark[0]))
                 landmark[1] = self.face_location.rect['y_min'] + int(round(face_height * landmark[1]))
 
+        def get_points(self):
+            return self.left_eye, self.right_eye, self.nose, self.mouth[:2], self.mouth[-2:]

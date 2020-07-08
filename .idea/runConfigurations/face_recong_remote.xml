@@ -1,0 +1,49 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="face_recong_remote" type="PythonConfigurationType" factoryName="Python">
+    <module name="face-detection" />
+    <option name="INTERPRETER_OPTIONS" value="" />
+    <option name="PARENT_ENVS" value="true" />
+    <envs>
+      <env name="PYTHONUNBUFFERED" value="1" />
+      <env name="LD_LIBRARY_PATH" value="/opt/intel/openvino/data_processing/dl_streamer/lib:/opt/intel/openvino/data_processing/gstreamer/lib:/opt/intel/openvino/opencv/lib:/opt/intel/openvino/deployment_tools/ngraph/lib:/opt/intel/openvino/deployment_tools/inference_engine/external/hddl/lib:/opt/intel/openvino/deployment_tools/inference_engine/external/gna/lib:/opt/intel/openvino/deployment_tools/inference_engine/external/mkltiny_lnx/lib:/opt/intel/openvino/deployment_tools/inference_engine/external/tbb/lib:/opt/intel/openvino/deployment_tools/inference_engine/lib/intel64:" />
+      <env name="GST_PLUGIN_PATH" value="/opt/intel/openvino/data_processing/dl_streamer/lib:/opt/intel/openvino/data_processing/gstreamer/lib/gstreamer-1.0" />
+      <env name="INTEL_CVSDK_DIR" value="/opt/intel/openvino" />
+      <env name="MODELS_PATH" value="/root/intel/dl_streamer/models" />
+      <env name="OpenCV_DIR" value="/opt/intel/openvino/opencv/cmake" />
+      <env name="InferenceEngine_DIR" value="/opt/intel/openvino/deployment_tools/inference_engine/share" />
+      <env name="GI_TYPELIB_PATH" value="/opt/intel/openvino/data_processing/gstreamer/lib/girepository-1.0" />
+      <env name="LIBRARY_PATH" value="/opt/intel/openvino/data_processing/dl_streamer/lib:/opt/intel/openvino/data_processing/gstreamer/lib" />
+      <env name="ngraph_DIR" value="/opt/intel/openvino/deployment_tools/ngraph/cmake" />
+      <env name="GST_SAMPLES_DIR" value="/opt/intel/openvino/data_processing/dl_streamer/samples" />
+      <env name="PYTHONPATH" value="/opt/intel/openvino/python/python3.6:/opt/intel/openvino/python/python3:/opt/intel/openvino/deployment_tools/open_model_zoo/tools/accuracy_checker:/opt/intel/openvino/deployment_tools/model_optimizer:/opt/intel/openvino/data_processing/dl_streamer/python:/opt/intel/openvino/data_processing/gstreamer/lib/python3.6/site-packages:" />
+      <env name="GST_PLUGIN_SCANNER" value="/opt/intel/openvino/data_processing/gstreamer/bin/gstreamer-1.0/gst-plugin-scanner" />
+      <env name="INTEL_OPENVINO_DIR" value="/opt/intel/openvino" />
+      <env name="DISPLAY" value=":1" />
+    </envs>
+    <option name="SDK_HOME" value="sftp://root@172.17.0.2:22/usr/bin/python3" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../../openvino/face" />
+    <option name="IS_MODULE_SDK" value="false" />
+    <option name="ADD_CONTENT_ROOTS" value="true" />
+    <option name="ADD_SOURCE_ROOTS" value="true" />
+    <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+    <PathMappingSettings>
+      <option name="pathMappings">
+        <list>
+          <mapping local-root="/tmp/.X11-unix" remote-root="/tmp/.X11-unix" />
+          <mapping local-root="/dev" remote-root="/dev" />
+          <mapping local-root="/dev/video0" remote-root="/dev/video0" />
+        </list>
+      </option>
+    </PathMappingSettings>
+    <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../openvino/face/face_recognition.py" />
+    <option name="PARAMETERS" value="-d MYRIAD -ic 0 -dm $PROJECT_DIR$/../../../openvino/face/models/intel/face-detection-0100/FP32/face-detection-0100.xml -od -dm_t 0.65 -lm $PROJECT_DIR$/../../../openvino/face/models/intel/landmarks-regression-retail-0009/FP32/landmarks-regression-retail-0009.xml" />
+    <option name="SHOW_COMMAND_LINE" value="false" />
+    <option name="EMULATE_TERMINAL" value="false" />
+    <option name="MODULE_MODE" value="false" />
+    <option name="REDIRECT_INPUT" value="false" />
+    <option name="INPUT_FILE" value="" />
+    <method v="2">
+      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_copy_files" />
+    </method>
+  </configuration>
+</component>

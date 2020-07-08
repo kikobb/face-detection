@@ -8,6 +8,7 @@ import argparse
 from openvino.inference_engine import IECore, IENetwork
 
 from face_locator import FaceLocator
+from landmarks_locator import LandmarksLocator
 
 
 class ReadableFile(argparse.Action):
@@ -58,7 +59,6 @@ def check_args(args, p: any):
         p.error('At least one option ( --input_image| --input_camera| --input_video) is required.')
     if not (args.output_display or args.output_file):
         p.error('At least one option ( --output_display| --output_file) is required.')
-    if
 
 
 class IOChanel:
@@ -117,9 +117,12 @@ class IOChanel:
     #         frame = self.get_frame().get()
 
     @staticmethod
-    def draw_findings(frame: np.ndarray, findings: List[Union[List['FaceLocator.FacePosition'], None, None]]) -> np.ndarray:
+    def draw_findings(frame: np.ndarray, findings: List[Union[List['FaceLocator.FacePosition'],
+                                                              List[LandmarksLocator.FaceLandmarks],
+                                                              None]]) -> np.ndarray:
         rec_color = (0, 255, 0)
 
+        # draw rectangle around detected faces, write confidence in % below
         for face in findings[0]:
             frame = cv2.rectangle(img=frame,
                                   pt1=(face.rect['x_min'], face.rect['y_min']),
@@ -128,6 +131,11 @@ class IOChanel:
             frame = cv2.putText(frame, '{}%'.format(int(round(face.conf * 100))),
                                 (face.rect['x_min'], face.rect['y_max'] + 10),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
+
+        # draw little circle for every landmark detected
+        for face_landmarks in findings[1]:
+            for landmark in face_landmarks.get_points():
+                cv2.circle(frame, tuple(landmark), 2, (0, 0, 255), cv2.FILLED, cv2.LINE_8)
         # todo add loop for landmarks and detection
         return frame
 
@@ -150,8 +158,7 @@ class ProcessFrame:
         self.modes = self.__determine_processing_mode(args)
         net_face_detect = net_landmarks_detect = net_recognize_face = None
         if not self.modes['detect']: raise ValueError('detection model undefined')
-        
-        
+
         net_face_detect = self.__prepare_network(args['detection_model'])
         if self.modes['landmark']:
             net_landmarks_detect = self.__prepare_network(args['landmarks_model'])
@@ -159,14 +166,16 @@ class ProcessFrame:
             net_recognize_face = self.__prepare_network(args['recognition_model'])
 
         self.face_locator = FaceLocator(net_face_detect, args['detection_model_threshold'])
-        self.landmarks_locator =
+        self.landmarks_locator = LandmarksLocator(net_landmarks_detect)
         # todo other models
 
-        self.face_locator.deploy_network(next(iter(args['device'])), self.ie)  # load network to device
+        # load networks to device
+        self.face_locator.deploy_network(next(iter(args['device'])), self.ie)
+        self.landmarks_locator.deploy_network(next(iter(args['device'])), self.ie)
         # todo other models or load separately
 
     @staticmethod
-    def __determine_processing_mode(args: Dict) -> Dict[str: bool]:
+    def __determine_processing_mode(args: Dict) -> Dict[str, bool]:
         ret = {}
         if args['detection_model']:
             ret['detect'] = True
@@ -189,9 +198,12 @@ class ProcessFrame:
         model = self.ie.read_network(model=model_path, weights=os.path.splitext(model_path)[0] + ".bin")
         return model
 
-    def process_frame(self, frame: np.ndarray) -> List[Union[List['FaceLocator.FacePosition'], None, None]]:
+    def process_frame(self, frame: np.ndarray) -> List[Union[List['FaceLocator.FacePosition'],
+                                                             List[LandmarksLocator.FaceLandmarks],
+                                                             None]]:
         face_positions = self.face_locator.get_face_positions(frame)
-        return [face_positions, None, None]
+        faces_landmarks = self.landmarks_locator.get_landmarks(frame, face_positions)
+        return [face_positions, faces_landmarks, None]
 
 
 def main():
