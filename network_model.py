@@ -1,11 +1,11 @@
 import cv2
 import numpy as np
 from typing import Dict
-from openvino.inference_engine import IECore
+from openvino.inference_engine import IECore, IENetwork
 
 
 class NetworkModel:
-    def __init__(self, model: IECore.IENetwork):
+    def __init__(self, model: IENetwork):
         self.model = model
         self.exec_model = None
 

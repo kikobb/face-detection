@@ -3,11 +3,11 @@ from typing import Dict, List
 import numpy as np
 import copy
 from network_model import NetworkModel
-from openvino.inference_engine import IECore
+from openvino.inference_engine import IECore, IENetwork
 
 
 class FaceLocator(NetworkModel):
-    def __init__(self, model: IECore.IENetwork, detection_threshold: float, input_blob_index=0, output_blob_index=0):
+    def __init__(self, model: IENetwork, detection_threshold: float, input_blob_index=0, output_blob_index=0):
         super(FaceLocator, self).__init__(model)
         self.input_blob = list(model.inputs)[input_blob_index]
         self.input_shape = model.inputs[self.input_blob].shape  # [n, c, h, w]
@@ -15,7 +15,7 @@ class FaceLocator(NetworkModel):
         self.output_shape = model.inputs[self.output_blob].shape
         self.detection_threshold = detection_threshold
 
-    def prepare_input(self, frame: np.ndarray) -> np.ndarray:
+    def __prepare_input(self, frame: np.ndarray) -> np.ndarray:
         ret = copy.deepcopy(frame)  # so as not to change original frame
         ret = cv2.resize(ret, (self.input_shape[3], self.input_shape[2]))
         ret = ret.transpose((2, 0, 1))  # set correct dimension order [h, w, c] to [c, h, w]
@@ -23,9 +23,9 @@ class FaceLocator(NetworkModel):
         return ret
 
     def sync_infer(self, frame: np.ndarray) -> Dict[str, np.ndarray]:
-        return super(FaceLocator, self).sync_infer({self.input_blob: self.prepare_input(frame)})
+        return super(FaceLocator, self).sync_infer({self.input_blob: self.__prepare_input(frame)})
 
-    def get_face_positions(self, frame: np.ndarray):
+    def get_face_positions(self, frame: np.ndarray) -> List['FaceLocator.FacePosition']:
         # from documentation:
         # The net outputs blob with shape: [1, 1, N, 7], where N is the number of detected bounding boxes.
         # For each detection, the description has the format: [image_id, label, conf, x_min, y_min, x_max, y_max]
@@ -89,7 +89,7 @@ class FaceLocator(NetworkModel):
                 # normalized to [0..1] interval
                 self.__fit_to_frame_ration(frame_width, frame_height)
 
-            # trim big rectangles
+            # trim out of frame rectangles
             for key in self.rect.keys():
                 if self.rect[key] < 0:
                     self.rect[key] = 0
