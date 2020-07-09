@@ -118,13 +118,13 @@ class IOChanel:
     #         frame = self.get_frame().get()
 
     @staticmethod
-    def draw_findings(frame: np.ndarray, findings: List[Union[List['FaceLocator.FacePosition'],
+    def draw_findings(frame: np.ndarray, findings: List[Union[List[FaceLocator.FacePosition],
                                                               List[LandmarksLocator.FaceLandmarks],
-                                                              None]]) -> np.ndarray:
+                                                              List[FaceRecognizer.FaceIdentity]]]) -> np.ndarray:
         rec_color = (0, 255, 0)
 
         # draw rectangle around detected faces, write confidence in % below
-        for face in findings[0]:
+        for face, face_id in zip(findings[0], findings[2]):
             frame = cv2.rectangle(img=frame,
                                   pt1=(face.rect['x_min'], face.rect['y_min']),
                                   pt2=(face.rect['x_max'], face.rect['y_max']),
@@ -132,11 +132,16 @@ class IOChanel:
             frame = cv2.putText(frame, '{}%'.format(int(round(face.conf * 100))),
                                 (face.rect['x_min'], face.rect['y_max'] + 10),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
+            # draw label
+            frame = cv2.putText(frame, '{}'.format(face_id.face_id),
+                                (face.rect['x_min'], face.rect['y_min'] - 10),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
 
         # draw little circle for every landmark detected
         for face_landmarks in findings[1]:
             for landmark in face_landmarks.get_points():
                 cv2.circle(frame, tuple(landmark), 2, (0, 0, 255), cv2.FILLED, cv2.LINE_8)
+
         # todo add loop for landmarks and detection
         return frame
 
@@ -159,23 +164,26 @@ class ProcessFrame:
         self.ie = IECore()
         self.modes = self.__determine_processing_mode(args)
         net_face_detect = net_landmarks_detect = net_recognize_face = None
+
         if not self.modes['detect']:
             raise ValueError('detection model undefined')
-
+        # load networks from file
         net_face_detect = self.__prepare_network(args['detection_model'])
+        # put it to corresponding class
+        self.face_locator = FaceLocator(net_face_detect, args['detection_model_threshold'])
+        # load to device for inferencing
+        self.face_locator.deploy_network(next(iter(args['device'])), self.ie)
+
         if self.modes['landmark']:
             net_landmarks_detect = self.__prepare_network(args['landmarks_model'])
+            self.landmarks_locator = LandmarksLocator(net_landmarks_detect)
+            self.landmarks_locator.deploy_network(next(iter(args['device'])), self.ie)
+
         if self.modes['recognize']:
             net_recognize_face = self.__prepare_network(args['recognition_model'])
+            self.face_recognizer = FaceRecognizer(net_recognize_face)
+            self.face_recognizer.deploy_network(next(iter(args['device'])), self.ie)
 
-        self.face_locator = FaceLocator(net_face_detect, args['detection_model_threshold'])
-        self.landmarks_locator = LandmarksLocator(net_landmarks_detect)
-        self.face_recognizer = FaceRecognizer(net_recognize_face)
-
-        # load networks to device
-        self.face_locator.deploy_network(next(iter(args['device'])), self.ie)
-        self.landmarks_locator.deploy_network(next(iter(args['device'])), self.ie)
-        self.face_recognizer.deploy_network(next(iter(args['device'])), self.ie)
         # todo other models or load separately
 
     @staticmethod
@@ -204,10 +212,13 @@ class ProcessFrame:
 
     def process_frame(self, frame: np.ndarray) -> List[Union[List[FaceLocator.FacePosition],
                                                              List[LandmarksLocator.FaceLandmarks],
-                                                             List[FaceRecognizer.FaceIdentity]]]:
+                                                             List[FaceRecognizer.FaceIdentity]]]:  # todo uniton with None
+        faces_landmarks = faces_identities = None
         face_positions = self.face_locator.get_face_positions(frame)
-        faces_landmarks = self.landmarks_locator.get_landmarks(frame, face_positions)
-        faces_identities = self.face_recognizer.get_identities(frame, face_positions, faces_landmarks)
+        if self.modes['landmark']:
+            faces_landmarks = self.landmarks_locator.get_landmarks(frame, face_positions)
+        if self.modes['recognize']:
+            faces_identities = self.face_recognizer.get_identities(frame, face_positions, faces_landmarks)
         return [face_positions, faces_landmarks, faces_identities]
 
 

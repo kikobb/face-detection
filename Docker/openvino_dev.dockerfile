@@ -29,7 +29,7 @@ RUN echo 'root:root' | chpasswd
 #opencv test app
 ENV PROJECT_DIR=/home/openvino/face
 ENV MODEL_DIR=$PROJECT_DIR/models
-ENV MODEL_NAMES=face-detection-0100,face-detection-0105,face-detection-0106,landmarks-regression-retail-0009
+ENV MODEL_NAMES=face-detection-0100,face-detection-0105,face-detection-0106,landmarks-regression-retail-0009,face-reidentification-retail-0095
 COPY display_test.py $PROJECT_DIR/..
 
 #project folder

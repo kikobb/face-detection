@@ -36,7 +36,7 @@
       </option>
     </PathMappingSettings>
     <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../openvino/face/face_recognition.py" />
-    <option name="PARAMETERS" value="-d MYRIAD -ic 0 -dm $PROJECT_DIR$/../../../openvino/face/models/intel/face-detection-0100/FP32/face-detection-0100.xml -od -dm_t 0.65 -lm $PROJECT_DIR$/../../../openvino/face/models/intel/landmarks-regression-retail-0009/FP32/landmarks-regression-retail-0009.xml" />
+    <option name="PARAMETERS" value="-d CPU -ic 0 -dm $PROJECT_DIR$/../../../openvino/face/models/intel/face-detection-0100/FP32/face-detection-0100.xml -od -dm_t 0.65 -lm $PROJECT_DIR$/../../../openvino/face/models/intel/landmarks-regression-retail-0009/FP32/landmarks-regression-retail-0009.xml -rm $PROJECT_DIR$/../../../openvino/face/models/intel/face-reidentification-retail-0095/FP32/face-reidentification-retail-0095.xml" />
     <option name="SHOW_COMMAND_LINE" value="false" />
     <option name="EMULATE_TERMINAL" value="false" />
     <option name="MODULE_MODE" value="false" />
