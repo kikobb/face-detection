@@ -18,7 +18,7 @@ class LandmarksLocator(NetworkModel):
         self.output_blob = list(model.outputs)[output_blob_index]
         self.output_shape = model.outputs[self.output_blob].shape
 
-    def __prepare_input(self, frame: np.ndarray, face_locations: List['FaceLocator.FacePosition']) -> List[np.ndarray]:
+    def __prepare_input(self, frame: np.ndarray, face_locations: List[FaceLocator.FacePosition]) -> List[np.ndarray]:
         """
         Cuts frame to individual faces and converts cut regions to shape: [1x3x48x48] for network.
             An input image should be in the format [BxCxHxW]:
@@ -53,10 +53,8 @@ class LandmarksLocator(NetworkModel):
     def get_landmarks(self, frame: np.ndarray, face_locations: List[FaceLocator.FacePosition]) \
             -> List['LandmarksLocator.FaceLandmarks']:
         faces_landmarks = []
-        for i, face_location in enumerate(face_locations):
-            coordinates = np.squeeze(self.sync_infer(frame, face_locations)[i][self.output_blob])
-
-            face_landmarks = LandmarksLocator.FaceLandmarks(coordinates, face_location)
+        for face_location, coordinates in zip(face_locations, self.sync_infer(frame, face_locations)):
+            face_landmarks = LandmarksLocator.FaceLandmarks(np.squeeze(coordinates[self.output_blob]), face_location)
             face_landmarks.fit_to_frame()
             faces_landmarks.append(face_landmarks)
         return faces_landmarks

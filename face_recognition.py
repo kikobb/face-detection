@@ -8,6 +8,7 @@ import argparse
 from openvino.inference_engine import IECore, IENetwork
 
 from face_locator import FaceLocator
+from face_recognizer import FaceRecognizer
 from landmarks_locator import LandmarksLocator
 
 
@@ -72,13 +73,13 @@ class IOChanel:
         FILE = 1
 
     def __init__(self, args: Dict):
-        self.i_chanel, self.i_source = IOChanel.input_chanel_converter(args)
-        self.o_chanel = IOChanel.output_chanel_converter(args)
+        self.i_chanel, self.i_source = IOChanel.get_input_chanel_type(args)
+        self.o_chanel = IOChanel.get_output_chanel_type(args)
         self.i_feed = None
         self.__open_i_feed()
 
     @classmethod
-    def input_chanel_converter(cls, args: Dict) -> Tuple['IOChanel.Input', Union[int, str]]:
+    def get_input_chanel_type(cls, args: Dict) -> Tuple['IOChanel.Input', Union[int, str]]:
         if args['input_image']:
             return cls.Input.IMAGE, args['input_image']
         elif args['input_video']:
@@ -87,7 +88,7 @@ class IOChanel:
         return cls.Input.CAMERA, int(args['input_camera'])
 
     @classmethod
-    def output_chanel_converter(cls, args: Dict) -> 'IOChanel.Output':
+    def get_output_chanel_type(cls, args: Dict) -> 'IOChanel.Output':
         if args['output_display']:
             return cls.Output.DISPLAY
         # it is guaranteed that at least one option is valid
@@ -154,10 +155,12 @@ class IOChanel:
 class ProcessFrame:
 
     def __init__(self, args: Dict):
+        # todo proper handling of self.modes
         self.ie = IECore()
         self.modes = self.__determine_processing_mode(args)
         net_face_detect = net_landmarks_detect = net_recognize_face = None
-        if not self.modes['detect']: raise ValueError('detection model undefined')
+        if not self.modes['detect']:
+            raise ValueError('detection model undefined')
 
         net_face_detect = self.__prepare_network(args['detection_model'])
         if self.modes['landmark']:
@@ -167,11 +170,12 @@ class ProcessFrame:
 
         self.face_locator = FaceLocator(net_face_detect, args['detection_model_threshold'])
         self.landmarks_locator = LandmarksLocator(net_landmarks_detect)
-        # todo other models
+        self.face_recognizer = FaceRecognizer(net_recognize_face)
 
         # load networks to device
         self.face_locator.deploy_network(next(iter(args['device'])), self.ie)
         self.landmarks_locator.deploy_network(next(iter(args['device'])), self.ie)
+        self.face_recognizer.deploy_network(next(iter(args['device'])), self.ie)
         # todo other models or load separately
 
     @staticmethod
@@ -198,12 +202,13 @@ class ProcessFrame:
         model = self.ie.read_network(model=model_path, weights=os.path.splitext(model_path)[0] + ".bin")
         return model
 
-    def process_frame(self, frame: np.ndarray) -> List[Union[List['FaceLocator.FacePosition'],
+    def process_frame(self, frame: np.ndarray) -> List[Union[List[FaceLocator.FacePosition],
                                                              List[LandmarksLocator.FaceLandmarks],
-                                                             None]]:
+                                                             List[FaceRecognizer.FaceIdentity]]]:
         face_positions = self.face_locator.get_face_positions(frame)
         faces_landmarks = self.landmarks_locator.get_landmarks(frame, face_positions)
-        return [face_positions, faces_landmarks, None]
+        faces_identities = self.face_recognizer.get_identities(frame, face_positions, faces_landmarks)
+        return [face_positions, faces_landmarks, faces_identities]
 
 
 def main():

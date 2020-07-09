@@ -1,6 +1,6 @@
 import cv2
-from typing import Dict, List
 import numpy as np
+from typing import Dict, List
 import copy
 from network_model import NetworkModel
 from openvino.inference_engine import IECore, IENetwork
@@ -31,7 +31,7 @@ class FaceLocator(NetworkModel):
         # For each detection, the description has the format: [image_id, label, conf, x_min, y_min, x_max, y_max]
         res_positions = []
         faces = self.sync_infer(frame)[self.output_blob]
-        faces = np.squeeze(faces)  # ged rid of 1 elemnet dimensions in nD array ([N, 7])
+        faces = np.squeeze(faces)  # ged rid of 1 element dimensions in nD array ([N, 7])
         for face in faces:
             position = FaceLocator.FacePosition(face, self.input_shape)
             if position.conf < self.detection_threshold:
@@ -67,10 +67,11 @@ class FaceLocator(NetworkModel):
             :param frame:
             :return:
             """
-            self.rect['x_min'] = int(round(frame_width) * ((100 / self.input_shape[4] * self.rect['x_min']) / 100))
-            self.rect['y_min'] = int(round(frame_height) * ((100 / self.input_shape[3] * self.rect['y_min']) / 100))
-            self.rect['x_max'] = int(round(frame_width) * ((100 / self.input_shape[4] * self.rect['x_max']) / 100))
-            self.rect['y_max'] = int(round(frame_height) * ((100 / self.input_shape[3] * self.rect['y_max']) / 100))
+
+            self.rect['x_min'] = int(round(frame_width) * ((100 / self.input_shape[3] * self.rect['x_min']) / 100))
+            self.rect['y_min'] = int(round(frame_height) * ((100 / self.input_shape[2] * self.rect['y_min']) / 100))
+            self.rect['x_max'] = int(round(frame_width) * ((100 / self.input_shape[3] * self.rect['x_max']) / 100))
+            self.rect['y_max'] = int(round(frame_height) * ((100 / self.input_shape[2] * self.rect['y_max']) / 100))
 
         def fit_to_frame(self, frame: np.ndarray):
             """
@@ -80,7 +81,9 @@ class FaceLocator(NetworkModel):
             """
             frame_width = frame.shape[-2]
             frame_height = frame.shape[-3]
-            if max(self.rect.values()) > 1:
+            # even thou values should be normalize to [0..1] sometimes could overshoot by negligible margin
+            # 1.5 is enough padding to account to all of them
+            if max(self.rect.values()) > 1.5:
                 # absolute values
                 self.__fit_to_frame_abs_pos(frame_width, frame_height)
             else:
