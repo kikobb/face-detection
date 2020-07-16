@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" promptOnRemoteOverwrite="CHECK_TIMESTAMP" serverName="root@172.17.0.2:22" preserveTimestamps="false" compareModeInSync="TEXT">
+  <component name="PublishConfigData" autoUpload="Always" promptOnRemoteOverwrite="CHECK_TIMESTAMP" preserveTimestamps="false" compareModeInSync="TEXT">
     <serverData>
+      <paths name="exp_1_openvino">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/openvino/exp_1" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="nvidia">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/nvidia" local="$PROJECT_DIR$/Nvidia_GPU" web="" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="root@172.17.0.2:22">
         <serverdata>
           <mappings>
@@ -15,5 +29,6 @@
         </serverdata>
       </paths>
     </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
   </component>
 </project>

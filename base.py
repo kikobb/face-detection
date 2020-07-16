@@ -99,8 +99,6 @@ def main(argv):
     if not ret:
         raise IOError("no fame received")
 
-    # plugin = IEPlugin(device='CPU')
-
     # load plugin
     ie = IECore()
 

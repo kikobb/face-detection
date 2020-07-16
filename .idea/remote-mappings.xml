@@ -3,13 +3,19 @@
   <component name="RemoteMappingsManager">
     <list>
       <list>
-        <remote-mappings server-id="python@sftp://root@172.17.0.2:22/usr/bin/python3" />
         <remote-mappings server-id="python@docker://openvino:dev/python3">
           <settings>
             <list>
               <mapping local-root="/tmp/.X11-unix" remote-root="/tmp/.X11-unix" />
               <mapping local-root="/dev" remote-root="/dev" />
               <mapping local-root="$PROJECT_DIR$" remote-root="/home/openvino/face" />
+            </list>
+          </settings>
+        </remote-mappings>
+        <remote-mappings server-id="python@sftp://root@172.17.0.2:22/usr/bin/python3">
+          <settings>
+            <list>
+              <mapping local-root="$PROJECT_DIR$/experiment_1/OpenVino" remote-root="/home/openvino/face/exp_1" />
             </list>
           </settings>
         </remote-mappings>

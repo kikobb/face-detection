@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="*face recognition 100% done (face alignment and face library not implanted - not necessary for thesis, todo in future)&#10;*experiment_1 done: test to multiple difficulty mobilenet_v2 checkpoints, results exported to .xlsx file&#10;(scripts update, DockerFile update to download and unpack networks, ... onter)">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/face-detection.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/face-detection.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/remote-mappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/remote-mappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/face_recong_remote.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/face_recong_remote.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docker/docker_builder.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Docker/docker_builder.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docker/docker_entrypoint.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docker/docker_openvino_dev_run.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docker/openvino_dev.dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Docker/openvino_dev.dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/copy.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/face_recognition.py" beforeDir="false" afterPath="$PROJECT_DIR$/face_recognition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/network_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/network_model.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JupyterTrust" id="cf6cc2ff-affe-400a-bd64-92d5c388b23c" />
+  <component name="ProjectId" id="1e2EtScPEkcL5aGl9OkAr6fiG9j" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings>
+        <option name="useSoftWraps" value="true" />
+      </console-settings>
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/experimet_1" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.face_recong_remote">
+    <configuration name="Docker Image" type="docker-deploy" factoryName="docker-image" server-name="Docker">
+      <deployment type="docker-image">
+        <settings>
+          <option name="imageTag" value="openvino:dev" />
+          <option name="command" value="" />
+          <option name="containerName" value="" />
+          <option name="entrypoint" value="" />
+          <option name="envVars">
+            <list>
+              <DockerEnvVarImpl>
+                <option name="name" value="DISPLAY" />
+                <option name="value" value=":0" />
+              </DockerEnvVarImpl>
+            </list>
+          </option>
+          <option name="commandLineOptions" value="" />
+          <option name="volumeBindings">
+            <list>
+              <DockerVolumeBindingImpl>
+                <option name="containerPath" value="/tmp/.X11-unix" />
+                <option name="hostPath" value="/tmp/.X11-unix" />
+              </DockerVolumeBindingImpl>
+            </list>
+          </option>
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Docker.Docker Image" />
+      <item itemvalue="Python.base_docker" />
+      <item itemvalue="Python.base_ssh" />
+      <item itemvalue="Python.face_recong_remote" />
+      <item itemvalue="Python.exp_1_OpenVino" />
+      <item itemvalue="Python.exp_1_GPU" />
+      <item itemvalue="Python.face_recong_local" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="" />
+      <created>1593511501730</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1593511501730</updated>
+      <workItem from="1593511504640" duration="220000" />
+      <workItem from="1593511740612" duration="4000" />
+      <workItem from="1593512837008" duration="976000" />
+      <workItem from="1593588358642" duration="15493000" />
+      <workItem from="1593691635464" duration="12627000" />
+      <workItem from="1593717704186" duration="4899000" />
+      <workItem from="1593859279958" duration="359000" />
+      <workItem from="1593859963737" duration="1038000" />
+      <workItem from="1593866848841" duration="23939000" />
+      <workItem from="1593977715077" duration="608000" />
+      <workItem from="1593992053088" duration="11000" />
+      <workItem from="1594038944414" duration="59758000" />
+      <workItem from="1594165605813" duration="1496000" />
+      <workItem from="1594168453956" duration="751000" />
+      <workItem from="1594191008414" duration="16289000" />
+      <workItem from="1594209976069" duration="6795000" />
+      <workItem from="1594225962116" duration="11635000" />
+      <workItem from="1594292693889" duration="1726000" />
+      <workItem from="1594295019338" duration="3162000" />
+      <workItem from="1594302587317" duration="378000" />
+      <workItem from="1594453668641" duration="4519000" />
+      <workItem from="1594565039967" duration="612000" />
+      <workItem from="1594566654559" duration="601000" />
+      <workItem from="1594570546815" duration="429000" />
+      <workItem from="1594624119933" duration="601000" />
+      <workItem from="1594657268038" duration="3401000" />
+      <workItem from="1594684687119" duration="2532000" />
+      <workItem from="1594690304881" duration="2177000" />
+      <workItem from="1594712828709" duration="11653000" />
+      <workItem from="1594729896705" duration="28853000" />
+      <workItem from="1594833628237" duration="834000" />
+      <workItem from="1594839258945" duration="1630000" />
+      <workItem from="1594858794617" duration="475000" />
+      <workItem from="1594888634366" duration="1447000" />
+      <workItem from="1594891439424" duration="28558000" />
+    </task>
+    <task id="LOCAL-00001" summary="added support for onter face_recognition networks">
+      <created>1593704249858</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1593704249858</updated>
+    </task>
+    <task id="LOCAL-00002" summary="docker run/debug configuration">
+      <created>1593704290530</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1593704290530</updated>
+    </task>
+    <task id="LOCAL-00003" summary="foundation for proper app: face detection - camera rolling">
+      <created>1594060534509</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1594060534509</updated>
+    </task>
+    <task id="LOCAL-00004" summary="prepare_network method (implements read_model)">
+      <created>1594062524954</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1594062524954</updated>
+    </task>
+    <task id="LOCAL-00005" summary="network model class (superclass to concret models) added">
+      <created>1594119977401</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1594119977401</updated>
+    </task>
+    <task id="LOCAL-00006" summary="face locator added, core infrastructure for face location done&#10;TODO: visualize results and test, implement other two NN">
+      <created>1594144466204</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1594144466204</updated>
+    </task>
+    <task id="LOCAL-00007" summary="landmarks locator done&#10;TODO: visualize results and test, implement last NN">
+      <created>1594206736237</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1594206736237</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added support for onter face_recognition networks" />
+    <MESSAGE value="docker run/debug configuration" />
+    <MESSAGE value="foundation for proper app: face detection - camera rolling" />
+    <MESSAGE value="prepare_network method (implements read_model)" />
+    <MESSAGE value="network model class (superclass to concret models) added" />
+    <MESSAGE value="face locator added, core infrastructure for face location done&#10;TODO: visualize results and test, implement other two NN" />
+    <MESSAGE value="landmarks locator done&#10;TODO: visualize results and test, implement last NN" />
+    <MESSAGE value="face recognition 50% done&#10;TODO: face recognition complete, results and test" />
+    <MESSAGE value="*face recognition 100% done (face alignment and face library not implanted - not necessary for thesis, todo in future)&#10;*experiment_1 done: test to multiple difficulty mobilenet_v2 checkpoints, results exported to .xlsx file&#10;(scripts update, DockerFile update to download and unpack networks, ... onter)" />
+    <option name="LAST_COMMIT_MESSAGE" value="*face recognition 100% done (face alignment and face library not implanted - not necessary for thesis, todo in future)&#10;*experiment_1 done: test to multiple difficulty mobilenet_v2 checkpoints, results exported to .xlsx file&#10;(scripts update, DockerFile update to download and unpack networks, ... onter)" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="555" y="313" width="800" height="586" key="#Deployment" timestamp="1594744045988">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="555" y="1373" key="#Deployment/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593692498522" />
+    <state x="555" y="313" width="800" height="586" key="#Deployment/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594744045988" />
+    <state x="1250" y="354" width="236" height="176" key="#Environment_variables" timestamp="1593859640611">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="1250" y="1415" width="236" height="176" key="#Environment_variables/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593694805040" />
+    <state x="1250" y="354" width="236" height="176" key="#Environment_variables/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1593859640611" />
+    <state x="589" y="235" width="732" height="644" key="#Inspections" timestamp="1594291318367">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="589" y="235" width="732" height="644" key="#Inspections/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594291318367" />
+    <state x="553" y="212" width="804" height="684" key="#Options" timestamp="1594165528705">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="553" y="1270" width="804" height="707" key="#Options/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593692515174" />
+    <state x="553" y="212" width="804" height="684" key="#Options/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594165528705" />
+    <state x="552" y="359" width="832" height="711" key="#SSH_Configurations" timestamp="1594743433820">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="552" y="359" width="832" height="711" key="#SSH_Configurations/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594743433820" />
+    <state x="1218" y="1351" width="299" height="204" key="#Volume_binding" timestamp="1593693869880">
+      <screen x="0" y="1080" width="1920" height="1080" />
+    </state>
+    <state x="1218" y="1351" width="299" height="204" key="#Volume_binding/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593693869880" />
+    <state x="675" y="46" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1594942020667">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="428" y="1271" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704278662" />
+    <state x="675" y="46" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594942020667" />
+    <state x="515" y="242" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1594302965373" />
+    <state x="600" y="355" width="709" height="410" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1594915268752">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="600" y="355" width="709" height="410" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594915268752" />
+    <state x="879" y="382" width="424" height="591" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1594157207106">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="879" y="382" width="424" height="591" key="#com.intellij.ide.macro.MacrosDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594157207106" />
+    <state x="761" y="256" width="698" height="640" key="#com.intellij.tools.ToolEditorDialog" timestamp="1594936026035">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="761" y="256" width="698" height="640" key="#com.intellij.tools.ToolEditorDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594936026035" />
+    <state x="78" y="1356" width="1754" height="535" key="#xdebugger.XInspectDialog" timestamp="1593698433092">
+      <screen x="0" y="1080" width="1920" height="1080" />
+    </state>
+    <state x="78" y="1356" width="1754" height="535" key="#xdebugger.XInspectDialog/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593698433092" />
+    <state x="2093" y="247" width="1092" height="601" key="#xdebugger.evaluate" timestamp="1594920456560">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="967" y="352" width="953" height="676" key="#xdebugger.evaluate/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593703836051" />
+    <state x="2093" y="247" width="1092" height="601" key="#xdebugger.evaluate/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594920456560" />
+    <state width="1043" height="506" key="DebuggerActiveHint" timestamp="1594130326300">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1043" height="506" key="DebuggerActiveHint/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594130326300" />
+    <state x="100" y="127" width="1720" height="853" key="DiffContextDialog" timestamp="1594164549372">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="100" y="127" width="1720" height="853" key="DiffContextDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594164549372" />
+    <state x="-234" y="48" width="1720" height="859" key="DirDiffDialog" timestamp="1594166504465">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="100" y="1180" width="1720" height="880" key="DirDiffDialog/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593694117123" />
+    <state x="-234" y="48" width="1720" height="859" key="DirDiffDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594166504465" />
+    <state x="149" y="293" width="906" height="516" key="EnvironmentVariablesDialog" timestamp="1594743763153">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="149" y="1353" width="906" height="516" key="EnvironmentVariablesDialog/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593703274649" />
+    <state x="149" y="293" width="833" height="629" key="EnvironmentVariablesDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594743763153" />
+    <state x="745" y="496" width="424" height="491" key="FileChooserDialogImpl" timestamp="1594744105681">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="745" y="1561" key="FileChooserDialogImpl/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593693317972" />
+    <state x="745" y="496" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594744105681" />
+    <state width="1874" height="439" key="GridCell.Tab.0.bottom" timestamp="1594939198604">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="458" key="GridCell.Tab.0.bottom/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704492659" />
+    <state width="1874" height="284" key="GridCell.Tab.0.bottom/0.27.1920.1053/0.1080.1920.1080@0.27.1920.1053" timestamp="1593695166540" />
+    <state width="1874" height="439" key="GridCell.Tab.0.bottom/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594939198604" />
+    <state width="1874" height="275" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1594302817482" />
+    <state width="1874" height="439" key="GridCell.Tab.0.center" timestamp="1594939198604">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="458" key="GridCell.Tab.0.center/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704492659" />
+    <state width="1874" height="284" key="GridCell.Tab.0.center/0.27.1920.1053/0.1080.1920.1080@0.27.1920.1053" timestamp="1593695166540" />
+    <state width="1874" height="439" key="GridCell.Tab.0.center/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594939198604" />
+    <state width="1874" height="275" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1594302817481" />
+    <state width="1874" height="439" key="GridCell.Tab.0.left" timestamp="1594939198603">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="458" key="GridCell.Tab.0.left/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704492659" />
+    <state width="1874" height="284" key="GridCell.Tab.0.left/0.27.1920.1053/0.1080.1920.1080@0.27.1920.1053" timestamp="1593695166540" />
+    <state width="1874" height="439" key="GridCell.Tab.0.left/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594939198603" />
+    <state width="1874" height="275" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1594302817481" />
+    <state width="1874" height="439" key="GridCell.Tab.0.right" timestamp="1594939198604">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="458" key="GridCell.Tab.0.right/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704492659" />
+    <state width="1874" height="284" key="GridCell.Tab.0.right/0.27.1920.1053/0.1080.1920.1080@0.27.1920.1053" timestamp="1593695166540" />
+    <state width="1874" height="439" key="GridCell.Tab.0.right/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594939198604" />
+    <state width="1874" height="275" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1594302817481" />
+    <state width="1874" height="402" key="GridCell.Tab.1.bottom" timestamp="1594921621830">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="458" key="GridCell.Tab.1.bottom/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704492659" />
+    <state width="1874" height="402" key="GridCell.Tab.1.bottom/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594921621830" />
+    <state width="1874" height="402" key="GridCell.Tab.1.center" timestamp="1594921621830">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="458" key="GridCell.Tab.1.center/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704492659" />
+    <state width="1874" height="402" key="GridCell.Tab.1.center/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594921621830" />
+    <state width="1874" height="402" key="GridCell.Tab.1.left" timestamp="1594921621830">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="458" key="GridCell.Tab.1.left/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704492659" />
+    <state width="1874" height="402" key="GridCell.Tab.1.left/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594921621830" />
+    <state width="1874" height="402" key="GridCell.Tab.1.right" timestamp="1594921621830">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="458" key="GridCell.Tab.1.right/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704492659" />
+    <state width="1874" height="402" key="GridCell.Tab.1.right/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594921621830" />
+    <state x="539" y="97" width="1113" height="737" key="SettingsEditor" timestamp="1594892322844">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="462" y="1404" width="1022" height="737" key="SettingsEditor/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593702642885" />
+    <state x="449" y="188" width="1022" height="737" key="SettingsEditor/0.27.1920.1053/0.1080.1920.1080@0.27.1920.1053" timestamp="1593511666155" />
+    <state x="539" y="97" width="1113" height="737" key="SettingsEditor/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594892322844" />
+    <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1594291915465">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="555" y="1356" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704292599" />
+    <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594291915465" />
+    <state width="960" height="526" key="XDebugger.FullValuePopup" timestamp="1594721337471">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="960" height="526" key="XDebugger.FullValuePopup/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594721337471" />
+    <state x="223" y="890" width="187" height="190" key="com.intellij.docker.deployment.ui.DockerVolumeBindingsField.v173.dialogSize" timestamp="1593680732865">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="223" y="890" width="187" height="190" key="com.intellij.docker.deployment.ui.DockerVolumeBindingsField.v173.dialogSize/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1593680732865" />
+    <state x="0" y="394" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1594917287448">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="0" y="1380" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593698004740" />
+    <state x="0" y="394" width="762" height="686" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594917287448" />
+    <state x="731" y="468" width="458" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1594052260409">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="731" y="468" width="458" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594052260409" />
+    <state x="881" y="517" width="557" height="282" key="com.intellij.tools.ToolSelectDialog.dimensionServiceKey" timestamp="1594936030255">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="881" y="1583" key="com.intellij.tools.ToolSelectDialog.dimensionServiceKey/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593692558144" />
+    <state x="881" y="517" width="557" height="282" key="com.intellij.tools.ToolSelectDialog.dimensionServiceKey/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594936030255" />
+    <state x="488" y="272" width="934" height="569" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1594896325336">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="488" y="272" width="934" height="569" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594896325336" />
+    <state x="793" y="399" width="736" height="351" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration" timestamp="1594744124344">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="736" y="1678" width="463" height="214" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593693376080" />
+    <state x="793" y="399" width="736" height="351" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594744124344" />
+    <state x="346" y="103" width="618" height="870" key="find.popup" timestamp="1594214162522">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="346" y="103" width="618" height="870" key="find.popup/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594214162522" />
+    <state x="625" y="443" width="727" height="637" key="ftp.server.browser" timestamp="1593684510910">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="625" y="443" width="727" height="637" key="ftp.server.browser/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1593684510910" />
+    <state x="792" y="326" width="325" height="462" key="refactoring.ChangeSignatureDialog" timestamp="1594199443983">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="792" y="326" width="325" height="462" key="refactoring.ChangeSignatureDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594199443983" />
+    <state x="623" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1594939007985">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="623" y="259" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594939007985" />
+    <state x="770" y="424" width="370" height="266" key="webDeployment.PermissionsDialog" timestamp="1594132387233">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="770" y="424" width="370" height="266" key="webDeployment.PermissionsDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594132387233" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/base.py</url>
+          <line>246</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/base.py</url>
+          <line>259</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/base.py</url>
+          <line>204</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/base.py</url>
+          <line>161</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/base.py</url>
+          <line>124</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/base.py</url>
+          <line>228</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/base.py</url>
+          <line>213</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/base.py</url>
+          <line>188</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/base.py</url>
+          <line>167</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/experimet_1/Nvidia_GPU/nvidia_tf.py</url>
+          <line>74</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/experimet_1/OpenVino/test.py</url>
+          <line>28</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/experiment_1/OpenVino/experiment_1.py</url>
+          <line>131</line>
+          <option name="timeStamp" value="82" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/face_detection$base.coverage" NAME="base Coverage Results" MODIFIED="1593704069872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/face_detection$GPU_nvidia_tf_remote.coverage" NAME="GPU_nvidia_tf_remote Coverage Results" MODIFIED="1594730854436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../nvidia" />
+    <SUITE FILE_PATH="coverage/face_detection$base_docker.coverage" NAME="base_docker Coverage Results" MODIFIED="1593859975492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/face_detection$base_ssh.coverage" NAME="base_ssh Coverage Results" MODIFIED="1594192408029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../openvino/face" />
+    <SUITE FILE_PATH="coverage/face_detection$face_recong.coverage" NAME="face_recong Coverage Results" MODIFIED="1594055402130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/face_detection$face_recong_remote.coverage" NAME="face_recong_remote Coverage Results" MODIFIED="1594892573347" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../openvino/face" />
+    <SUITE FILE_PATH="coverage/face_detection$exp_1_OpenVino.coverage" NAME="exp_1_OpenVino Coverage Results" MODIFIED="1594939164689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../openvino/face/exp_1" />
+  </component>
+</project>

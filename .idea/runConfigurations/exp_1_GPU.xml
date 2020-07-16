@@ -1,0 +1,35 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="exp_1_GPU" type="PythonConfigurationType" factoryName="Python">
+    <module name="face-detection" />
+    <option name="INTERPRETER_OPTIONS" value="" />
+    <option name="PARENT_ENVS" value="true" />
+    <envs>
+      <env name="PYTHONUNBUFFERED" value="1" />
+    </envs>
+    <option name="SDK_HOME" value="sftp://root@172.18.0.22:22/usr/bin/python3" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../../nvidia" />
+    <option name="IS_MODULE_SDK" value="false" />
+    <option name="ADD_CONTENT_ROOTS" value="true" />
+    <option name="ADD_SOURCE_ROOTS" value="true" />
+    <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+    <PathMappingSettings>
+      <option name="pathMappings">
+        <list>
+          <mapping local-root="/tmp/.X11-unix" remote-root="/tmp/.X11-unix" />
+          <mapping local-root="/dev" remote-root="/dev" />
+          <mapping local-root="/dev/video0" remote-root="/dev/video0" />
+        </list>
+      </option>
+    </PathMappingSettings>
+    <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../nvidia/nvidia_tf.py" />
+    <option name="PARAMETERS" value="" />
+    <option name="SHOW_COMMAND_LINE" value="false" />
+    <option name="EMULATE_TERMINAL" value="false" />
+    <option name="MODULE_MODE" value="false" />
+    <option name="REDIRECT_INPUT" value="false" />
+    <option name="INPUT_FILE" value="" />
+    <method v="2">
+      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_copy_files_openvino_exp_1" />
+    </method>
+  </configuration>
+</component>

@@ -49,7 +49,7 @@ def create_argparser():
     models.add_argument('-lm', '--landmarks_model', action=ReadableFile, nargs=1)
     models.add_argument('-rm', '--recognition_model', action=ReadableFile, nargs=1)
 
-    p.add_argument('-d', '--device', choices=['CPU', 'MYRIAD'], required=True, nargs=1)
+    p.add_argument('-d', '--device', choices=['CPU', 'MYRIAD', 'GPU'], required=True, nargs=1)
 
     return p
 
