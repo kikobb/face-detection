@@ -72,6 +72,7 @@ def main():
     cn = CNN('mobilenet_v2_0.35_96_frozen.pb')
     img = np.array(PIL.Image.open('panda.jpeg').resize((96, 96))).astype(np.float) / 128 - 1
     img = img.reshape(1, 96, 96, 3)
+
     pred_raw = cn.test(img)
     prediction = np.argmax(pred_raw, axis=1).reshape((-1, 1))
     pass

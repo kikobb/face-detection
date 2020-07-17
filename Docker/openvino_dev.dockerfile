@@ -12,11 +12,11 @@ RUN sudo apt-get -y install ssh
 
 # install missing libraryes
 RUN apt-get -y install python3-pip
-RUN pip3 install numpy==1.15.4 Pillow
+RUN pip3 install numpy==1.15.4 Pillow openpyxl
 RUN apt-get -y install libsm6
 
-############
-#   USERS  #
+#################
+#   USERS & SSH #
 #setup ssh connection
 RUN echo "" >> /etc/ssh/sshd_config
 RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
@@ -65,7 +65,7 @@ RUN for MODEL in $(echo $MODEL_NAMES | tr ',' '\n'); do ./downloader.py --name $
 WORKDIR $MODEL_DIR/tmp_mobilenet
 RUN mkdir ../$MOBILENET_V2_DIR
 COPY /$MOBILENET_V2_DIR/mobilenet*.tgz $MODEL_DIR/tmp_mobilenet/
-# unpac all networks
+# unpac only .pb file (${file%.*} - pattern expansion)
 RUN for file in $(ls | grep .tgz); do \
 mkdir ../$MOBILENET_V2_DIR/${file%.*}; \
 tar -xzf $file -C ../$MOBILENET_V2_DIR/${file%.*} --wildcards '*.pb'; \

@@ -10,7 +10,7 @@ RUN apt-get -y install x11-xserver-utils
 
 # install missing libraryes
 RUN apt-get -y install python3-pip
-RUN pip3 install numpy Pillow matplotlib
+RUN pip3 install numpy Pillow openpyxl
 
 
 #setup ssh connection
@@ -31,16 +31,18 @@ WORKDIR $MODEL_DIR/tmp_mobilenet
 # RUN mkdir $MODEL_DIR
 RUN mkdir ../$MOBILENET_V2_DIR
 COPY /$MOBILENET_V2_DIR/mobilenet*.tgz $MODEL_DIR/tmp_mobilenet/
-# unpac all networks
+# unpac only .pb file (${file%.*} - pattern expansion)
 RUN for file in $(ls | grep .tgz); do \
 mkdir ../$MOBILENET_V2_DIR/${file%.*}; \
-tar -xzf $file -C ../$MOBILENET_V2_DIR/${file%.*}; \
+tar -xzf $file -C ../$MOBILENET_V2_DIR/${file%.*} --wildcards '*.pb'; \
 done; 
 WORKDIR $MODEL_DIR/$MOBILENET_V2_DIR
 RUN rm -rf ../tmp_mobilenet
 
+# tail -n 50 mobilenet_v2_0.35_128_eval.pbtxt | tac | grep -m 1 'name:' | cut -d'"' -f 2 > output_node_name.txt
+
 #sert up entrypoint script
-COPY nvidia_entrypoint.sh /usr/local/bin/
+COPY support_scripts/nvidia_entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/nvidia_entrypoint.sh
 # backwards compat
 RUN ln -s /usr/local/bin/nvidia_entrypoint.sh / 

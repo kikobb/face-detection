@@ -34,7 +34,7 @@
         </list>
       </option>
     </PathMappingSettings>
-    <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../openvino/face/exp_1/experiment_1.py" />
+    <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../openvino/face/exp_1/experiment_1_OpenVino.py" />
     <option name="PARAMETERS" value="" />
     <option name="SHOW_COMMAND_LINE" value="false" />
     <option name="EMULATE_TERMINAL" value="false" />

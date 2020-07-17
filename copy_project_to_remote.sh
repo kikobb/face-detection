@@ -28,6 +28,9 @@ case $1 in
         for file in $(find ./experiment_1/Nvidia_GPU -maxdepth 1 -type f); do 
             sshpass -p "root" scp -P 22 "$file" root@172.18.0.22:/home/nvidia
         done
+        for file in $(find ./experiment_1/ -maxdepth 1 -type f); do
+            sshpass -p "root" scp -P 22 "$file" root@172.18.0.22:/home/nvidia
+        done
         exit 0
         ;;
 esac

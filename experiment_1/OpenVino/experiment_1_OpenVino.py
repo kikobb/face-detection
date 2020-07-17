@@ -1,7 +1,8 @@
 import os
-from openpyxl import Workbook
 import numpy as np
 import re
+from collections.abc import Iterable
+from openpyxl import Workbook
 from openpyxl.styles import Font
 from openpyxl.comments import Comment
 
@@ -68,32 +69,21 @@ def configure_plugins(ie, device_name):
 
 def inference(exec_net, inputs, infer_requests):
     times = [None] * infer_requests
-    # start = time.perf_counter()
     # do inference
     for i in range(infer_requests):
         times[i], _ = record_time(exec_net.infer, (inputs,))
-    # stop = time.perf_counter()
-    # info = time.get_clock_info('perf_counter')
-    #
-    # total_time = 0
-    # for i, t in enumerate(times):
-    #     total_time += t
-    #     print(f'        infer {i}: {t}')
-    # print(f'form partial: {total_time}')
-    # print(f'    avg. per execution: {total_time / len(times)}')
-    # print(f'execution: {stop - start}')
-    # print(f'deference: {abs(total_time - (stop - start))}')
-    # # print(f'sleep: {(stop - start)*1000000000} ns')
-    # avg = sum(times) / len(times)
     return times
 
 
 def record_time(func, params):
     ret = None
     start = time.perf_counter()
-    if func is not None:
-        # if
+    if isinstance(params, Iterable):
         ret = func(*params)
+    elif params is not None:
+        ret = func(params)
+    else:
+        ret = func()
     stop = time.perf_counter()
     return stop - start, ret
 
@@ -160,8 +150,8 @@ def write_to_csv(data, file_name):
 def main():
     # load plugin
     ie = IECore()
-    # test_results = {'CPU': [], 'GPU': [], 'MYRIAD': []}
-    test_results = {'CPU': []}
+    test_results = {'CPU': [], 'GPU': [], 'MYRIAD': []}
+    # test_results = {'CPU': []}
     nns_dir = '/home/openvino/face/models/mobilenet_v2'
 
     for device_name in test_results.keys():
@@ -188,7 +178,7 @@ def main():
 
             # perform inference
             result['exec_t']['overall'], result['exec_t']['individual'] = record_time(inference, (
-                exec_net, input_blob, 3))
+                exec_net, input_blob, 30))
 
             test_results[device_name].append(result)
 

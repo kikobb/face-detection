@@ -21,7 +21,7 @@
         </list>
       </option>
     </PathMappingSettings>
-    <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../nvidia/nvidia_tf.py" />
+    <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../nvidia/experiment_1_nvidia.py" />
     <option name="PARAMETERS" value="" />
     <option name="SHOW_COMMAND_LINE" value="false" />
     <option name="EMULATE_TERMINAL" value="false" />
@@ -29,7 +29,7 @@
     <option name="REDIRECT_INPUT" value="false" />
     <option name="INPUT_FILE" value="" />
     <method v="2">
-      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_copy_files_openvino_exp_1" />
+      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_copy_files_GPU_exp_1" />
     </method>
   </configuration>
 </component>
