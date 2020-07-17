@@ -97,11 +97,19 @@ def write_to_csv(data, file_name):
     ws_data.title = "main_data"
     # create header of spreadsheet
     ws_data['A1'] = 'Device'
-    ws_data['B1'] = 'Network_difficulty_level'
-    ws_data['C1'] = 'Initialization (μs)'
-    ws_data['D1'] = 'Loading (μs)'
-    ws_data['E1'] = 'Overall_execution_of_one_batch (μs)'
-    ws_data['F1'] = 'Individual_inference_execution (μs)'
+
+    ws_data['B1'] = 'Network_name'
+    ws_data['C1'] = 'Difficulty (in MACs (M))'
+    ws_data['C1'].comment = Comment('MAC = Multiplication and Accumulation operation, (M) = in millions',
+                                    'xbarna02')
+    ws_data['D1'] = 'Precision (top 5)%'
+    ws_data['D1'].comment = Comment('probability that correct answer occurs in top 5 predictions', 'xbarna02')
+    ws_data['E1'] = 'Net_dropout'
+    ws_data['F1'] = 'Net_input_dimension'
+    ws_data['G1'] = 'Initialization (μs)'
+    ws_data['H1'] = 'Loading (μs)'
+    ws_data['I1'] = 'Overall_execution_of_one_batch (μs)'
+    ws_data['J1'] = 'Individual_inference_execution (μs)'
     # make them bold
     for cell in ws_data["1:1"]:
         cell.font = Font(bold=True)
@@ -109,40 +117,21 @@ def write_to_csv(data, file_name):
     row_nmbr = 2
     for dev_name in data.keys():
         for i, _ in enumerate(data[dev_name]):
+            network = next(j for j, item in enumerate(g_mobilenet_data)
+                           if item["name"] == data[dev_name][i]['network_name'])
             for measurement in data[dev_name][i]['exec_t']['individual']:
-                ws_data[f'A{row_nmbr}'] = dev_name
-                ws_data[f'B{row_nmbr}'] = next(j for j, item in enumerate(g_mobilenet_data)
-                                               if item["name"] == data[dev_name][i]['network_name'])
-                ws_data[f'C{row_nmbr}'] = int(round(data[dev_name][i]['init_t'] * 1000000))
-                ws_data[f'D{row_nmbr}'] = int(round(data[dev_name][i]['load_t'] * 1000000))
-                ws_data[f'E{row_nmbr}'] = int(round(data[dev_name][i]['exec_t']['overall'] * 1000000))
-                ws_data[f'F{row_nmbr}'] = int(round(measurement * 1000000))
+                ws_data[f'A{row_nmbr}'] = f'PC: {dev_name if dev_name != "GPU" else f"{dev_name} - Intel"}'
+                ws_data[f'B{row_nmbr}'] = g_mobilenet_data[i]['name']
+                ws_data[f'C{row_nmbr}'] = g_mobilenet_data[i]['difficulty']
+                ws_data[f'D{row_nmbr}'] = g_mobilenet_data[i]['precision']
+                ws_data[f'E{row_nmbr}'] = g_mobilenet_data[i]['name'].rsplit('_', 2)[1]
+                ws_data[f'F{row_nmbr}'] = g_mobilenet_data[i]['name'].rsplit('_', 1)[1]
+                ws_data[f'G{row_nmbr}'] = int(round(data[dev_name][i]['init_t'] * 1000000))
+                ws_data[f'H{row_nmbr}'] = int(round(data[dev_name][i]['load_t'] * 1000000))
+                ws_data[f'I{row_nmbr}'] = int(round(data[dev_name][i]['exec_t']['overall'] * 1000000))
+                ws_data[f'J{row_nmbr}'] = int(round(measurement * 1000000))
 
                 row_nmbr += 1
-
-    # write data about networks
-    # header
-    ws_net_desc = wb.create_sheet("Network_diff")
-    ws_net_desc['A1'] = 'Number'
-    ws_net_desc['A1'].comment = Comment('this number pairs with table on \"main_data\" working sheet column '
-                                        '\"Network_difficulty_level\"', 'xbarna02')
-    ws_net_desc['B1'] = 'Network_name'
-    ws_net_desc['C1'] = 'Difficulty (in MACs (M))'
-    ws_net_desc['C1'].comment = Comment('MAC = Multiplication and Accumulation operation, (M) = in millions',
-                                        'xbarna02')
-    ws_net_desc['D1'] = 'Precision (top 5)%'
-    ws_net_desc['D1'].comment = Comment('probability that correct answer occurs in top 5 predictions', 'xbarna02')
-    for cell in ws_net_desc["1:1"]:
-        cell.font = Font(bold=True)
-    # data
-    row_nmbr = 2
-    for i, row in enumerate(g_mobilenet_data):
-        ws_net_desc[f'A{row_nmbr}'] = i
-        ws_net_desc[f'B{row_nmbr}'] = row['name']
-        ws_net_desc[f'C{row_nmbr}'] = row['difficulty']
-        ws_net_desc[f'D{row_nmbr}'] = row['precision']
-
-        row_nmbr += 1
 
     wb.save(filename=file_name)
 
@@ -150,17 +139,17 @@ def write_to_csv(data, file_name):
 def main():
     # load plugin
     ie = IECore()
-    test_results = {'CPU': [], 'GPU': [], 'MYRIAD': []}
-    # test_results = {'CPU': []}
+    # test_results = {'CPU': [], 'GPU': [], 'MYRIAD': []}
+    test_results = {'GPU': []}
     nns_dir = '/home/openvino/face/models/mobilenet_v2'
 
     for device_name in test_results.keys():
         count = 0
-        for nn_dir in os.listdir(nns_dir):
-            print(f'{count} Device: {device_name}, Network: {nn_dir}')
+        for nn_dir in g_mobilenet_data:
+            print(f'{count} Device: {device_name}, Network: {nn_dir["name"]}')
             count += 1
             result = {
-                'network_name': nn_dir, 'init_t': None, 'load_t': None, 'exec_t':
+                'network_name': nn_dir["name"], 'init_t': None, 'load_t': None, 'exec_t':
                     {
                         'overall': None, 'individual': None
                     }
@@ -169,7 +158,7 @@ def main():
             result['init_t'], (input_blob, network) = record_time(
                 init_and_read_graph, (
                     ie,
-                    f'{nns_dir}/{nn_dir}/{nn_dir}_frozen.xml',
+                    f'{nns_dir}/{nn_dir["name"]}/{nn_dir["name"]}_frozen.xml',
                     device_name
                 ))
 
@@ -177,9 +166,10 @@ def main():
             result['load_t'], exec_net = record_time(ie.load_network, (network, device_name))
 
             # perform inference
+            print('inference_begin')
             result['exec_t']['overall'], result['exec_t']['individual'] = record_time(inference, (
-                exec_net, input_blob, 30))
-
+                exec_net, input_blob, 3000))
+            print('inference_end')
             test_results[device_name].append(result)
 
     # if you change filename change it in 'copy_experiment_results.sh' script

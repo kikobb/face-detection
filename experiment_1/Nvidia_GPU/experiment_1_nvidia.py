@@ -84,11 +84,19 @@ def write_to_csv(data, file_name):
     ws_data.title = "main_data"
     # create header of spreadsheet
     ws_data['A1'] = 'Device'
-    ws_data['B1'] = 'Network_difficulty_level'
-    ws_data['C1'] = 'Initialization (μs)'
-    ws_data['D1'] = 'Loading (μs)'
-    ws_data['E1'] = 'Overall_execution_of_one_batch (μs)'
-    ws_data['F1'] = 'Individual_inference_execution (μs)'
+
+    ws_data['B1'] = 'Net_name'
+    ws_data['C1'] = 'Net_difficulty (in MACs (M))'
+    ws_data['C1'].comment = Comment('MAC = Multiplication and Accumulation operation, (M) = in millions',
+                                    'xbarna02')
+    ws_data['D1'] = 'Net_precision (top 5)%'
+    ws_data['D1'].comment = Comment('probability that correct answer occurs in top 5 predictions', 'xbarna02')
+    ws_data['E1'] = 'Net_dropout'
+    ws_data['F1'] = 'Net_input_dimension'
+    ws_data['G1'] = 'Initialization (μs)'
+    ws_data['H1'] = 'Loading (μs)'
+    ws_data['I1'] = 'Overall_execution_of_one_batch (μs)'
+    ws_data['J1'] = 'Individual_inference_execution (μs)'
     # make them bold
     for cell in ws_data["1:1"]:
         cell.font = Font(bold=True)
@@ -96,40 +104,21 @@ def write_to_csv(data, file_name):
     row_nmbr = 2
 
     for i, _ in enumerate(data):
+        network = next(j for j, item in enumerate(g_mobilenet_data)
+                       if item["name"] == data[i]['network_name'])
         for measurement in data[i]['exec_t']['individual']:
-            ws_data[f'A{row_nmbr}'] = 'GPU - Nvidia'
-            ws_data[f'B{row_nmbr}'] = next(j for j, item in enumerate(g_mobilenet_data)
-                                           if item["name"] == data[i]['network_name'])
-            ws_data[f'C{row_nmbr}'] = int(round(data[i]['init_t'] * 1000000))
-            ws_data[f'D{row_nmbr}'] = 0
-            ws_data[f'E{row_nmbr}'] = int(round(data[i]['exec_t']['overall'] * 1000000))
-            ws_data[f'F{row_nmbr}'] = int(round(measurement * 1000000))
+            ws_data[f'A{row_nmbr}'] = 'PC: GPU - Nvidia'
+            ws_data[f'B{row_nmbr}'] = g_mobilenet_data[i]['name']
+            ws_data[f'C{row_nmbr}'] = g_mobilenet_data[i]['difficulty']
+            ws_data[f'D{row_nmbr}'] = g_mobilenet_data[i]['precision']
+            ws_data[f'E{row_nmbr}'] = g_mobilenet_data[i]['name'].rsplit('_', 2)[1]
+            ws_data[f'F{row_nmbr}'] = g_mobilenet_data[i]['name'].rsplit('_', 1)[1]
+            ws_data[f'G{row_nmbr}'] = int(round(data[i]['init_t'] * 1000000))
+            ws_data[f'H{row_nmbr}'] = 0
+            ws_data[f'I{row_nmbr}'] = int(round(data[i]['exec_t']['overall'] * 1000000))
+            ws_data[f'J{row_nmbr}'] = int(round(measurement * 1000000))
 
             row_nmbr += 1
-
-    # write data about networks
-    # header
-    ws_net_desc = wb.create_sheet("Network_diff")
-    ws_net_desc['A1'] = 'Number'
-    ws_net_desc['A1'].comment = Comment('this number pairs with table on \"main_data\" working sheet column '
-                                        '\"Network_difficulty_level\"', 'xbarna02')
-    ws_net_desc['B1'] = 'Network_name'
-    ws_net_desc['C1'] = 'Difficulty (in MACs (M))'
-    ws_net_desc['C1'].comment = Comment('MAC = Multiplication and Accumulation operation, (M) = in millions',
-                                        'xbarna02')
-    ws_net_desc['D1'] = 'Precision (top 5)%'
-    ws_net_desc['D1'].comment = Comment('probability that correct answer occurs in top 5 predictions', 'xbarna02')
-    for cell in ws_net_desc["1:1"]:
-        cell.font = Font(bold=True)
-    # data
-    row_nmbr = 2
-    for i, row in enumerate(g_mobilenet_data):
-        ws_net_desc[f'A{row_nmbr}'] = i
-        ws_net_desc[f'B{row_nmbr}'] = row['name']
-        ws_net_desc[f'C{row_nmbr}'] = row['difficulty']
-        ws_net_desc[f'D{row_nmbr}'] = row['precision']
-
-        row_nmbr += 1
 
     wb.save(filename=file_name)
 
@@ -139,12 +128,12 @@ def main():
 
     test_results = []
     count = 0
-    for nn_dir in os.listdir(nns_dir):
-        cn = CNN(f'{nns_dir}/{nn_dir}')
-        print(f'{count} Network: {nn_dir}')
+    for nn_dir in g_mobilenet_data:
+        cn = CNN(f'{nns_dir}/{nn_dir["name"]}')
+        print(f'{count} Network: {nn_dir["name"]}')
         count += 1
         result = {
-            'network_name': nn_dir, 'init_t': None, 'load_t': None, 'exec_t':
+            'network_name': nn_dir["name"], 'init_t': None, 'load_t': None, 'exec_t':
                 {
                     'overall': None, 'individual': None
                 }

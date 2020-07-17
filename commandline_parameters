@@ -1,0 +1,5 @@
+-d CPU
+-ic 0
+-dm /home/openvino/face/models/intel/face-detection-0100/FP32/face-detection-0100.xml
+-od
+-dm_t 0.65
