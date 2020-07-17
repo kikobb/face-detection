@@ -13,6 +13,12 @@ if [[ "$#" -eq "1" ]]; then
 	elif [[ "$1" -eq "2" ]]; then
 		docker build -t openvino:dev -f ./openvino_dev.dockerfile .
 		exit
+	elif [[ "$1" -eq "r1" ]]; then
+		docker build -t ov_raspberry:dev_base -f ./raspbian_dev_base.dockerfile .
+		exit
+	elif [[ "$1" -eq "r2" ]]; then
+		docker build -t ov_raspberry:dev -f ./raspbian_dev.dockerfile .
+		exit 
 	elif [[ "$1" -eq "nvidia" ]]; then
 		docker build -t tf_nvidia:dev -f ./tensorflow_nvidia.dockerfile .
 		exit 
