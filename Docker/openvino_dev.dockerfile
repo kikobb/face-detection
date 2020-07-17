@@ -2,7 +2,6 @@ FROM openvino:dev_base
 
 USER root
 
-
 #####################
 # REQUIRED SOFTWARE #
 RUN apt-get update && \

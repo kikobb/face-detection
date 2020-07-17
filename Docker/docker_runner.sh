@@ -23,7 +23,6 @@ if [[ "$#" -eq "0" ]]; then
 			--rm \
 			-v /dev:/dev \
 			--device=/dev/video0:/dev/video0 \
-			--device /dev/nvidia0:/dev/nvidia0 --device /dev/nvidiactl:/dev/nvidiactl --device /dev/nvidia-uvm:/dev/nvidia-uvm\
 			-v /tmp/.X11-unix:/tmp/.X11-unix \
 			-e DISPLAY=$DISPLAY\
 			-it openvino:dev
@@ -43,6 +42,21 @@ if [[ "$#" -eq "1" && "$1" -ne "nvidia" ]]; then
 			-e DISPLAY=$DISPLAY \
 			--name $1 \
 			-it openvino:dev
+	xhost -
+	exit
+fi
+
+#run container on raspberry pi
+if [[ "$#" -eq "1" && "$1" -eq "raspberry" ]]; then
+	xhost +
+	docker run --privileged \
+			--rm \
+			-v /dev:/dev \
+			-v /tmp/.X11-unix:/tmp/.X11-unix \
+			--device=/dev/video0:/dev/video0 \
+			-e DISPLAY=$DISPLAY \
+			--name $1 \
+			-it ov_raspberry:dev_base
 	xhost -
 	exit
 fi
