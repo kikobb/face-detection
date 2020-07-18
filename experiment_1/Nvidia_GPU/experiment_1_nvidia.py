@@ -143,7 +143,7 @@ def main():
         result['init_t'], _ = record_time(cn.init_graph, None)
 
         # perform inference
-        result['exec_t']['overall'], result['exec_t']['individual'] = record_time(cn.inference, 30)
+        result['exec_t']['overall'], result['exec_t']['individual'] = record_time(cn.inference, 300)
 
         test_results.append(result)
     # if you change filename change it in 'copy_experiment_results.sh' script

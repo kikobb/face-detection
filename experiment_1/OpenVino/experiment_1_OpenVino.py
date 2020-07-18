@@ -1,4 +1,6 @@
 import os
+import sys
+
 import numpy as np
 import re
 from collections.abc import Iterable
@@ -10,11 +12,20 @@ import time
 from openvino.inference_engine import IECore
 
 
+def is_raspberry():
+    if len(sys.argv) == 2 and (sys.argv[1] != 'raspberry' or sys.argv[1] != 'pi'):
+        return True
+    return False
+
+
 def load_networks_data():
     out = []
     net_data = {'name': None, 'difficulty': None, 'precision': None}
     # in local file hierarchy it is in superior folder but in remote (due to copy script) file is in same directory
-    file1 = open('networks_data.txt', 'r')
+    if is_raspberry():
+        file1 = open('../networks_data.txt', 'r')
+    else:
+        file1 = open('networks_data.txt', 'r')
     lines = file1.readlines()
     for i, line in enumerate(lines):
         if line == '\n':
@@ -97,19 +108,26 @@ def write_to_csv(data, file_name):
     ws_data.title = "main_data"
     # create header of spreadsheet
     ws_data['A1'] = 'Device'
-
+    ws_data['A1'].comment = Comment('HW zariadenie', 'xbarna02')
     ws_data['B1'] = 'Network_name'
+    ws_data['B1'].comment = Comment('nazov neuronovej siete', 'xbarna02')
     ws_data['C1'] = 'Difficulty (in MACs (M))'
-    ws_data['C1'].comment = Comment('MAC = Multiplication and Accumulation operation, (M) = in millions',
+    ws_data['C1'].comment = Comment('obtiaznost v MAC = Multiplication and Accumulation operation, (M) = in millions',
                                     'xbarna02')
     ws_data['D1'] = 'Precision (top 5)%'
-    ws_data['D1'].comment = Comment('probability that correct answer occurs in top 5 predictions', 'xbarna02')
+    ws_data['D1'].comment = Comment('presnost, probability that correct answer occurs in top 5 predictions', 'xbarna02')
     ws_data['E1'] = 'Net_dropout'
+    ws_data['E1'].comment = Comment('koeficient zjednodusenia siete', 'xbarna02')
     ws_data['F1'] = 'Net_input_dimension'
+    ws_data['F1'].comment = Comment('dimenzie vstupneho obrazku', 'xbarna02')
     ws_data['G1'] = 'Initialization (μs)'
+    ws_data['G1'].comment = Comment('inicializacia siete', 'xbarna02')
     ws_data['H1'] = 'Loading (μs)'
+    ws_data['H1'].comment = Comment('doba nacitania siete do zariadenie', 'xbarna02')
     ws_data['I1'] = 'Overall_execution_of_one_batch (μs)'
+    ws_data['I1'].comment = Comment('celkova doba spustenia jedneho test', 'xbarna02')
     ws_data['J1'] = 'Individual_inference_execution (μs)'
+    ws_data['J1'].comment = Comment('doba spustenia jednotlivej inferencie', 'xbarna02')
     # make them bold
     for cell in ws_data["1:1"]:
         cell.font = Font(bold=True)
@@ -137,12 +155,17 @@ def write_to_csv(data, file_name):
 
 
 def main():
+    raspberry = is_raspberry()
     # load plugin
     ie = IECore()
-    # test_results = {'CPU': [], 'GPU': [], 'MYRIAD': []}
-    test_results = {'GPU': []}
+    test_results = {'CPU': [], 'MYRIAD': []}
+    if not raspberry:
+        test_results['GPU'] = []
+    # test_results = {'GPU': []}
+    # test_results = {'CPU': []}
     nns_dir = '/home/openvino/face/models/mobilenet_v2'
-
+    if raspberry:
+        nns_dir = '/home/pi/openvino/face-detection/model_library/mobilenet_v2'
     for device_name in test_results.keys():
         count = 0
         for nn_dir in g_mobilenet_data:
@@ -168,7 +191,7 @@ def main():
             # perform inference
             print('inference_begin')
             result['exec_t']['overall'], result['exec_t']['individual'] = record_time(inference, (
-                exec_net, input_blob, 3000))
+                exec_net, input_blob, 10))
             print('inference_end')
             test_results[device_name].append(result)
 

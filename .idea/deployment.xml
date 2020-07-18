@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" promptOnRemoteOverwrite="CHECK_TIMESTAMP" serverName="root@172.18.0.22:22 password" preserveTimestamps="false" compareModeInSync="TEXT">
+  <component name="PublishConfigData" autoUpload="Always" promptOnRemoteOverwrite="CHECK_TIMESTAMP" serverName="pi@192.168.0.206:22 password" preserveTimestamps="false" compareModeInSync="TEXT">
     <serverData>
       <paths name="exp_1_openvino">
         <serverdata>

@@ -54,36 +54,47 @@ RUN mkdir $PROJECT_DIR
 RUN mkdir $PROJECT_DIR/exp_1
 
 # MODELS
+ENV DOWNLOAD_MODELS=False
 # download intel models
 RUN mkdir $MODEL_DIR
 WORKDIR /opt/intel/openvino_2020.3.194/deployment_tools/open_model_zoo/tools/downloader
-RUN for MODEL in $(echo $MODEL_NAMES | tr ',' '\n'); do ./downloader.py --name $MODEL --output_dir $MODEL_DIR --precisions FP32,FP16,INT8; done
+RUN if [[ "$DOWNLOAD_MODELS" == "True" ]]; then for MODEL in $(echo $MODEL_NAMES | tr ',' '\n'); do ./downloader.py --name $MODEL --output_dir $MODEL_DIR --precisions FP32,FP16,INT8; done fi
 # COPY neural-networks /home/openvino/neural-networks
 
 # import mobilenet_v2 checkpoints and convert to IR
 WORKDIR $MODEL_DIR/tmp_mobilenet
 RUN mkdir ../$MOBILENET_V2_DIR
-COPY /$MOBILENET_V2_DIR/mobilenet*.tgz $MODEL_DIR/tmp_mobilenet/
+# little HACK (since DOCKERFILE does not support  conditions): 
+#				big models are stored in True directory, small filler in False - it coresponds to DOWNLOAD_MODELS variable
+COPY /$MOBILENET_V2_DIR/$DOWNLOAD_MODELS/mobilenet*.tgz $MODEL_DIR/tmp_mobilenet/
 # unpac only .pb file (${file%.*} - pattern expansion)
-RUN for file in $(ls | grep .tgz); do \
+RUN if [[ "$DOWNLOAD_MODELS" == "True" ]]; then \
+for file in $(ls | grep .tgz); do \
 mkdir ../$MOBILENET_V2_DIR/${file%.*}; \
 tar -xzf $file -C ../$MOBILENET_V2_DIR/${file%.*} --wildcards '*.pb'; \
-done; 
+done \
+fi 
 WORKDIR $MODEL_DIR/$MOBILENET_V2_DIR
 RUN rm -rf ../tmp_mobilenet
 #convert to IR via OpenVino model optimizer
 ENV OPTIMIZER=/opt/intel/openvino_2020.3.194/deployment_tools/model_optimizer/mo_tf.py
-RUN for FOLDER in $(ls); do \
+RUN if [[ "$DOWNLOAD_MODELS" == "True" ]]; then for FOLDER in $(ls); do \
 python3 $OPTIMIZER --input_model $FOLDER/$FOLDER\_frozen.pb --input_shape [1,$(echo $FOLDER | cut -d '_' -f4),$(echo $FOLDER | cut -d '_' -f4),3] --output_dir $FOLDER --silent; \
-done;
+done \
+fi
 
 ###############
 # ENTRY POINT #
 #sert up entrypoint script
 COPY support_scripts/docker_entrypoint.sh /usr/local/bin/
+COPY support_scripts/download_model_library.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker_entrypoint.sh
+RUN chmod +x /usr/local/bin/download_model_library.sh
+
 # backwards compat
 RUN ln -s /usr/local/bin/docker_entrypoint.sh / 
+RUN ln -s /usr/local/bin/download_model_library.sh / 
+
 ENTRYPOINT ["docker_entrypoint.sh"]
 
 
