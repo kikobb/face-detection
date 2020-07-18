@@ -32,7 +32,7 @@ fi
 
 
 #run container with name
-if [[ "$#" -eq "1" && ("$1" != "nvidia" || "$1" != "raspberry") ]]; then
+if [[ "$#" -eq "1" && "nvidia" != "nvidia" && "$1" != "raspberry" ]]; then
 	xhost +
 	docker run --privileged \
 			--rm \
@@ -48,6 +48,7 @@ fi
 
 #run container on raspberry pi
 if [[ "$#" -eq "1" && "$1" == "raspberry" ]]; then
+	echo "RASPBERRY"
 	xhost +
 	docker run --privileged \
 			--rm \
@@ -63,6 +64,7 @@ fi
 
 #run tf container with nvidia support
 if [[ "$#" -eq "1" && "$1" == "nvidia" ]]; then
+	echo "NVIDIA"
 	NETWORK_NAME="gpu_net"
 	if [[ ! $(docker network ls | tail -n +2 | awk '{print $2}' | grep $NETWORK_NAME) ]]; then
 		docker network create --subnet=172.18.0.0/16 $NETWORK_NAME
@@ -81,6 +83,7 @@ if [[ "$#" -eq "1" && "$1" == "nvidia" ]]; then
 			-it tf_nvidia:dev
 
 	xhost -
+	exit
 fi
 
 
