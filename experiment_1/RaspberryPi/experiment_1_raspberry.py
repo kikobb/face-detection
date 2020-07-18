@@ -128,7 +128,7 @@ def write_to_csv(data, file_name):
 
 
 def main():
-    nns_dir = '/root/face-detection/models/mobilenet_v2'
+    nns_dir = '/root/face-detection/model_library/mobilenet_v2'
 
     test_results = []
     count = 0
