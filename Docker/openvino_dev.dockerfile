@@ -54,7 +54,7 @@ RUN mkdir $PROJECT_DIR
 RUN mkdir $PROJECT_DIR/exp_1
 
 # MODELS
-ENV DOWNLOAD_MODELS=False
+ENV DOWNLOAD_MODELS=True
 # download intel models
 RUN mkdir $MODEL_DIR
 WORKDIR /opt/intel/openvino_2020.3.194/deployment_tools/open_model_zoo/tools/downloader
@@ -66,12 +66,13 @@ WORKDIR $MODEL_DIR/tmp_mobilenet
 RUN mkdir ../$MOBILENET_V2_DIR
 # little HACK (since DOCKERFILE does not support  conditions): 
 #				big models are stored in True directory, small filler in False - it coresponds to DOWNLOAD_MODELS variable
-COPY /$MOBILENET_V2_DIR/$DOWNLOAD_MODELS/mobilenet*.tgz $MODEL_DIR/tmp_mobilenet/
+COPY /$MOBILENET_V2_DIR/$DOWNLOAD_MODELS/mobilenet*.tgz $MODEL_DIR/tmp_mobilenet/ 
+RUN echo "/$MOBILENET_V2_DIR/$DOWNLOAD_MODELS/mobilenet*.tgz $MODEL_DIR/tmp_mobilenet/ "
 # unpac only .pb file (${file%.*} - pattern expansion)
 RUN if [[ "$DOWNLOAD_MODELS" == "True" ]]; then \
 for file in $(ls | grep .tgz); do \
 mkdir ../$MOBILENET_V2_DIR/${file%.*}; \
-tar -xzf $file -C ../$MOBILENET_V2_DIR/${file%.*} --wildcards '*.pb|*.tflite'; \
+tar -xzf $file -C ../$MOBILENET_V2_DIR/${file%.*} --wildcards '*.pb' '*.tflite'; \
 done \
 fi 
 WORKDIR $MODEL_DIR/$MOBILENET_V2_DIR

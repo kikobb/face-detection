@@ -19,13 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="raspberry support">
-      <change afterPath="$PROJECT_DIR$/experiment_1/RaspberryPi/experiment_1_raspberry.py" afterDir="false" />
+    <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="raspberry convert to root access, untested experiment for CPU (tf lite)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Docker/openvino_dev.dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Docker/openvino_dev.dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/copy_project_to_remote.sh" beforeDir="false" afterPath="$PROJECT_DIR$/copy_project_to_remote.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiment_1/OpenVino/experiment_1_OpenVino.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_1/OpenVino/experiment_1_OpenVino.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/upload_model_library.sh" beforeDir="false" afterPath="$PROJECT_DIR$/upload_model_library.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,7 +285,7 @@
       <workItem from="1595069474936" duration="44000" />
       <workItem from="1595069597942" duration="261000" />
       <workItem from="1595070950246" duration="8533000" />
-      <workItem from="1595097756985" duration="4496000" />
+      <workItem from="1595097756985" duration="7202000" />
     </task>
     <task id="LOCAL-00001" summary="added support for onter face_recognition networks">
       <created>1593704249858</created>
@@ -367,11 +364,28 @@
       <option name="project" value="LOCAL" />
       <updated>1595096789553</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="raspberry convert to root access, untested experiment for CPU (tf lite)">
+      <created>1595110041300</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1595110041300</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -399,7 +413,8 @@
     <MESSAGE value="bug fix in string comparision" />
     <MESSAGE value="helpers scripts modified for raspberry support (via ssh)" />
     <MESSAGE value="raspberry support" />
-    <option name="LAST_COMMIT_MESSAGE" value="raspberry support" />
+    <MESSAGE value="raspberry convert to root access, untested experiment for CPU (tf lite)" />
+    <option name="LAST_COMMIT_MESSAGE" value="raspberry convert to root access, untested experiment for CPU (tf lite)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="313" width="800" height="586" key="#Deployment" timestamp="1594951388544">
@@ -533,11 +548,11 @@
     <state x="462" y="1404" width="1022" height="737" key="SettingsEditor/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593702642885" />
     <state x="449" y="188" width="1022" height="737" key="SettingsEditor/0.27.1920.1053/0.1080.1920.1080@0.27.1920.1053" timestamp="1593511666155" />
     <state x="539" y="97" width="1113" height="737" key="SettingsEditor/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595097107268" />
-    <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1595097767876">
+    <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1595110043151">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="555" y="1356" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704292599" />
-    <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595097767876" />
+    <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595110043151" />
     <state width="960" height="526" key="XDebugger.FullValuePopup" timestamp="1594721337471">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
