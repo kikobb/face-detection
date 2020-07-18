@@ -16,7 +16,7 @@ def load_networks_data():
     out = []
     net_data = {'name': None, 'difficulty': None, 'precision': None}
     # in local file hierarchy it is in superior folder but in remote (due to copy script) file is in same directory
-    file1 = open('networks_data.txt', 'r')
+    file1 = open('/root/face-detection/experiment_1/networks_data.txt', 'r')
     lines = file1.readlines()
     for i, line in enumerate(lines):
         if line == '\n':
