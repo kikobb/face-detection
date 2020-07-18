@@ -40,7 +40,7 @@ case $1 in
         exit 0
         ;;
     -rasp)
-      sshpass -p "pi" scp -P 22 "base.py" pi@192.168.0.206:/home/pi
+      sshpass -p "root" scp -P 22 "base.py" root@192.168.0.206:/root/face-detection
       ;;
 esac
 

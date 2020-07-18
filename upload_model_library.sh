@@ -18,7 +18,7 @@ case $1 in
                                 root@172.17.0.2:/home/openvino/face/models/
         ;;
     -pi)
-        sshpass -p "pi" scp -r -P 22 /home/k/PycharmProjects/face-detection/model_library \
-                                pi@192.168.0.206:/home/pi/openvino/face-detection/
+        sshpass -p "root" scp -r -P 22 /home/k/PycharmProjects/face-detection/model_library \
+                                root@192.168.0.206:/root/face-detection/
         ;;
 esac

@@ -71,7 +71,7 @@ COPY /$MOBILENET_V2_DIR/$DOWNLOAD_MODELS/mobilenet*.tgz $MODEL_DIR/tmp_mobilenet
 RUN if [[ "$DOWNLOAD_MODELS" == "True" ]]; then \
 for file in $(ls | grep .tgz); do \
 mkdir ../$MOBILENET_V2_DIR/${file%.*}; \
-tar -xzf $file -C ../$MOBILENET_V2_DIR/${file%.*} --wildcards '*.pb'; \
+tar -xzf $file -C ../$MOBILENET_V2_DIR/${file%.*} --wildcards '*.pb|*.tflite'; \
 done \
 fi 
 WORKDIR $MODEL_DIR/$MOBILENET_V2_DIR

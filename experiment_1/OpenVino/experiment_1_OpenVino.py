@@ -138,7 +138,7 @@ def write_to_csv(data, file_name):
             network = next(j for j, item in enumerate(g_mobilenet_data)
                            if item["name"] == data[dev_name][i]['network_name'])
             for measurement in data[dev_name][i]['exec_t']['individual']:
-                ws_data[f'A{row_nmbr}'] = f'PC: {dev_name if dev_name != "GPU" else f"{dev_name} - Intel"}'
+                ws_data[f'A{row_nmbr}'] = f'{"Raspberry Pi" if is_raspberry() else "PC"}: {dev_name if dev_name != "GPU" else f"{dev_name} - Intel"}'
                 ws_data[f'B{row_nmbr}'] = g_mobilenet_data[i]['name']
                 ws_data[f'C{row_nmbr}'] = g_mobilenet_data[i]['difficulty']
                 ws_data[f'D{row_nmbr}'] = g_mobilenet_data[i]['precision']
@@ -165,7 +165,7 @@ def main():
     # test_results = {'CPU': []}
     nns_dir = '/home/openvino/face/models/mobilenet_v2'
     if raspberry:
-        nns_dir = '/home/pi/openvino/face-detection/model_library/mobilenet_v2'
+        nns_dir = '/root/face-detection/model_library/mobilenet_v2'
     for device_name in test_results.keys():
         count = 0
         for nn_dir in g_mobilenet_data:

@@ -19,21 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="bug fix in string comparision">
-      <change afterPath="$PROJECT_DIR$/download_model_library.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/upload_model_library.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/face-detection.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/face-detection.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="raspberry support">
+      <change afterPath="$PROJECT_DIR$/experiment_1/RaspberryPi/experiment_1_raspberry.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docker/docker_runner.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Docker/docker_runner.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Docker/openvino_dev.dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Docker/openvino_dev.dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docker/support_scripts/unpack_and_convert_to_IR.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/copy_experiment_results.sh" beforeDir="false" afterPath="$PROJECT_DIR$/copy_experiment_results.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/copy_project_to_remote.sh" beforeDir="false" afterPath="$PROJECT_DIR$/copy_project_to_remote.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_1/Nvidia_GPU/experiment_1_nvidia.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_1/Nvidia_GPU/experiment_1_nvidia.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiment_1/OpenVino/experiment_1_OpenVino.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_1/OpenVino/experiment_1_OpenVino.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/upload_model_library.sh" beforeDir="false" afterPath="$PROJECT_DIR$/upload_model_library.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +58,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/experiment_1/Nvidia_GPU" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -74,7 +66,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="application.passwordSafe" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -84,12 +76,13 @@
     </option>
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/experiment_1/Nvidia_GPU" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/experiment_1/RaspberyPi" />
       <recent name="$PROJECT_DIR$/experimet_1" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/experiment_1/Nvidia_GPU" />
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunManager" selected="Python.base_ssh_raspbery">
@@ -294,7 +287,8 @@
       <workItem from="1595068044057" duration="768000" />
       <workItem from="1595069474936" duration="44000" />
       <workItem from="1595069597942" duration="261000" />
-      <workItem from="1595070950246" duration="7727000" />
+      <workItem from="1595070950246" duration="8533000" />
+      <workItem from="1595097756985" duration="4496000" />
     </task>
     <task id="LOCAL-00001" summary="added support for onter face_recognition networks">
       <created>1593704249858</created>
@@ -359,7 +353,21 @@
       <option name="project" value="LOCAL" />
       <updated>1595063837509</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="helpers scripts modified for raspberry support (via ssh)">
+      <created>1595096726835</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1595096726835</updated>
+    </task>
+    <task id="LOCAL-00011" summary="raspberry support">
+      <created>1595096789553</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1595096789553</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -389,7 +397,9 @@
     <MESSAGE value="*face recognition 100% done (face alignment and face library not implanted - not necessary for thesis, todo in future)&#10;*experiment_1 done: test to multiple difficulty mobilenet_v2 checkpoints, results exported to .xlsx file&#10;(scripts update, DockerFile update to download and unpack networks, ... onter)" />
     <MESSAGE value="little base.py change" />
     <MESSAGE value="bug fix in string comparision" />
-    <option name="LAST_COMMIT_MESSAGE" value="bug fix in string comparision" />
+    <MESSAGE value="helpers scripts modified for raspberry support (via ssh)" />
+    <MESSAGE value="raspberry support" />
+    <option name="LAST_COMMIT_MESSAGE" value="raspberry support" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="313" width="800" height="586" key="#Deployment" timestamp="1594951388544">
@@ -419,11 +429,11 @@
       <screen x="0" y="1080" width="1920" height="1080" />
     </state>
     <state x="1218" y="1351" width="299" height="204" key="#Volume_binding/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593693869880" />
-    <state x="675" y="46" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595071423369">
+    <state x="675" y="46" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595108523177">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="428" y="1271" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704278662" />
-    <state x="675" y="46" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595071423369" />
+    <state x="675" y="46" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595108523177" />
     <state x="515" y="242" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1594302965373" />
     <state x="600" y="355" width="709" height="410" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1594915268752">
       <screen x="0" y="27" width="1920" height="1053" />
@@ -464,11 +474,11 @@
     </state>
     <state x="149" y="1353" width="906" height="516" key="EnvironmentVariablesDialog/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593703274649" />
     <state x="149" y="293" width="833" height="629" key="EnvironmentVariablesDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594743763153" />
-    <state x="745" y="496" width="424" height="491" key="FileChooserDialogImpl" timestamp="1594956709350">
+    <state x="745" y="496" width="424" height="491" key="FileChooserDialogImpl" timestamp="1595096918847">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="745" y="1561" key="FileChooserDialogImpl/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593693317972" />
-    <state x="745" y="496" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594956709350" />
+    <state x="745" y="496" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595096918847" />
     <state width="1874" height="310" key="GridCell.Tab.0.bottom" timestamp="1595033162646">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -517,17 +527,17 @@
     </state>
     <state width="1874" height="458" key="GridCell.Tab.1.right/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704492659" />
     <state width="1874" height="402" key="GridCell.Tab.1.right/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594981272188" />
-    <state x="539" y="97" width="1113" height="737" key="SettingsEditor" timestamp="1595033238982">
+    <state x="539" y="97" width="1113" height="737" key="SettingsEditor" timestamp="1595097107268">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="462" y="1404" width="1022" height="737" key="SettingsEditor/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593702642885" />
     <state x="449" y="188" width="1022" height="737" key="SettingsEditor/0.27.1920.1053/0.1080.1920.1080@0.27.1920.1053" timestamp="1593511666155" />
-    <state x="539" y="97" width="1113" height="737" key="SettingsEditor/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595033238982" />
-    <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1595032636928">
+    <state x="539" y="97" width="1113" height="737" key="SettingsEditor/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595097107268" />
+    <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1595097767876">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="555" y="1356" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704292599" />
-    <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595032636928" />
+    <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595097767876" />
     <state width="960" height="526" key="XDebugger.FullValuePopup" timestamp="1594721337471">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -541,10 +551,10 @@
     </state>
     <state x="0" y="1380" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593698004740" />
     <state x="0" y="394" width="762" height="686" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595032414888" />
-    <state x="731" y="468" width="458" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1594052260409">
+    <state x="731" y="468" width="458" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595097827814">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="731" y="468" width="458" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594052260409" />
+    <state x="731" y="468" width="458" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595097827814" />
     <state x="881" y="517" width="557" height="282" key="com.intellij.tools.ToolSelectDialog.dimensionServiceKey" timestamp="1595033151913">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
