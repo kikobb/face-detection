@@ -83,6 +83,8 @@ def main(argv):
     fce_det_n = 'face-detection-010{}'.format(fce_det_v)  # name of face detection model
     fce_landmarks_n = 'landmarks-regression-retail-0009'  # name of face landmarks detection model
 
+    pi_model = 'face-detection-adas-0001'
+
     # open input visual feed
     try:
         cap = cv2.VideoCapture(int(opts['input'][1]) if opts['input'][0] == '-c' else opts['input'][1])
@@ -104,8 +106,9 @@ def main(argv):
 
     # read model IRs
     # face detection
-    net_face_detect = ie.read_network(model='{0}/{1}/FP32/{1}.xml'.format(models_dir, fce_det_n),
-                          weights='{0}/{1}/FP32/{1}.bin'.format(models_dir, fce_det_n))
+    # net_face_detect = ie.read_network(model='{0}/{1}/FP32/{1}.xml'.format(models_dir, fce_det_n),
+    #                                   weights='{0}/{1}/FP32/{1}.bin'.format(models_dir, fce_det_n))
+    net_face_detect = ie.read_network(model=f'{pi_model}.xml', weights=f'{pi_model}.bin')
     # init_landmarks(ie, {'dir':models_dir, 'name':fce_landmarks_n})
 
     # I/O blobs
@@ -125,12 +128,12 @@ def main(argv):
     exec_net = ie.load_network(network=net_face_detect, device_name=opts['device'][1])
 
     # TMP test
-    net_face_detect2 = ie.read_network(model='{0}/face-detection-0105/FP32/face-detection-0105.xml'.format(models_dir),
-                                       weights='{0}/face-detection-0105/FP32/face-detection-0105.bin'.format(
-                                           models_dir))
-    exec_net2 = ie.load_network(network=net_face_detect2, device_name=opts['device'][1])
-    out_blob2 = list(net_face_detect2.outputs)[1]
-    n2, c2, h2, w2 = net_face_detect2.inputs[input_blob].shape
+    # net_face_detect2 = ie.read_network(model='{0}/face-detection-0105/FP32/face-detection-0105.xml'.format(models_dir),
+    #                                    weights='{0}/face-detection-0105/FP32/face-detection-0105.bin'.format(
+    #                                        models_dir))
+    # exec_net2 = ie.load_network(network=net_face_detect2, device_name=opts['device'][1])
+    # out_blob2 = list(net_face_detect2.outputs)[1]
+    # n2, c2, h2, w2 = net_face_detect2.inputs[input_blob].shape
 
     # TMP load plugin timer
     #     for i in range(10):
@@ -159,14 +162,15 @@ def main(argv):
         if not ret:
             raise NotImplementedError("end of visual feed")
         # TMP test
-        frame2 = frame.copy()
-        if frame2.shape[:-1] != (h2, w2):
-            # log.warning("Image {} is resized from {} to {}".format(args.input[i], frame.shape[:-1], (h, w)))
-            trans_frame2 = cv2.resize(frame2, (w2, h2), interpolation=cv2.INTER_AREA)
-            # cv2.imshow("resized image", trans_frame2)
-        # Change data layout from HWC to CHW
-        trans_frame2 = trans_frame2.transpose((2, 0, 1))  # (determined by net_face_detect.inputs['image'].layout)
+        # frame2 = frame.copy()
+        # if frame2.shape[:-1] != (h2, w2):
+        #     # log.warning("Image {} is resized from {} to {}".format(args.input[i], frame.shape[:-1], (h, w)))
+        #     trans_frame2 = cv2.resize(frame2, (w2, h2), interpolation=cv2.INTER_AREA)
+        #     # cv2.imshow("resized image", trans_frame2)
+        # # Change data layout from HWC to CHW
+        # trans_frame2 = trans_frame2.transpose((2, 0, 1))  # (determined by net_face_detect.inputs['image'].layout)
         # trans_frame2 = trans_frame2.reshape(net_face_detect2.inputs[input_blob].shape)
+
         if frame.shape[:-1] != (h, w):
             # log.warning("Image {} is resized from {} to {}".format(args.input[i], frame.shape[:-1], (h, w)))
             trans_frame = cv2.resize(frame, (w, h), interpolation=cv2.INTER_AREA)
@@ -185,7 +189,7 @@ def main(argv):
 
         res = exec_net.infer(inputs={input_blob: trans_frame})
         # TMP test
-        res2 = exec_net2.infer(inputs={input_blob: trans_frame2})
+        # res2 = exec_net2.infer(inputs={input_blob: trans_frame2})
         # exec_net2.requests[0].infer(inputs={input_blob: trans_frame2})
 
         rec_color = (0, 255, 0)
@@ -210,20 +214,20 @@ def main(argv):
                                     (pt1[0], pt2[1] + 10), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
                 i += 1
             # TMP test
-            j = 0
-            while res2[out_blob2][j][4] > 0.5:
-                pt1 = (
-                    int(round(frame2.shape[:-1][1] * ((100 / w2 * res2[out_blob2][j][0]) / 100))),
-                    int(round(frame2.shape[:-1][0] * ((100 / h2 * res2[out_blob2][j][1]) / 100))))
-                pt2 = (
-                    int(round(frame2.shape[:-1][1] * ((100 / w2 * res2[out_blob2][j][2]) / 100))),
-                    int(round(frame2.shape[:-1][0] * ((100 / h2 * res2[out_blob2][j][3]) / 100))))
-                # cv2.rectangle(frame, pt1, pt2, rgb, thickness=3)
-                frame2 = cv2.rectangle(img=frame2, pt1=pt1, pt2=pt2, color=rec_color, thickness=2)
-                frame2 = cv2.putText(frame2, '{}%'.format(int(round(res2[out_blob2][j][4] * 100))),
-                                     (pt1[0], pt2[1] + 10), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
-
-                j += 1
+            # j = 0
+            # while res2[out_blob2][j][4] > 0.5:
+            #     pt1 = (
+            #         int(round(frame2.shape[:-1][1] * ((100 / w2 * res2[out_blob2][j][0]) / 100))),
+            #         int(round(frame2.shape[:-1][0] * ((100 / h2 * res2[out_blob2][j][1]) / 100))))
+            #     pt2 = (
+            #         int(round(frame2.shape[:-1][1] * ((100 / w2 * res2[out_blob2][j][2]) / 100))),
+            #         int(round(frame2.shape[:-1][0] * ((100 / h2 * res2[out_blob2][j][3]) / 100))))
+            #     # cv2.rectangle(frame, pt1, pt2, rgb, thickness=3)
+            #     frame2 = cv2.rectangle(img=frame2, pt1=pt1, pt2=pt2, color=rec_color, thickness=2)
+            #     frame2 = cv2.putText(frame2, '{}%'.format(int(round(res2[out_blob2][j][4] * 100))),
+            #                          (pt1[0], pt2[1] + 10), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
+            #
+            #     j += 1
         elif fce_det_v >= 5:
             i = 0
             while res['labels'][i] != -1:
@@ -259,14 +263,15 @@ def main(argv):
                             (10, 10), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
         cv2.imshow('frame', frame)
         # TMP test
-        frame2 = cv2.putText(frame2, 'FPS: {:.2f}'.format(1.0 / (time.time() - start_time)),
-                             (10, 10), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
-        cv2.imshow('frame2', frame2)
+        # frame2 = cv2.putText(frame2, 'FPS: {:.2f}'.format(1.0 / (time.time() - start_time)),
+        #                      (10, 10), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
+        # cv2.imshow('frame2', frame2)
         # faces = np.asarray(faces)
         # corpp image for landmarks detection
         i = 0
         for face in faces:
-            if face.size != 0: cv2.imshow('face{}'.format(i), face)
+            if face.size != 0:
+                cv2.imshow('face{}'.format(i), face)
             i += 1
 
     return

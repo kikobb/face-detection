@@ -20,10 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="*face recognition 100% done (face alignment and face library not implanted - not necessary for thesis, todo in future)&#10;*experiment_1 done: test to multiple difficulty mobilenet_v2 checkpoints, results exported to .xlsx file&#10;(scripts update, DockerFile update to download and unpack networks, ... onter)">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/exp_1_GPU.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/exp_1_GPU.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_1/Nvidia_GPU/experiment_1_nvidia.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_1/Nvidia_GPU/experiment_1_nvidia.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_1/OpenVino/experiment_1_OpenVino.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_1/OpenVino/experiment_1_OpenVino.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/copy_project_to_remote.sh" beforeDir="false" afterPath="$PROJECT_DIR$/copy_project_to_remote.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +81,54 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.exp_1_OpenVino">
+  <component name="RunManager" selected="Python.base_ssh_raspbery">
+    <configuration name="base_ssh_raspbery" type="PythonConfigurationType" factoryName="Python">
+      <module name="face-detection" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="LD_LIBRARY_PATH" value="/opt/intel/openvino/data_processing/dl_streamer/lib:/opt/intel/openvino/data_processing/gstreamer/lib:/opt/intel/openvino/opencv/lib:/opt/intel/openvino/deployment_tools/ngraph/lib:/opt/intel/openvino/deployment_tools/inference_engine/external/hddl/lib:/opt/intel/openvino/deployment_tools/inference_engine/external/gna/lib:/opt/intel/openvino/deployment_tools/inference_engine/external/mkltiny_lnx/lib:/opt/intel/openvino/deployment_tools/inference_engine/external/tbb/lib:/opt/intel/openvino/deployment_tools/inference_engine/lib/intel64:" />
+        <env name="GST_PLUGIN_PATH" value="/opt/intel/openvino/data_processing/dl_streamer/lib:/opt/intel/openvino/data_processing/gstreamer/lib/gstreamer-1.0" />
+        <env name="INTEL_CVSDK_DIR" value="/opt/intel/openvino" />
+        <env name="MODELS_PATH" value="/root/intel/dl_streamer/models" />
+        <env name="OpenCV_DIR" value="/opt/intel/openvino/opencv/cmake" />
+        <env name="InferenceEngine_DIR" value="/opt/intel/openvino/deployment_tools/inference_engine/share" />
+        <env name="GI_TYPELIB_PATH" value="/opt/intel/openvino/data_processing/gstreamer/lib/girepository-1.0" />
+        <env name="LIBRARY_PATH" value="/opt/intel/openvino/data_processing/dl_streamer/lib:/opt/intel/openvino/data_processing/gstreamer/lib" />
+        <env name="ngraph_DIR" value="/opt/intel/openvino/deployment_tools/ngraph/cmake" />
+        <env name="GST_SAMPLES_DIR" value="/opt/intel/openvino/data_processing/dl_streamer/samples" />
+        <env name="PYTHONPATH" value="/opt/intel/openvino/python/python3.6:/opt/intel/openvino/python/python3:/opt/intel/openvino/deployment_tools/open_model_zoo/tools/accuracy_checker:/opt/intel/openvino/deployment_tools/model_optimizer:/opt/intel/openvino/data_processing/dl_streamer/python:/opt/intel/openvino/data_processing/gstreamer/lib/python3.6/site-packages:" />
+        <env name="GST_PLUGIN_SCANNER" value="/opt/intel/openvino/data_processing/gstreamer/bin/gstreamer-1.0/gst-plugin-scanner" />
+        <env name="INTEL_OPENVINO_DIR" value="/opt/intel/openvino" />
+        <env name="DISPLAY" value=":1" />
+      </envs>
+      <option name="SDK_HOME" value="sftp://root@172.17.0.2:22/usr/bin/python3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../../openvino/face" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <PathMappingSettings>
+        <option name="pathMappings">
+          <list>
+            <mapping local-root="/tmp/.X11-unix" remote-root="/tmp/.X11-unix" />
+            <mapping local-root="/dev" remote-root="/dev" />
+            <mapping local-root="/dev/video0" remote-root="/dev/video0" />
+          </list>
+        </option>
+      </PathMappingSettings>
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../openvino/face/base.py" />
+      <option name="PARAMETERS" value="-c 0 -d CPU" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2">
+        <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_copy_files" />
+      </method>
+    </configuration>
     <configuration name="merge" type="PythonConfigurationType" factoryName="Python">
       <module name="face-detection" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -166,6 +212,7 @@
       <item itemvalue="Docker.Docker Image" />
       <item itemvalue="Python.base_docker" />
       <item itemvalue="Python.base_ssh" />
+      <item itemvalue="Python.base_ssh_raspbery" />
       <item itemvalue="Python.face_recong_remote" />
       <item itemvalue="Python.exp_1_OpenVino" />
       <item itemvalue="Python.exp_1_GPU" />
@@ -228,6 +275,7 @@
       <workItem from="1594979119315" duration="755000" />
       <workItem from="1594980243115" duration="1029000" />
       <workItem from="1594982173409" duration="100000" />
+      <workItem from="1595031955755" duration="651000" />
     </task>
     <task id="LOCAL-00001" summary="added support for onter face_recognition networks">
       <created>1593704249858</created>
@@ -336,11 +384,11 @@
       <screen x="0" y="1080" width="1920" height="1080" />
     </state>
     <state x="1218" y="1351" width="299" height="204" key="#Volume_binding/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593693869880" />
-    <state x="675" y="46" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1594982218066">
+    <state x="675" y="46" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595032013576">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="428" y="1271" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704278662" />
-    <state x="675" y="46" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594982218066" />
+    <state x="675" y="46" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595032013576" />
     <state x="515" y="242" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1594302965373" />
     <state x="600" y="355" width="709" height="410" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1594915268752">
       <screen x="0" y="27" width="1920" height="1053" />
@@ -453,11 +501,11 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="223" y="890" width="187" height="190" key="com.intellij.docker.deployment.ui.DockerVolumeBindingsField.v173.dialogSize/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1593680732865" />
-    <state x="0" y="394" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1594956380541">
+    <state x="0" y="394" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1595032414888">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="0" y="1380" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593698004740" />
-    <state x="0" y="394" width="762" height="686" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594956380541" />
+    <state x="0" y="394" width="762" height="686" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595032414888" />
     <state x="731" y="468" width="458" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1594052260409">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -502,47 +550,47 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/base.py</url>
-          <line>246</line>
+          <line>250</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/base.py</url>
-          <line>259</line>
+          <line>263</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/base.py</url>
-          <line>204</line>
+          <line>208</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/base.py</url>
-          <line>161</line>
+          <line>164</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/base.py</url>
-          <line>124</line>
+          <line>127</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/base.py</url>
-          <line>228</line>
+          <line>232</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/base.py</url>
-          <line>213</line>
+          <line>217</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/base.py</url>
-          <line>188</line>
+          <line>192</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/base.py</url>
-          <line>167</line>
+          <line>170</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
