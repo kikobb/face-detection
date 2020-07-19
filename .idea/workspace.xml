@@ -19,8 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="-">
+    <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="typo">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiment_1/run_experiment_1.sh" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_1/run_experiment_1.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/support_scripts/download_experiment_results.sh" beforeDir="false" afterPath="$PROJECT_DIR$/support_scripts/download_experiment_results.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -302,7 +304,7 @@
       <workItem from="1595173289039" duration="1484000" />
       <workItem from="1595175339062" duration="2326000" />
       <workItem from="1595179292347" duration="2583000" />
-      <workItem from="1595184972916" duration="3198000" />
+      <workItem from="1595184972916" duration="4999000" />
     </task>
     <task id="LOCAL-00001" summary="added support for onter face_recognition networks">
       <created>1593704249858</created>
@@ -465,7 +467,21 @@
       <option name="project" value="LOCAL" />
       <updated>1595187614786</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="typo">
+      <created>1595188226003</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1595188226003</updated>
+    </task>
+    <task id="LOCAL-00025" summary="typo">
+      <created>1595188490178</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1595188490178</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -514,7 +530,8 @@
     <MESSAGE value="tidying up experimnet 1 and adding univeral script run to run all tests on all devices" />
     <MESSAGE value="universal script(run_experimrnt.sh) done for PC todo Raspberry" />
     <MESSAGE value="-" />
-    <option name="LAST_COMMIT_MESSAGE" value="-" />
+    <MESSAGE value="typo" />
+    <option name="LAST_COMMIT_MESSAGE" value="typo" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="313" width="800" height="586" key="#Deployment" timestamp="1594951388544">
@@ -666,12 +683,13 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="803" y="469" width="430" height="230" key="VCS.ChangelistChooser/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595172934282" />
-    <state x="555" y="276" width="800" height="540" key="Vcs.Push.Dialog.v2" timestamp="1595187616939">
-      <screen x="0" y="27" width="1920" height="1053" />
+    <state x="2364" y="406" width="800" height="540" key="Vcs.Push.Dialog.v2" timestamp="1595189098731">
+      <screen x="1920" y="216" width="1536" height="864" />
     </state>
     <state x="555" y="1356" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704292599" />
     <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595172957771" />
-    <state x="555" y="276" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595187616939" />
+    <state x="555" y="271" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595188227787" />
+    <state x="2364" y="406" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.216.1536.864@1920.216.1536.864" timestamp="1595189098731" />
     <state width="960" height="526" key="XDebugger.FullValuePopup" timestamp="1594721337471">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

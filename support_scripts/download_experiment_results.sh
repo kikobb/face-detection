@@ -24,7 +24,7 @@ copy_from_raspberry_4()
   sshpass -p "root" scp -P 22 root@192.168.0.206:/root/face-detection/experiment_1/RaspberryPi/res_exp_1.xlsx \
                /home/k/PycharmProjects/face-detection/experiment_1/RaspberryPi/res_exp_1_pi_4_CPU.xlsx
 
-  sshpass -p "root" scp -P 22 root@192.168.0.206:/root/face-detection/experiment_1/OpenVion/res_exp_1.xlsx \
+  sshpass -p "root" scp -P 22 root@192.168.0.206:/root/face-detection/experiment_1/OpenVino/res_exp_1.xlsx \
                /home/k/PycharmProjects/face-detection/experiment_1/RaspberryPi/res_exp_1_pi_4_MYRIAD.xlsx
 }
 
