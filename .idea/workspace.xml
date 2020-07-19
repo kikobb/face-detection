@@ -19,20 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="tidying up experimnet 1 and adding univeral script run to run all tests on all devices">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/exp_1_GPU.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/exp_1_GPU.xml" afterDir="false" />
+    <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="universal script(run_experimrnt.sh) done for PC todo Raspberry">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docker/docker_builder.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Docker/docker_builder.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docker/docker_runner.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Docker/docker_runner.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docker/openvino_dev.dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Docker/openvino_dev.dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docker/tensorflow_nvidia.dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Docker/tensorflow_nvidia.dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_1/Nvidia_GPU/experiment_1_nvidia.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_1/Nvidia_GPU/experiment_1_nvidia.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiment_1/OpenVino/experiment_1_OpenVino.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_1/OpenVino/experiment_1_OpenVino.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiment_1/run_experiment_1.sh" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_1/run_experiment_1.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support_scripts/append_to_result.py" beforeDir="false" afterPath="$PROJECT_DIR$/support_scripts/append_to_result.py" afterDir="false" />
-    </list>
-    <list id="8d27d464-f60f-44c3-af2c-a4f1c0545956" name="tidying up experimnet 1 and adding univeral script run to run all tests on all devices" comment="">
-      <change beforePath="$PROJECT_DIR$/experiment_1/OpenVino/experiment_1_OpenVino.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_1/OpenVino/experiment_1_OpenVino.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,22 +40,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JupyterTrust" id="cf6cc2ff-affe-400a-bd64-92d5c388b23c" />
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/experiment_1/OpenVino/experiment_1_OpenVino.py">
-      <ranges>
-        <range start1="13" end1="13" start2="13" end2="24" changelist="8d27d464-f60f-44c3-af2c-a4f1c0545956" />
-        <range start1="15" end1="16" start2="26" end2="27" changelist="8d27d464-f60f-44c3-af2c-a4f1c0545956" />
-        <range start1="18" end1="18" start2="29" end2="30" changelist="8d27d464-f60f-44c3-af2c-a4f1c0545956" />
-        <range start1="27" end1="28" start2="39" end2="40" changelist="8d27d464-f60f-44c3-af2c-a4f1c0545956" />
-        <range start1="140" end1="141" start2="152" end2="154" changelist="8d27d464-f60f-44c3-af2c-a4f1c0545956" />
-        <range start1="152" end1="154" start2="165" end2="169" changelist="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" />
-        <range start1="160" end1="160" start2="175" end2="176" changelist="8d27d464-f60f-44c3-af2c-a4f1c0545956" />
-        <range start1="164" end1="165" start2="180" end2="181" changelist="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" />
-        <range start1="193" end1="194" start2="209" end2="210" changelist="8d27d464-f60f-44c3-af2c-a4f1c0545956" />
-        <range start1="197" end1="198" start2="213" end2="214" changelist="8d27d464-f60f-44c3-af2c-a4f1c0545956" />
-      </ranges>
-    </file>
-  </component>
   <component name="ProjectId" id="1e2EtScPEkcL5aGl9OkAr6fiG9j" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -266,7 +240,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="" />
-      <changelist id="8d27d464-f60f-44c3-af2c-a4f1c0545956" name="tidying up experimnet 1 and adding univeral script run to run all tests on all devices" comment="" />
+      <changelist id="" name="tidying up experimnet 1 and adding univeral script run to run all tests on all devices" comment="" />
       <created>1593511501730</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -330,7 +304,7 @@
       <workItem from="1595173289039" duration="1484000" />
       <workItem from="1595175339062" duration="2326000" />
       <workItem from="1595179292347" duration="2583000" />
-      <workItem from="1595184972916" duration="1498000" />
+      <workItem from="1595184972916" duration="2195000" />
     </task>
     <task id="LOCAL-00001" summary="added support for onter face_recognition networks">
       <created>1593704249858</created>
@@ -465,7 +439,21 @@
       <option name="project" value="LOCAL" />
       <updated>1595172948644</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="universal script(run_experimrnt.sh) done for PC todo Raspberry">
+      <created>1595186540702</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1595186540702</updated>
+    </task>
+    <task id="LOCAL-00021" summary="universal script(run_experimrnt.sh) done for PC todo Raspberry">
+      <created>1595186560637</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1595186560637</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -512,7 +500,8 @@
     <MESSAGE value="raspberry network data path update" />
     <MESSAGE value="result data handling include raspberry" />
     <MESSAGE value="tidying up experimnet 1 and adding univeral script run to run all tests on all devices" />
-    <option name="LAST_COMMIT_MESSAGE" value="tidying up experimnet 1 and adding univeral script run to run all tests on all devices" />
+    <MESSAGE value="universal script(run_experimrnt.sh) done for PC todo Raspberry" />
+    <option name="LAST_COMMIT_MESSAGE" value="universal script(run_experimrnt.sh) done for PC todo Raspberry" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="313" width="800" height="586" key="#Deployment" timestamp="1594951388544">
@@ -664,11 +653,12 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="803" y="469" width="430" height="230" key="VCS.ChangelistChooser/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595172934282" />
-    <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1595172957771">
+    <state x="555" y="286" width="800" height="540" key="Vcs.Push.Dialog.v2" timestamp="1595186562665">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="555" y="1356" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704292599" />
     <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595172957771" />
+    <state x="555" y="286" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595186562665" />
     <state width="960" height="526" key="XDebugger.FullValuePopup" timestamp="1594721337471">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -788,12 +778,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/experiment_1/OpenVino/experiment_1_OpenVino.py</url>
-          <line>185</line>
+          <line>186</line>
           <option name="timeStamp" value="85" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/experiment_1/OpenVino/experiment_1_OpenVino.py</url>
-          <line>204</line>
+          <line>205</line>
           <option name="timeStamp" value="86" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

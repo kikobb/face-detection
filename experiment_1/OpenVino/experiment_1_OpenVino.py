@@ -174,9 +174,10 @@ def main():
     # load plugin
     ie = IECore()
     test_results = {}
-    test_results = {'CPU': [], 'MYRIAD': []}
+    test_results = {'MYRIAD': []}
     if not raspberry:
         test_results['GPU'] = []
+        test_results['CPU'] = []
     # test_results = {'GPU': []}
     # test_results = {'CPU': []}
     nns_dir = '/home/openvino/face/models/mobilenet_v2'
