@@ -18,21 +18,39 @@ copy_from_nvidia()
                /home/k/PycharmProjects/face-detection/experiment_1/Nvidia_GPU/
 }
 
+copy_from_raspberry_4()
+{
+  sshpass -p "root" scp -P 22 root@192.168.0.206:/root/face-detection/experiment_1/RaspberryPi/res_exp_1.xlsx \
+               /home/k/PycharmProjects/face-detection/experiment_1/RaspberryPi/res_exp_1_pi_1.xlsx
+}
+
+copy_from_raspberry_3()
+{
+    sshpass -p "root" scp -P 22 root@192.168.0.207:/root/face-detection/experiment_1/RaspberryPi/res_exp_1.xlsx \
+               /home/k/PycharmProjects/face-detection/experiment_1/RaspberryPi/res_exp_1_pi_2.xlsx
+}
+
 merge_all_results()
 {
-    python3 merge_two_exp.py experiment_1/OpenVino/res_exp_1.xlsx experiment_1/Nvidia_GPU/res_exp_1.xlsx compl_exp_1.xlsx
+    python3 append_to_result.py experiment_1/OpenVino/res_exp_1.xlsx experiment_1/Nvidia_GPU/res_exp_1.xlsx compl_exp_1.xlsx
+    python3 append_to_result.py compl_exp_1.xlsx experiment_1/RaspberryPi/res_exp_1_pi_1.xlsx compl_exp_1.xlsx
+    python3 append_to_result.py compl_exp_1.xlsx experiment_1/RaspberryPi/res_exp_1_pi_2.xlsx compl_exp_1.xlsx
 
 }
 
 if [[ "$#" -eq "0" ]]; then
   copy_from_openvino
   copy_from_nvidia
+  copy_from_raspberry_4
+  copy_from_raspberry_3
   merge_all_results
 else
   if [[ "$1" == "openvino" ]]; then
       copy_from_openvino
   elif [[ "$1" == "nvidia" ]]; then
       copy_from_nvidia
+  elif [[ "$1" == "raspberry" ]]; then
+      copy_from_raspberry_4
   fi
   if [[ "$#" -eq "2" && "$2" == "merge" ]]; then
     merge_all_results

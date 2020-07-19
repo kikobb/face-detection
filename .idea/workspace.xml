@@ -20,7 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="raspberry network data path update">
-      <change beforePath="$PROJECT_DIR$/experiment_1/RaspberryPi/experiment_1_raspberry.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_1/RaspberryPi/experiment_1_raspberry.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/append_to_result.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/copy_experiment_results.sh" beforeDir="false" afterPath="$PROJECT_DIR$/copy_experiment_results.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/merge_two_exp.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +173,7 @@
         </option>
       </EXTENSION>
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/merge_two_exp.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/append_to_result.py" />
       <option name="PARAMETERS" value="experiment_1/OpenVino/res_exp_1.xlsx experiment_1/Nvidia_GPU/res_exp_1.xlsx compl_exp_1.xlsx" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -283,7 +286,7 @@
       <workItem from="1595069474936" duration="44000" />
       <workItem from="1595069597942" duration="261000" />
       <workItem from="1595070950246" duration="8533000" />
-      <workItem from="1595097756985" duration="7625000" />
+      <workItem from="1595097756985" duration="10396000" />
     </task>
     <task id="LOCAL-00001" summary="added support for onter face_recognition networks">
       <created>1593704249858</created>
@@ -383,7 +386,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595114979088</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="raspberry network data path update">
+      <created>1595115099054</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1595115099054</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -562,11 +572,11 @@
     <state x="462" y="1404" width="1022" height="737" key="SettingsEditor/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593702642885" />
     <state x="449" y="188" width="1022" height="737" key="SettingsEditor/0.27.1920.1053/0.1080.1920.1080@0.27.1920.1053" timestamp="1593511666155" />
     <state x="539" y="97" width="1113" height="737" key="SettingsEditor/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595097107268" />
-    <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1595114980515">
+    <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1595115100584">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="555" y="1356" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704292599" />
-    <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595114980515" />
+    <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595115100584" />
     <state width="960" height="526" key="XDebugger.FullValuePopup" timestamp="1594721337471">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -575,11 +585,11 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="223" y="890" width="187" height="190" key="com.intellij.docker.deployment.ui.DockerVolumeBindingsField.v173.dialogSize/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1593680732865" />
-    <state x="0" y="394" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1595032414888">
+    <state x="0" y="394" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1595118050819">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="0" y="1380" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593698004740" />
-    <state x="0" y="394" width="762" height="686" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595032414888" />
+    <state x="0" y="394" width="762" height="686" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595118050819" />
     <state x="731" y="468" width="458" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595097827814">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
