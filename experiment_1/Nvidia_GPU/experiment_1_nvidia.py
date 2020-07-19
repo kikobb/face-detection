@@ -1,4 +1,6 @@
 import os
+import sys
+
 import numpy as np
 import re
 import time
@@ -9,6 +11,15 @@ from openpyxl.comments import Comment
 import tensorflow.compat.v1 as tf
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
+g_default_number_of_inference_requests = 30
+
+def get_infer_req_nmbr():
+    if len(sys.argv) == 1 or len(sys.argv) > 2:
+        return g_default_number_of_inference_requests
+    if not sys.argv[1].isnumeric():
+        return g_default_number_of_inference_requests
+    return int(sys.argv[1])
 
 
 def load_networks_data():
@@ -143,10 +154,10 @@ def main():
         result['init_t'], _ = record_time(cn.init_graph, None)
 
         # perform inference
-        result['exec_t']['overall'], result['exec_t']['individual'] = record_time(cn.inference, 300)
+        result['exec_t']['overall'], result['exec_t']['individual'] = record_time(cn.inference, get_infer_req_nmbr())
 
         test_results.append(result)
-    # if you change filename change it in 'copy_experiment_results.sh' script
+    # if you change filename change it in 'download_experiment_results.sh' script
     write_to_csv(test_results, 'res_exp_1.xlsx')
 
 

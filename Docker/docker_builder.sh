@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [[ "$1" == "--help" || "$1" == "help" || "$1" == "h" ]]; then
+  echo "HELP:"
+  echo "no arguments, -o_base, -o_dev, -r1, -r2, -nvidia"
+  exit
+fi
+
 if [[ "$#" -eq "0" ]]; then
 	docker build -t openvino:dev_base -f ./openvino_dev_base.dockerfile .
 	docker build -t openvino:dev -f ./openvino_dev.dockerfile .
@@ -7,23 +13,23 @@ if [[ "$#" -eq "0" ]]; then
 fi
 
 if [[ "$#" -eq "1" ]]; then
-	if [[ "$1" -eq "1" ]]; then
+	if [[ "$1" -eq "-o_base" ]]; then
 		docker build -t openvino:dev_base -f ./openvino_dev_base.dockerfile .
 		exit
-	elif [[ "$1" -eq "2" ]]; then
+	elif [[ "$1" -eq "-o_dev" ]]; then
 		docker build -t openvino:dev -f ./openvino_dev.dockerfile .
 		exit
-	elif [[ "$1" -eq "r1" ]]; then
+	elif [[ "$1" -eq "-r1" ]]; then
 		docker build -t ov_raspberry:dev_base -f ./raspbian_dev_base.dockerfile .
 		exit
-	elif [[ "$1" -eq "r2" ]]; then
+	elif [[ "$1" -eq "-r2" ]]; then
 		docker build -t ov_raspberry:dev -f ./raspbian_dev.dockerfile .
 		exit 
-	elif [[ "$1" -eq "nvidia" ]]; then
+	elif [[ "$1" -eq "-nvidia" ]]; then
 		docker build -t tf_nvidia:dev -f ./tensorflow_nvidia.dockerfile .
 		exit 
 	else
-		echo "3th stage doe not exist."
+		echo "unsupported argument"
 		exit
 	fi
 fi

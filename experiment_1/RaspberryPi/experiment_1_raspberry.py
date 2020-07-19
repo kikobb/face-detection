@@ -12,6 +12,16 @@ import tflite_runtime.interpreter as tflite
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 
+g_default_number_of_inference_requests = 30
+
+def get_infer_req_nmbr():
+    if len(sys.argv) == 1 or len(sys.argv) > 2:
+        return g_default_number_of_inference_requests
+    if not sys.argv[1].isnumeric():
+        return g_default_number_of_inference_requests
+    return int(sys.argv[1])
+
+
 def load_networks_data():
     out = []
     net_data = {'name': None, 'difficulty': None, 'precision': None}
@@ -51,6 +61,7 @@ class CNN(object):
         # The file path of model
         self.model_filepath = model_filepath
 
+    # function inspired by TensorFlow documentation
     def init_graph(self):
         # Load the TFLite model and allocate tensors.
         self.interpreter = tflite.Interpreter(model_path=f'{self.model_filepath}/{self.model_filepath.rsplit("/", 1)[1]}.tflite')
@@ -65,15 +76,14 @@ class CNN(object):
         input_data = np.array(np.random.random_sample(input_shape), dtype=np.float32)
         self.interpreter.set_tensor(input_details[0]['index'], input_data)
 
+    # function inspired by TensorFlow documentation
     def inference(self, infer_requests):
         times = [None] * infer_requests
         # do inference
         self.interpreter.invoke()
 
-        # The function `get_tensor()` returns a copy of the tensor data.
         # Use `tensor()` in order to get a pointer to the tensor.
-        output_data = self.interpreter.get_tensor(self.output_details[0]['index'])
-        print(output_data)
+        output_data = self.interpreter.tensor(self.output_details[0]['index'])
         for i in range(infer_requests):
             times[i], _ = record_time(self.interpreter.invoke, None)
         return times
@@ -147,10 +157,10 @@ def main():
         result['init_t'], _ = record_time(cn.init_graph, None)
 
         # perform inference
-        result['exec_t']['overall'], result['exec_t']['individual'] = record_time(cn.inference, 300)
+        result['exec_t']['overall'], result['exec_t']['individual'] = record_time(cn.inference, get_infer_req_nmbr())
 
         test_results.append(result)
-    # if you change filename change it in 'copy_experiment_results.sh' script
+    # if you change filename change it in 'download_experiment_results.sh' script
     write_to_csv(test_results, 'res_exp_1.xlsx')
 
 
