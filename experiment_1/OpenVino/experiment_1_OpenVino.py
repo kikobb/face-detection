@@ -11,11 +11,23 @@ from openpyxl.comments import Comment
 import time
 from openvino.inference_engine import IECore
 
+g_default_number_of_inference_requests = 30
+
+
+# ### TMP argument parser section
+def get_infer_req_nmbr():
+    if len(sys.argv) == 1 or len(sys.argv) > 3:
+        return g_default_number_of_inference_requests
+    if not sys.argv[1].isnumeric():
+        return g_default_number_of_inference_requests
+    return int(sys.argv[1])
+
 
 def is_raspberry():
-    if len(sys.argv) == 2 and (sys.argv[1] != 'raspberry' or sys.argv[1] != 'pi'):
+    if len(sys.argv) == 3 and (sys.argv[2] == 'raspberry' or sys.argv[2] == 'pi'):
         return True
     return False
+# ### END TMP argument parser section
 
 
 def load_networks_data():
@@ -25,7 +37,7 @@ def load_networks_data():
     if is_raspberry():
         file1 = open('/root/face-detection/experiment_1/networks_data.txt', 'r')
     else:
-        file1 = open('networks_data.txt', 'r')
+        file1 = open('/home/openvino/face/exp_1/networks_data.txt', 'r')
     lines = file1.readlines()
     for i, line in enumerate(lines):
         if line == '\n':
@@ -138,7 +150,8 @@ def write_to_csv(data, file_name):
             network = next(j for j, item in enumerate(g_mobilenet_data)
                            if item["name"] == data[dev_name][i]['network_name'])
             for measurement in data[dev_name][i]['exec_t']['individual']:
-                ws_data[f'A{row_nmbr}'] = f'{"Raspberry Pi" if is_raspberry() else "PC"}: {dev_name if dev_name != "GPU" else f"{dev_name} - Intel"}'
+                ws_data[
+                    f'A{row_nmbr}'] = f'{"Raspberry Pi" if is_raspberry() else "PC"}: {dev_name if dev_name != "GPU" else f"{dev_name} - Intel"}'
                 ws_data[f'B{row_nmbr}'] = g_mobilenet_data[i]['name']
                 ws_data[f'C{row_nmbr}'] = g_mobilenet_data[i]['difficulty']
                 ws_data[f'D{row_nmbr}'] = g_mobilenet_data[i]['precision']
@@ -160,6 +173,7 @@ def main():
     raspberry = is_raspberry()
     # load plugin
     ie = IECore()
+    test_results = {}
     test_results = {'CPU': [], 'MYRIAD': []}
     if not raspberry:
         test_results['GPU'] = []
@@ -193,11 +207,11 @@ def main():
             # perform inference
             print('inference_begin')
             result['exec_t']['overall'], result['exec_t']['individual'] = record_time(inference, (
-                exec_net, input_blob, 10))
+                exec_net, input_blob, get_infer_req_nmbr()))
             print('inference_end')
             test_results[device_name].append(result)
 
-    # if you change filename change it in 'copy_experiment_results.sh' script
+    # if you change filename change it in 'download_experiment_results.sh' script
     write_to_csv(test_results, 'res_exp_1.xlsx')
 
 
