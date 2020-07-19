@@ -26,7 +26,7 @@ def load_networks_data():
     out = []
     net_data = {'name': None, 'difficulty': None, 'precision': None}
     # in local file hierarchy it is in superior folder but in remote (due to copy script) file is in same directory
-    file1 = open('networks_data.txt', 'r')
+    file1 = open('/home/nvidia/networks_data.txt', 'r')
     lines = file1.readlines()
     for i, line in enumerate(lines):
         if line == '\n':
@@ -158,7 +158,7 @@ def main():
 
         test_results.append(result)
     # if you change filename change it in 'download_experiment_results.sh' script
-    write_to_csv(test_results, 'res_exp_1.xlsx')
+    write_to_csv(test_results, '/home/nvidia/res_exp_1.xlsx')
 
 
 if __name__ == '__main__':

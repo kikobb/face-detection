@@ -4,9 +4,9 @@ USER root
 
 #####################
 # REQUIRED SOFTWARE #
-RUN apt-get update && \
-      apt-get -y install sudo 
+RUN apt-get update 
 RUN apt-get -y install vim
+RUN apt-get -y install sudo 
 RUN sudo apt-get -y install ssh
 
 # install missing libraryes

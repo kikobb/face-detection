@@ -142,13 +142,13 @@ fi
 
 #run tf container with nvidia support interactively
 if [[ "$#" -eq "1" && "$1" == "-nvidia" ]]; then
-	run_nvidia_interactive
+	run_nvidia_not_interactive
 	exit
 fi
 
 #run tf container with nvidia support not interactively
 if [[ "$#" -eq "2" && "$1" == "-nvidia" && "$2" == "-it" ]]; then
-	run_nvidia_not_interactive
+	run_nvidia_interactive
 	exit
 fi
 

@@ -2,6 +2,7 @@ import sys
 from openpyxl import Workbook, load_workbook
 from os import path
 
+
 def parse_arg():
     if len(sys.argv) == 1 or len(sys.argv) > 3:
         exit(1)
@@ -19,7 +20,8 @@ def parse_arg():
 
 def main():
     wb_out_path, wb_in_path = parse_arg()
-    
+    # print(f'in: {wb_in_path}, out: {wb_out_path}')
+    margin = 0
     # check if wb_in file exist
     if not path.exists(wb_in_path):
         exit(1)
@@ -28,6 +30,7 @@ def main():
     # check if create or append to output file
     if path.exists(wb_out_path):
         wb_out = load_workbook(filename=wb_out_path)
+        margin = 1
     else:
         wb_out = Workbook()
 
@@ -41,7 +44,7 @@ def main():
     #             for items in list_to_append:
     #                 wb1.active.append(items)
 
-    for row in ws_in.iter_rows(min_row=ws_in.min_row + 1, max_row=ws_in.max_row):
+    for row in ws_in.iter_rows(min_row=ws_in.min_row + margin, max_row=ws_in.max_row):
         row_to_append = []
         for cell in row:
             row_to_append.append(cell.value)

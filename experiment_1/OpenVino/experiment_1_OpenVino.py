@@ -150,8 +150,10 @@ def write_to_csv(data, file_name):
                 ws_data[f'J{row_nmbr}'] = int(round(measurement * 1000000))
 
                 row_nmbr += 1
-
-    wb.save(filename=file_name)
+    if is_raspberry():
+        wb.save(filename=f'/root/face-detection/experiment_1/OpenVion/{file_name}')
+    else:
+        wb.save(filename=f'/home/openvino/face/exp_1/{file_name}')
 
 
 def main():

@@ -30,7 +30,7 @@ RUN mkdir $PROJECT_DIR
 WORKDIR $MODEL_DIR/tmp_mobilenet
 # RUN mkdir $MODEL_DIR
 RUN mkdir ../$MOBILENET_V2_DIR
-COPY /$MOBILENET_V2_DIR/mobilenet*.tgz $MODEL_DIR/tmp_mobilenet/
+COPY /$MOBILENET_V2_DIR/True/mobilenet*.tgz $MODEL_DIR/tmp_mobilenet/
 # unpac only .pb file (${file%.*} - pattern expansion)
 RUN for file in $(ls | grep .tgz); do \
 mkdir ../$MOBILENET_V2_DIR/${file%.*}; \
