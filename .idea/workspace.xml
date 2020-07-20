@@ -19,11 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment=".">
+    <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="add closing of xlsx files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_1/RaspberryPi/experiment_1_raspberry.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_1/RaspberryPi/experiment_1_raspberry.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_1/OpenVino/experiment_1_OpenVino.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_1/OpenVino/experiment_1_OpenVino.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiment_1/run_experiment_1.sh" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_1/run_experiment_1.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support_scripts/append_to_result.py" beforeDir="false" afterPath="$PROJECT_DIR$/support_scripts/append_to_result.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -223,16 +222,16 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Docker.Docker Image" />
-      <item itemvalue="Python.base_docker" />
-      <item itemvalue="Python.base_ssh" />
       <item itemvalue="Python.base_ssh_raspbery" />
-      <item itemvalue="Python.face_recong_remote" />
-      <item itemvalue="Python.exp_1_OpenVino" />
-      <item itemvalue="Python.exp_1_GPU" />
-      <item itemvalue="Python.face_recong_local" />
       <item itemvalue="Python.merge" />
       <item itemvalue="Shell Script.run_exp_1_all_devices" />
+      <item itemvalue="Docker.Docker Image" />
+      <item itemvalue="Python.exp_1_GPU" />
+      <item itemvalue="Python.face_recong_remote" />
+      <item itemvalue="Python.face_recong_local" />
+      <item itemvalue="Python.base_docker" />
+      <item itemvalue="Python.exp_1_OpenVino" />
+      <item itemvalue="Python.base_ssh" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -305,7 +304,8 @@
       <workItem from="1595175339062" duration="2326000" />
       <workItem from="1595179292347" duration="2583000" />
       <workItem from="1595184972916" duration="5025000" />
-      <workItem from="1595207154693" duration="258000" />
+      <workItem from="1595207154693" duration="1806000" />
+      <workItem from="1595229146241" duration="97000" />
     </task>
     <task id="LOCAL-00001" summary="added support for onter face_recognition networks">
       <created>1593704249858</created>
@@ -489,7 +489,28 @@
       <option name="project" value="LOCAL" />
       <updated>1595191937405</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="add closing of xlsx files">
+      <created>1595207708932</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1595207708932</updated>
+    </task>
+    <task id="LOCAL-00028" summary="add closing of xlsx files">
+      <created>1595209572016</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1595209572016</updated>
+    </task>
+    <task id="LOCAL-00029" summary="add closing of xlsx files">
+      <created>1595209588860</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1595209588860</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -540,7 +561,8 @@
     <MESSAGE value="-" />
     <MESSAGE value="typo" />
     <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <MESSAGE value="add closing of xlsx files" />
+    <option name="LAST_COMMIT_MESSAGE" value="add closing of xlsx files" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="313" width="800" height="586" key="#Deployment" timestamp="1594951388544">
@@ -692,12 +714,12 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="803" y="469" width="430" height="230" key="VCS.ChangelistChooser/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595172934282" />
-    <state x="555" y="266" width="800" height="540" key="Vcs.Push.Dialog.v2" timestamp="1595191939005">
+    <state x="555" y="251" width="800" height="540" key="Vcs.Push.Dialog.v2" timestamp="1595209590440">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="555" y="1356" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704292599" />
     <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595172957771" />
-    <state x="555" y="266" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595191939005" />
+    <state x="555" y="251" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595209590440" />
     <state x="2364" y="406" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.216.1536.864@1920.216.1536.864" timestamp="1595189098731" />
     <state width="960" height="526" key="XDebugger.FullValuePopup" timestamp="1594721337471">
       <screen x="0" y="27" width="1920" height="1053" />
@@ -707,12 +729,12 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="223" y="890" width="187" height="190" key="com.intellij.docker.deployment.ui.DockerVolumeBindingsField.v173.dialogSize/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1593680732865" />
-    <state x="0" y="295" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1595180998674">
+    <state x="0" y="280" width="762" height="691" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1595208142729">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="0" y="1380" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593698004740" />
     <state x="0" y="394" width="762" height="686" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595170403998" />
-    <state x="0" y="295" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595180998674" />
+    <state x="0" y="280" width="762" height="691" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595208142729" />
     <state x="731" y="468" width="458" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595097827814">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -732,11 +754,11 @@
     </state>
     <state x="736" y="1678" width="463" height="214" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593693376080" />
     <state x="793" y="399" width="736" height="351" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594744124344" />
-    <state x="346" y="103" width="618" height="870" key="find.popup" timestamp="1595207379168">
+    <state x="346" y="103" width="758" height="870" key="find.popup" timestamp="1595207511725">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="346" y="103" width="618" height="870" key="find.popup/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594214162522" />
-    <state x="346" y="103" width="618" height="870" key="find.popup/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595207379168" />
+    <state x="346" y="103" width="758" height="870" key="find.popup/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595207511725" />
     <state x="625" y="443" width="727" height="637" key="ftp.server.browser" timestamp="1595032865538">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -829,7 +851,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/support_scripts/append_to_result.py</url>
-          <line>21</line>
+          <line>22</line>
           <option name="timeStamp" value="87" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

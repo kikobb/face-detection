@@ -68,6 +68,8 @@ echo '- docker kill openvino'
 docker kill "$(docker container ls --last 1 -q)"
 echo '+ done docker kill openvino'
 
+sleep 10
+
 # Nvidia on PC: GPU
 /bin/bash ../Docker/docker_runner.sh -nvidia
 #accepts ssh key

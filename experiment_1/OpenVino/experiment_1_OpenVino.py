@@ -212,6 +212,8 @@ def main():
             print('inference_end')
             test_results[device_name].append(result)
 
+            time.sleep(15)
+
     # if you change filename change it in 'download_experiment_results.sh' script
     write_to_csv(test_results, 'res_exp_1.xlsx')
 
