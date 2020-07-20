@@ -1,3 +1,4 @@
+import os
 import sys
 from openpyxl import Workbook, load_workbook
 from os import path
@@ -20,15 +21,16 @@ def parse_arg():
 
 def main():
     wb_out_path, wb_in_path = parse_arg()
-    # print(f'in: {wb_in_path}, out: {wb_out_path}')
+    print(f'in: {wb_in_path}, out: {wb_out_path}')
     margin = 0
     # check if wb_in file exist
-    if not path.exists(wb_in_path):
+    if not os.path.isfile(wb_in_path):
         exit(1)
-    else:
-        ws_in = load_workbook(filename=wb_in_path).active
+
+    wb_in = load_workbook(filename=wb_in_path)
+    ws_in = wb_in.active
     # check if create or append to output file
-    if path.exists(wb_out_path):
+    if os.path.isfile(wb_out_path):
         wb_out = load_workbook(filename=wb_out_path)
         margin = 1
     else:
