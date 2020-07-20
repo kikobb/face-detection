@@ -149,26 +149,26 @@ def main():
 
     print(f'{get_infer_req_nmbr()}')
 
-    # for nn_dir in g_mobilenet_data:
-    #     cn = CNN(f'{nns_dir}/{nn_dir["name"]}')
-    #     print(f'{count} Network: {nn_dir["name"]}')
-    #     count += 1
-    #     result = {
-    #         'network_name': nn_dir["name"], 'init_t': None, 'load_t': None, 'exec_t':
-    #             {
-    #                 'overall': None, 'individual': None
-    #             }
-    #     }
-    #
-    #     # load model form disk and initialize
-    #     result['init_t'], _ = record_time(cn.init_graph, None)
-    #
-    #     # perform inference
-    #     result['exec_t']['overall'], result['exec_t']['individual'] = record_time(cn.inference, get_infer_req_nmbr())
-    #
-    #     test_results.append(result)
-    # # if you change filename change it in 'download_experiment_results.sh' script
-    # write_to_csv(test_results, 'res_exp_1.xlsx')
+    for nn_dir in g_mobilenet_data:
+        cn = CNN(f'{nns_dir}/{nn_dir["name"]}')
+        print(f'{count} Network: {nn_dir["name"]}')
+        count += 1
+        result = {
+            'network_name': nn_dir["name"], 'init_t': None, 'load_t': None, 'exec_t':
+                {
+                    'overall': None, 'individual': None
+                }
+        }
+
+        # load model form disk and initialize
+        result['init_t'], _ = record_time(cn.init_graph, None)
+
+        # perform inference
+        result['exec_t']['overall'], result['exec_t']['individual'] = record_time(cn.inference, get_infer_req_nmbr())
+
+        test_results.append(result)
+    # if you change filename change it in 'download_experiment_results.sh' script
+    write_to_csv(test_results, 'res_exp_1.xlsx')
 
 
 if __name__ == '__main__':

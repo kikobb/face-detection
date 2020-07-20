@@ -95,10 +95,10 @@ sshpass -p "root" ssh -o "StrictHostKeyChecking no" root@192.168.0.206 ":"
 # experiment with tensorflow lite on CPU
 sshpass -p "root" ssh root@192.168.0.206 "python3 /root/face-detection/experiment_1/RaspberryPi/experiment_1_raspberry.py $INFERENCE_REQUESTS"
 read -p "waiting to inser MYRIAD Press enter to continue"
-sshpass -p "root" ssh root@192.168.0.206 "source /opt/intel/openvino/bin/setupvars.sh; python3 /root/face-detection/experiment_1/OpenVino/experiment_1_OpenVino.py $INFERENCE_REQUESTS raspberry"
+#sshpass -p "root" ssh root@192.168.0.206 "source /opt/intel/openvino/bin/setupvars.sh; python3 /root/face-detection/experiment_1/OpenVino/experiment_1_OpenVino.py $INFERENCE_REQUESTS raspberry"
 /bin/bash ../support_scripts/download_experiment_results.sh -raspberry4
-python3 ../support_scripts/append_to_result.py ../experiment_1/RaspberryPi/res_exp_1_pi_4_MYRIAD.xlsx
 python3 ../support_scripts/append_to_result.py ../experiment_1/RaspberryPi/res_exp_1_pi_4_CPU.xlsx
+#python3 ../support_scripts/append_to_result.py ../experiment_1/RaspberryPi/res_exp_1_pi_4_MYRIAD.xlsx
 
 exit 0
 
