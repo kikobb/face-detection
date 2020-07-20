@@ -21,7 +21,7 @@ def parse_arg():
 
 def main():
     wb_out_path, wb_in_path = parse_arg()
-    print(f'in: {wb_in_path}, out: {wb_out_path}')
+    # print(f'in: {wb_in_path}, out: {wb_out_path}')
     margin = 0
     # check if wb_in file exist
     if not os.path.isfile(wb_in_path):
