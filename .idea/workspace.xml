@@ -19,9 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="add closing of xlsx files">
+    <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="sleep added between device tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_1/OpenVino/experiment_1_OpenVino.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_1/OpenVino/experiment_1_OpenVino.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_1/RaspberryPi/experiment_1_raspberry.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_1/RaspberryPi/experiment_1_raspberry.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiment_1/run_experiment_1.sh" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_1/run_experiment_1.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -222,16 +222,16 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Docker.Docker Image" />
+      <item itemvalue="Python.base_docker" />
+      <item itemvalue="Python.base_ssh" />
       <item itemvalue="Python.base_ssh_raspbery" />
+      <item itemvalue="Python.face_recong_remote" />
+      <item itemvalue="Python.exp_1_OpenVino" />
+      <item itemvalue="Python.exp_1_GPU" />
+      <item itemvalue="Python.face_recong_local" />
       <item itemvalue="Python.merge" />
       <item itemvalue="Shell Script.run_exp_1_all_devices" />
-      <item itemvalue="Docker.Docker Image" />
-      <item itemvalue="Python.exp_1_GPU" />
-      <item itemvalue="Python.face_recong_remote" />
-      <item itemvalue="Python.face_recong_local" />
-      <item itemvalue="Python.base_docker" />
-      <item itemvalue="Python.exp_1_OpenVino" />
-      <item itemvalue="Python.base_ssh" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -305,7 +305,9 @@
       <workItem from="1595179292347" duration="2583000" />
       <workItem from="1595184972916" duration="5025000" />
       <workItem from="1595207154693" duration="1806000" />
-      <workItem from="1595229146241" duration="97000" />
+      <workItem from="1595229146241" duration="177000" />
+      <workItem from="1595231657851" duration="88000" />
+      <workItem from="1595234883272" duration="138000" />
     </task>
     <task id="LOCAL-00001" summary="added support for onter face_recognition networks">
       <created>1593704249858</created>
@@ -510,7 +512,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595209588860</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="sleep added between device tests">
+      <created>1595229269543</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1595229269543</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -562,7 +571,8 @@
     <MESSAGE value="typo" />
     <MESSAGE value="." />
     <MESSAGE value="add closing of xlsx files" />
-    <option name="LAST_COMMIT_MESSAGE" value="add closing of xlsx files" />
+    <MESSAGE value="sleep added between device tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="sleep added between device tests" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="313" width="800" height="586" key="#Deployment" timestamp="1594951388544">
@@ -714,12 +724,12 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="803" y="469" width="430" height="230" key="VCS.ChangelistChooser/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595172934282" />
-    <state x="555" y="251" width="800" height="540" key="Vcs.Push.Dialog.v2" timestamp="1595209590440">
+    <state x="555" y="246" width="800" height="540" key="Vcs.Push.Dialog.v2" timestamp="1595229286843">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="555" y="1356" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704292599" />
     <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595172957771" />
-    <state x="555" y="251" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595209590440" />
+    <state x="555" y="246" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595229286843" />
     <state x="2364" y="406" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.216.1536.864@1920.216.1536.864" timestamp="1595189098731" />
     <state width="960" height="526" key="XDebugger.FullValuePopup" timestamp="1594721337471">
       <screen x="0" y="27" width="1920" height="1053" />

@@ -13,8 +13,8 @@ import tflite_runtime.interpreter as tflite
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-
 g_default_number_of_inference_requests = 30
+
 
 def get_infer_req_nmbr():
     if len(sys.argv) == 1 or len(sys.argv) > 2:
@@ -66,7 +66,8 @@ class CNN(object):
     # function inspired by TensorFlow documentation
     def init_graph(self):
         # Load the TFLite model and allocate tensors.
-        self.interpreter = tflite.Interpreter(model_path=f'{self.model_filepath}/{self.model_filepath.rsplit("/", 1)[1]}.tflite')
+        self.interpreter = tflite.Interpreter(
+            model_path=f'{self.model_filepath}/{self.model_filepath.rsplit("/", 1)[1]}.tflite')
         self.interpreter.allocate_tensors()
 
         # Get input and output tensors.
@@ -139,31 +140,35 @@ def write_to_csv(data, file_name):
     wb.save(filename=file_name)
     wb.close()
 
+
 def main():
     nns_dir = '/root/face-detection/model_library/mobilenet_v2'
 
     test_results = []
     count = 0
-    for nn_dir in g_mobilenet_data:
-        cn = CNN(f'{nns_dir}/{nn_dir["name"]}')
-        print(f'{count} Network: {nn_dir["name"]}')
-        count += 1
-        result = {
-            'network_name': nn_dir["name"], 'init_t': None, 'load_t': None, 'exec_t':
-                {
-                    'overall': None, 'individual': None
-                }
-        }
 
-        # load model form disk and initialize
-        result['init_t'], _ = record_time(cn.init_graph, None)
+    print(f'{get_infer_req_nmbr()}')
 
-        # perform inference
-        result['exec_t']['overall'], result['exec_t']['individual'] = record_time(cn.inference, get_infer_req_nmbr())
-
-        test_results.append(result)
-    # if you change filename change it in 'download_experiment_results.sh' script
-    write_to_csv(test_results, 'res_exp_1.xlsx')
+    # for nn_dir in g_mobilenet_data:
+    #     cn = CNN(f'{nns_dir}/{nn_dir["name"]}')
+    #     print(f'{count} Network: {nn_dir["name"]}')
+    #     count += 1
+    #     result = {
+    #         'network_name': nn_dir["name"], 'init_t': None, 'load_t': None, 'exec_t':
+    #             {
+    #                 'overall': None, 'individual': None
+    #             }
+    #     }
+    #
+    #     # load model form disk and initialize
+    #     result['init_t'], _ = record_time(cn.init_graph, None)
+    #
+    #     # perform inference
+    #     result['exec_t']['overall'], result['exec_t']['individual'] = record_time(cn.inference, get_infer_req_nmbr())
+    #
+    #     test_results.append(result)
+    # # if you change filename change it in 'download_experiment_results.sh' script
+    # write_to_csv(test_results, 'res_exp_1.xlsx')
 
 
 if __name__ == '__main__':
