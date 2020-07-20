@@ -167,7 +167,7 @@ def write_to_csv(data, file_name):
         wb.save(filename=f'/root/face-detection/experiment_1/OpenVino/{file_name}')
     else:
         wb.save(filename=f'/home/openvino/face/exp_1/{file_name}')
-
+    wb.close()
 
 def main():
     raspberry = is_raspberry()

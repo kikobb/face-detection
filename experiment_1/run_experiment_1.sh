@@ -46,6 +46,7 @@ echo '- docker container openvino'
 /bin/bash ../Docker/docker_runner.sh -openvino
 #accepts ssh key and set up enviroment variables
 ssh-keygen -f "/home/k/.ssh/known_hosts" -R "172.17.0.2"
+sleep 0.5
 sshpass -p "root" ssh -o "StrictHostKeyChecking no" root@172.17.0.2 ":"
 echo '+ done docker container openvino'
 echo '- copy_project_to_remote openvino'
@@ -71,6 +72,7 @@ echo '+ done docker kill openvino'
 /bin/bash ../Docker/docker_runner.sh -nvidia
 #accepts ssh key
 ssh-keygen -f "/home/k/.ssh/known_hosts" -R "172.18.0.22"
+sleep 0.5
 sshpass -p "root" ssh -o "StrictHostKeyChecking no" root@172.18.0.22 ":"
 /bin/bash ../support_scripts/copy_project_to_remote.sh -e1g
 # necessary models are uploaded during build (dockerfile)
@@ -86,6 +88,7 @@ docker kill "$(docker container ls --last 1 -q)"
 #/bin/bash ../support_scripts/upload_model_library.sh -pi4
 # experiment with OenVino library on Myriad
 ssh-keygen -f "/home/k/.ssh/known_hosts" -R "192.168.0.206"
+sleep 0.5
 sshpass -p "root" ssh -o "StrictHostKeyChecking no" root@192.168.0.206 ":"
 # experiment with tensorflow lite on CPU
 sshpass -p "root" ssh root@192.168.0.206 "python3 /root/face-detection/experiment_1/RaspberryPi/experiment_1_raspberry.py $INFERENCE_REQUESTS"

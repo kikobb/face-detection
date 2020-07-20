@@ -51,7 +51,8 @@ def main():
         ws_out.append(row_to_append)
 
     wb_out.save(filename=wb_out_path)
-
+    wb_out.close()
+    wb_in.close()
 
 if __name__ == '__main__':
     # cProfile.run(main(sys.argv[1:]))

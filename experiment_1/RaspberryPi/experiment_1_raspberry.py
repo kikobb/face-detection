@@ -137,7 +137,7 @@ def write_to_csv(data, file_name):
             row_nmbr += 1
 
     wb.save(filename=file_name)
-
+    wb.close()
 
 def main():
     nns_dir = '/root/face-detection/model_library/mobilenet_v2'
