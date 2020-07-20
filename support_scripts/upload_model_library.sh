@@ -22,7 +22,7 @@ case $1 in
                                 root@192.168.0.206:/root/face-detection/
         ;;
     -pi3)
-        sshpass -p "root" scp -r -P 22 /home/k/PycharmProjects/face-detection/model_library \
+        sshpass -p "root" scp -r /home/k/PycharmProjects/face-detection/model_library \
                                 root@192.168.0.207:/root/face-detection/
         ;;
 esac

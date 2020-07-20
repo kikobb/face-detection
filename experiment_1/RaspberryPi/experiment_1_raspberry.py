@@ -137,7 +137,7 @@ def write_to_csv(data, file_name):
 
             row_nmbr += 1
 
-    wb.save(filename=file_name)
+    wb.save(filename=f'/root/face-detection/experiment_1/RaspberryPi/{file_name}')
     wb.close()
 
 
