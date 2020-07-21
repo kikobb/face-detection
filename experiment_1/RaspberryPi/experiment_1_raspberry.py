@@ -82,12 +82,11 @@ class CNN(object):
     # function inspired by TensorFlow documentation
     def inference(self, infer_requests):
         times = [None] * infer_requests
-        # do inference
-        self.interpreter.invoke()
-
+ 
         # Use `tensor()` in order to get a pointer to the tensor.
         output_data = self.interpreter.tensor(self.output_details[0]['index'])
         for i in range(infer_requests):
+            # do inference
             times[i], _ = record_time(self.interpreter.invoke, None)
         return times
 

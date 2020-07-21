@@ -3,3 +3,17 @@
 -dm /home/openvino/face/models/intel/face-detection-0100/FP32/face-detection-0100.xml
 -od
 -dm_t 0.65
+
+-d
+MYRIAD
+-ic
+0
+-dm
+/home/openvino/face/models/intel/face-detection-0100/FP32/face-detection-0100.xml
+-od
+-dm_t
+0.65
+-lm
+/home/openvino/face/models/intel/landmarks-regression-retail-0009/FP32/landmarks-regression-retail-0009.xml
+-rm
+/home/openvino/face/models/intel/face-reidentification-retail-0095/FP32/face-reidentification-retail-0095.xml

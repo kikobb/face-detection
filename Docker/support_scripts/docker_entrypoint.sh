@@ -1,8 +1,7 @@
 #!/bin/bash
 
-service ssh start
-
-source /opt/intel/openvino/bin/setupvars.sh 
+service ssh starts
+ource /opt/intel/openvino/bin/setupvars.sh 
 
 # python3 base.py
 # export XAUTHORITY=~/.Xauthority
@@ -18,5 +17,10 @@ cat >  /root/.bashrc << EOF
 
 PS1='${debian_chroot:+($debian_chroot)}\u@:\W\$ '
 EOF
+
+# copy models from model_library
+# if [[ "$DOWNLOAD_MODELS" == "False" ]]; then
+# 	./usr/local/bin/downoad_model_library.sh
+# fi
 
 /bin/bash
