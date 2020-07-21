@@ -19,14 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="experiment 1 done">
-      <change afterPath="$PROJECT_DIR$/support_scripts/setupvars.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/face_recong_remote.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/face_recong_remote.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docker/raspbian_dev.dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Docker/raspbian_dev.dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docker/support_scripts/docker_entrypoint.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Docker/support_scripts/docker_entrypoint.sh" afterDir="false" />
+    <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="command parameters template chnged">
       <change beforePath="$PROJECT_DIR$/commandline_parameters" beforeDir="false" afterPath="$PROJECT_DIR$/commandline_parameters" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_1/RaspberryPi/experiment_1_raspberry.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_1/RaspberryPi/experiment_1_raspberry.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -387,7 +381,7 @@
       <workItem from="1595270969185" duration="1946000" />
       <workItem from="1595272990569" duration="10989000" />
       <workItem from="1595286660868" duration="2243000" />
-      <workItem from="1595325325362" duration="1252000" />
+      <workItem from="1595325325362" duration="1377000" />
     </task>
     <task id="LOCAL-00001" summary="added support for onter face_recognition networks">
       <created>1593704249858</created>
@@ -627,7 +621,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595286463675</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="command parameters template chnged">
+      <created>1595328596735</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1595328596735</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -656,7 +657,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="docker run/debug configuration" />
     <MESSAGE value="foundation for proper app: face detection - camera rolling" />
     <MESSAGE value="prepare_network method (implements read_model)" />
     <MESSAGE value="network model class (superclass to concret models) added" />
@@ -681,7 +681,8 @@
     <MESSAGE value="sleep added between device tests" />
     <MESSAGE value="experiment raspbery test" />
     <MESSAGE value="experiment 1 done" />
-    <option name="LAST_COMMIT_MESSAGE" value="experiment 1 done" />
+    <MESSAGE value="command parameters template chnged" />
+    <option name="LAST_COMMIT_MESSAGE" value="command parameters template chnged" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="313" width="800" height="586" key="#Deployment" timestamp="1594951388544">
@@ -837,12 +838,12 @@
     </state>
     <state x="803" y="469" width="430" height="230" key="VCS.ChangelistChooser/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595172934282" />
     <state x="803" y="464" key="VCS.ChangelistChooser/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595286438459" />
-    <state x="555" y="211" width="800" height="540" key="Vcs.Push.Dialog.v2" timestamp="1595286474107">
+    <state x="555" y="206" width="800" height="540" key="Vcs.Push.Dialog.v2" timestamp="1595328601156">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="555" y="1356" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704292599" />
     <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595172957771" />
-    <state x="555" y="211" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595286474107" />
+    <state x="555" y="206" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595328601156" />
     <state x="2364" y="406" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.216.1536.864@1920.216.1536.864" timestamp="1595189098731" />
     <state width="960" height="526" key="XDebugger.FullValuePopup" timestamp="1594721337471">
       <screen x="0" y="27" width="1920" height="1053" />
