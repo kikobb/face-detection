@@ -1,4 +1,6 @@
 import os
+import time
+
 import cv2
 import numpy as np
 
@@ -12,6 +14,11 @@ from face_recognizer import FaceRecognizer
 from landmarks_locator import LandmarksLocator
 
 
+class EndOfStream(Exception):
+    def __init__(self, message):
+        super().__init__(message)
+
+
 class ReadableFile(argparse.Action):
     def __call__(self, parser, namespace, values, option_string=None):
         path = values[0]
@@ -20,14 +27,14 @@ class ReadableFile(argparse.Action):
         if self.container.title == 'Models':
             path_w = os.path.splitext(path)[0] + ".bin"
             if not os.path.isfile(path_w):
-                raise argparse.ArgumentError(self, 'fire: \'{}\' does not exist'.format(path_w))
+                raise argparse.ArgumentError(self, 'file: \'{}\' does not exist'.format(path_w))
             elif not os.access(path_w, os.R_OK):
-                raise argparse.ArgumentError(self, 'fie: \'{}\' is not a readable file'.format(path_w))
+                raise argparse.ArgumentError(self, 'file: \'{}\' is not a readable file'.format(path_w))
 
         if not os.path.isfile(path):
-            raise argparse.ArgumentError(self, 'fire: \'{}\' does not exist'.format(path))
+            raise argparse.ArgumentError(self, 'file: \'{}\' does not exist'.format(path))
         elif not os.access(path, os.R_OK):
-            raise argparse.ArgumentError(self, 'fie: \'{}\' is not a readable file'.format(path))
+            raise argparse.ArgumentError(self, 'file: \'{}\' is not a readable file'.format(path))
         else:
             setattr(namespace, self.dest, path)
 
@@ -42,6 +49,7 @@ def create_argparser():
     output_group = p.add_mutually_exclusive_group()  # todo check if file is possible to write
     output_group.add_argument('-od', '--output_display', action='store_true')
     output_group.add_argument('-of', '--output_file', nargs=1)
+    output_group.add_argument('-on', '--output_none', action='store_true')
 
     models = p.add_argument_group('Models')
     models.add_argument('-dm', '--detection_model', action=ReadableFile, nargs=1, required=True)
@@ -50,6 +58,7 @@ def create_argparser():
     models.add_argument('-rm', '--recognition_model', action=ReadableFile, nargs=1)
 
     p.add_argument('-d', '--device', choices=['CPU', 'MYRIAD', 'GPU'], required=True, nargs=1)
+    p.add_argument('-t', '--time', action='store_true')
 
     return p
 
@@ -58,8 +67,8 @@ def check_args(args, p: any):
     # todo check for combined max model size NCS 500MB (320MB)
     if not (args.input_image or args.input_camera or args.input_video):
         p.error('At least one option ( --input_image| --input_camera| --input_video) is required.')
-    if not (args.output_display or args.output_file):
-        p.error('At least one option ( --output_display| --output_file) is required.')
+    if not (args.output_display or args.output_file or args.output_none):
+        p.error('At least one option ( --output_display| --output_file | --output_none) is required.')
 
 
 class IOChanel:
@@ -71,6 +80,7 @@ class IOChanel:
     class Output(Enum):
         DISPLAY = 0
         FILE = 1
+        NONE = 2
 
     def __init__(self, args: Dict):
         self.i_chanel, self.i_source = IOChanel.get_input_chanel_type(args)
@@ -91,11 +101,20 @@ class IOChanel:
     def get_output_chanel_type(cls, args: Dict) -> 'IOChanel.Output':
         if args['output_display']:
             return cls.Output.DISPLAY
+        if args['output_none']:
+            return cls.Output.NONE
         # it is guaranteed that at least one option is valid
         return cls.Output.FILE
 
     def __open_i_feed(self) -> None:
         if self.i_chanel == self.Input.CAMERA:
+            try:
+                self.i_feed = cv2.VideoCapture(self.i_source)
+            except ValueError:
+                raise NotImplementedError("invalid camera index (-c value)")
+            if not self.i_feed.isOpened():
+                raise IOError("visual input feed not found")
+        elif self.i_chanel == self.Input.VIDEO:
             try:
                 self.i_feed = cv2.VideoCapture(self.i_source)
             except ValueError:
@@ -109,6 +128,8 @@ class IOChanel:
     def get_frame(self) -> np.ndarray:
         received, frame = self.i_feed.read()
         if not received:
+            if self.i_chanel.VIDEO:
+                raise EndOfStream('app ended successfully')
             raise IOError("no fame received")
         return frame
 
@@ -147,7 +168,10 @@ class IOChanel:
 
     def write_output(self, frame: np.ndarray):
         if self.o_chanel == self.Output.DISPLAY:
-            self.show_frame('face_recognition', frame)
+            # self.show_frame('face_recognition', frame)
+            self.show_frame('face_recognition', cv2.resize(frame, (1080, 720)))
+        elif self.o_chanel == self.Output.NONE:
+            pass
         else:
             # todo implement other output sources
             raise NotImplementedError('other output sources than camera not implemented')
@@ -212,7 +236,8 @@ class ProcessFrame:
 
     def process_frame(self, frame: np.ndarray) -> List[Union[List[FaceLocator.FacePosition],
                                                              List[LandmarksLocator.FaceLandmarks],
-                                                             List[FaceRecognizer.FaceIdentity]]]:  # todo uniton with None
+                                                             List[
+                                                                 FaceRecognizer.FaceIdentity]]]:  # todo uniton with None
         faces_landmarks = faces_identities = None
         face_positions = self.face_locator.get_face_positions(frame)
         if self.modes['landmark']:
@@ -230,14 +255,24 @@ def main():
     io = IOChanel(vars(args))
     proc = ProcessFrame(vars(args))
 
+    start = 0
+    if args.time:
+        start = time.perf_counter()
+
     while True:
-        # io.show_frame('frame', io.get_frame())
-        frame = io.get_frame()
-        findings = proc.process_frame(frame)
-        frame = io.draw_findings(frame, findings)
-        io.write_output(frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        try:
+            # io.show_frame('frame', io.get_frame())
+            frame = io.get_frame()
+            findings = proc.process_frame(frame)
+            frame = io.draw_findings(frame, findings)
+            io.write_output(frame)
+            if io.o_chanel == io.Output.DISPLAY and cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+        except EndOfStream:
             break
+
+    if args.time:
+        print(f'{int(round((time.perf_counter() - start) * 1000000))}')
 
 
 if __name__ == '__main__':

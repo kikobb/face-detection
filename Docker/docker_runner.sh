@@ -152,14 +152,12 @@ if [[ "$#" -eq "2" && "$1" == "-nvidia" && "$2" == "-it" ]]; then
 	exit
 fi
 
-
-
-
 #too many args
 if [[ "$#" -gt "2" ]]; then
 	echo "Invalid number of arguments ($#)."
 	exit
 fi
 
+echo "no or wrong arguments"
 
 # docker run --entrypoint -v /home/k/PycharmProjects/face-detection:/opt/project --rm

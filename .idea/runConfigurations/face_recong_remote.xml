@@ -46,14 +46,14 @@
       </option>
     </PathMappingSettings>
     <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../openvino/face/face_recognition.py" />
-    <option name="PARAMETERS" value="-d CPU -ic 0 -dm $PROJECT_DIR$/../../../openvino/face/models/intel/face-detection-0100/FP32/face-detection-0100.xml -od -dm_t 0.65 -lm $PROJECT_DIR$/../../../openvino/face/models/intel/landmarks-regression-retail-0009/FP32/landmarks-regression-retail-0009.xml -rm $PROJECT_DIR$/../../../openvino/face/models/intel/face-reidentification-retail-0095/FP32/face-reidentification-retail-0095.xml" />
+    <option name="PARAMETERS" value="-d CPU -dm $PROJECT_DIR$/../../../openvino/face/models/intel/face-detection-0100/FP32/face-detection-0100.xml -dm_t 0.65 -lm $PROJECT_DIR$/../../../openvino/face/models/intel/landmarks-regression-retail-0009/FP32/landmarks-regression-retail-0009.xml -rm $PROJECT_DIR$/../../../openvino/face/models/intel/face-reidentification-retail-0095/FP32/face-reidentification-retail-0095.xml --input_video $PROJECT_DIR$/../../../openvino/face/face_1/face_1_240p.mp4 -on -t" />
     <option name="SHOW_COMMAND_LINE" value="false" />
     <option name="EMULATE_TERMINAL" value="false" />
     <option name="MODULE_MODE" value="false" />
     <option name="REDIRECT_INPUT" value="false" />
     <option name="INPUT_FILE" value="" />
     <method v="2">
-      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_copy_files_openvino_exp_1" />
+      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_copy_files_openvino_app" />
     </method>
   </configuration>
 </component>
