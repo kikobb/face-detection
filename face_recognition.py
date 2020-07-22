@@ -59,6 +59,7 @@ def create_argparser():
 
     p.add_argument('-d', '--device', choices=['CPU', 'MYRIAD', 'GPU'], required=True, nargs=1)
     p.add_argument('-t', '--time', action='store_true')
+    p.add_argument('-j', '--jadra', action='store_true')
 
     return p
 
@@ -196,12 +197,11 @@ class ProcessFrame:
         # put it to corresponding class
         self.face_locator = FaceLocator(net_face_detect, args['detection_model_threshold'])
         # setup device plugins
-        if next(iter(args['device'])) == 'CPU':
+        if next(iter(args['device'])) == 'CPU' and next(iter(args['jadra'])):
             # CPU
             self.ie.set_config(config={
                 "CPU_THROUGHPUT_STREAMS": "1",
                 "CPU_THREADS_NUM": "8",
-                "CPU_BIND_THREAD": "YES",
             }, device_name='CPU')
         elif next(iter(args['device'])) == 'GPU':
             # GPU

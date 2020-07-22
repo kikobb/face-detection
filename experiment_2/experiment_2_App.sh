@@ -15,6 +15,7 @@ reidentification_model="./models/intel/face-reidentification-retail-0095/FP32/fa
 
 # all supported devices
 devices='CPU MYRIAD GPU'
+devices='CPU'
 IP=$(hostname -I | awk -F ' ' '{print $1}' | awk -F '.' '{print $4}')
 if [[ "$IP" == 206 || "$IP" == 207 ]]; then
   devices='MYRIAD'
@@ -37,9 +38,24 @@ for dev in $devices; do
       time=$(python3 face_recognition.py -d "$dev" -dm "$face_detection" -dm_t 0.65 -lm "$landmarks_detection" \
       -rm "$reidentification_model" -on -t --input_video  "./test_videos/face_${count}/face_${count}_${res}p.mp4")
       cd "$SCRIPTPATH" || exit
-      echo "$dev;$count;$res;$time" >> "$out_name"
+      echo "$dev;$count;$res;$time" >> "4core_${out_name}"
     done
   done
 done
+
+# loop through tests
+for dev in $devices; do
+  for count in $people_counts; do
+    for res in $resolutions; do
+      echo "* ${dev}, ${count}, ${res}"
+      cd ..
+      time=$(python3 face_recognition.py -d "$dev" -dm "$face_detection" -dm_t 0.65 -lm "$landmarks_detection" \
+      -rm "$reidentification_model" -on -t -jadra --input_video  "./test_videos/face_${count}/face_${count}_${res}p.mp4")
+      cd "$SCRIPTPATH" || exit
+      echo "$dev;$count;$res;$time" >> "8core_${out_name}"
+    done
+  done
+done
+
 
 echo "experiment 2 done"
