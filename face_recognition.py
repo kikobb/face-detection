@@ -12,6 +12,7 @@ from openvino.inference_engine import IECore, IENetwork
 from face_locator import FaceLocator
 from face_recognizer import FaceRecognizer
 from landmarks_locator import LandmarksLocator
+from measure_time import MeasureTime
 
 
 class EndOfStream(Exception):
@@ -59,7 +60,6 @@ def create_argparser():
 
     p.add_argument('-d', '--device', choices=['CPU', 'MYRIAD', 'GPU'], required=True, nargs=1)
     p.add_argument('-t', '--time', action='store_true')
-    p.add_argument('-j', '--jadra', action='store_true')
 
     return p
 
@@ -197,7 +197,7 @@ class ProcessFrame:
         # put it to corresponding class
         self.face_locator = FaceLocator(net_face_detect, args['detection_model_threshold'])
         # setup device plugins
-        if next(iter(args['device'])) == 'CPU' and args['jadra']:
+        if next(iter(args['device'])) == 'CPU':
             # CPU
             self.ie.set_config(config={
                 "CPU_THROUGHPUT_STREAMS": "1",
@@ -268,12 +268,14 @@ def main():
     io = IOChanel(vars(args))
     proc = ProcessFrame(vars(args))
 
-    start = 0
+    timer = None
     if args.time:
-        start = time.perf_counter()
+        timer = MeasureTime()
 
     while True:
         try:
+            if args.time:
+                timer.start()
             # io.show_frame('frame', io.get_frame())
             frame = io.get_frame()
             findings = proc.process_frame(frame)
@@ -281,11 +283,13 @@ def main():
             io.write_output(frame)
             if io.o_chanel == io.Output.DISPLAY and cv2.waitKey(1) & 0xFF == ord('q'):
                 break
+            if args.time:
+                timer.stop()
         except EndOfStream:
             break
 
     if args.time:
-        print(f'{int(round((time.perf_counter() - start) * 1000000))}')
+        timer.print_data()
 
 
 if __name__ == '__main__':

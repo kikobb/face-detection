@@ -46,7 +46,10 @@ case $1 in
         # copy test data
         sshpass -p "root" scp -r -P 22 /home/k/Videos/test_videos/ root@172.17.0.2:/home/openvino/face/
         # copy test script
-        sshpass -p "root" scp -r -P 22 /home/k/PycharmProjects/face-detection/experiment_2 root@172.17.0.2:/home/openvino/face
+        for file in $(find /home/k/PycharmProjects/face-detection/experiment_2 -maxdepth 1 -type f ! -name "*.txt"); do
+            sshpass -p "root" scp -P 22 "$file" root@172.17.0.2:/home/openvino/face/experiment_2
+        done
+#        sshpass -p "root" scp -r -P 22 /home/k/PycharmProjects/face-detection/experiment_2 root@172.17.0.2:/home/openvino/face
         exit 0
         ;;
     -e2pi4)

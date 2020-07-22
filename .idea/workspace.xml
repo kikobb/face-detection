@@ -19,10 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="setup device plugins for app">
+    <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="tmp tweak to run it o 4 and 8 cores">
+      <change afterPath="$PROJECT_DIR$/measure_time.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiment_2/experiment_2_App.sh" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_2/experiment_2_App.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/face_recognition.py" beforeDir="false" afterPath="$PROJECT_DIR$/face_recognition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/support_scripts/copy_project_to_remote.sh" beforeDir="false" afterPath="$PROJECT_DIR$/support_scripts/copy_project_to_remote.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -387,7 +389,10 @@
       <workItem from="1595339488251" duration="6687000" />
       <workItem from="1595347842336" duration="13204000" />
       <workItem from="1595420512975" duration="290000" />
-      <workItem from="1595426810679" duration="1307000" />
+      <workItem from="1595426810679" duration="1703000" />
+      <workItem from="1595435300520" duration="181000" />
+      <workItem from="1595437249899" duration="2196000" />
+      <workItem from="1595456351171" duration="2271000" />
     </task>
     <task id="LOCAL-00001" summary="added support for onter face_recognition networks">
       <created>1593704249858</created>
@@ -662,7 +667,21 @@
       <option name="project" value="LOCAL" />
       <updated>1595420753236</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="tmp tweak to run it o 4 and 8 cores">
+      <created>1595432078201</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1595432078201</updated>
+    </task>
+    <task id="LOCAL-00041" summary="tmp tweak to run it o 4 and 8 cores">
+      <created>1595432267093</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1595432267093</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -691,7 +710,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="face locator added, core infrastructure for face location done&#10;TODO: visualize results and test, implement other two NN" />
     <MESSAGE value="landmarks locator done&#10;TODO: visualize results and test, implement last NN" />
     <MESSAGE value="face recognition 50% done&#10;TODO: face recognition complete, results and test" />
     <MESSAGE value="*face recognition 100% done (face alignment and face library not implanted - not necessary for thesis, todo in future)&#10;*experiment_1 done: test to multiple difficulty mobilenet_v2 checkpoints, results exported to .xlsx file&#10;(scripts update, DockerFile update to download and unpack networks, ... onter)" />
@@ -716,7 +734,8 @@
     <MESSAGE value="experiment 2" />
     <MESSAGE value="experiment 2 update paths" />
     <MESSAGE value="setup device plugins for app" />
-    <option name="LAST_COMMIT_MESSAGE" value="setup device plugins for app" />
+    <MESSAGE value="tmp tweak to run it o 4 and 8 cores" />
+    <option name="LAST_COMMIT_MESSAGE" value="tmp tweak to run it o 4 and 8 cores" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="313" width="800" height="586" key="#Deployment" timestamp="1594951388544">
@@ -872,12 +891,12 @@
     </state>
     <state x="803" y="469" width="430" height="230" key="VCS.ChangelistChooser/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595172934282" />
     <state x="803" y="464" key="VCS.ChangelistChooser/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595286438459" />
-    <state x="555" y="181" width="800" height="540" key="Vcs.Push.Dialog.v2" timestamp="1595432008340">
+    <state x="555" y="171" width="800" height="540" key="Vcs.Push.Dialog.v2" timestamp="1595432269214">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="555" y="1356" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704292599" />
     <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595172957771" />
-    <state x="555" y="181" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595432008340" />
+    <state x="555" y="171" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595432269214" />
     <state x="2364" y="406" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.216.1536.864@1920.216.1536.864" timestamp="1595189098731" />
     <state width="960" height="526" key="XDebugger.FullValuePopup" timestamp="1594721337471">
       <screen x="0" y="27" width="1920" height="1053" />
@@ -887,12 +906,12 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="223" y="890" width="187" height="190" key="com.intellij.docker.deployment.ui.DockerVolumeBindingsField.v173.dialogSize/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1593680732865" />
-    <state x="103" y="240" width="762" height="691" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1595420584609">
+    <state x="103" y="225" width="762" height="691" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1595456931628">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="0" y="1380" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593698004740" />
     <state x="0" y="394" width="762" height="686" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595170403998" />
-    <state x="103" y="240" width="762" height="691" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595420584609" />
+    <state x="103" y="225" width="762" height="691" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595456931628" />
     <state x="731" y="468" width="458" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595097827814">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
