@@ -197,7 +197,7 @@ class ProcessFrame:
         # put it to corresponding class
         self.face_locator = FaceLocator(net_face_detect, args['detection_model_threshold'])
         # setup device plugins
-        if next(iter(args['device'])) == 'CPU' and next(iter(args['jadra'])):
+        if next(iter(args['device'])) == 'CPU' and args['jadra']:
             # CPU
             self.ie.set_config(config={
                 "CPU_THROUGHPUT_STREAMS": "1",
