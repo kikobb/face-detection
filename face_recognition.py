@@ -195,6 +195,19 @@ class ProcessFrame:
         net_face_detect = self.__prepare_network(args['detection_model'])
         # put it to corresponding class
         self.face_locator = FaceLocator(net_face_detect, args['detection_model_threshold'])
+        # setup device plugins
+        if next(iter(args['device'])) == 'CPU':
+            # CPU
+            self.ie.set_config(config={
+                "CPU_THROUGHPUT_STREAMS": "1",
+                "CPU_THREADS_NUM": "8",
+                "CPU_BIND_THREAD": "YES",
+            }, device_name='CPU')
+        elif next(iter(args['device'])) == 'GPU':
+            # GPU
+            self.ie.set_config(config={"GPU_THROUGHPUT_STREAMS": "1"}, device_name='GPU')
+        elif next(iter(args['device'])) == 'MYRIAD':
+            pass
         # load to device for inferencing
         self.face_locator.deploy_network(next(iter(args['device'])), self.ie)
 
