@@ -269,7 +269,7 @@ def main():
     check_args(args, p)
 
     io = IOChanel(vars(args))
-    proc = ProcessFrame(vars(args))
+    # proc = ProcessFrame(vars(args))
 
     timer = None
     if args.time:
