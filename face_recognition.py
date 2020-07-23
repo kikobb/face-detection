@@ -277,8 +277,7 @@ def main():
 
     while io.i_feed.isOpened():
         io.show_frame('frame', io.get_frame())
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            exit()
+
         continue
         try:
             if args.time:
@@ -287,7 +286,7 @@ def main():
             findings = proc.process_frame(frame)
             frame = io.draw_findings(frame, findings)
             io.write_output(frame)
-            if io.o_chanel == io.Output.DISPLAY and cv2.waitKey(1) & 0xFF == ord('q'):
+            if cv2.waitKey(1) & 0xFF == ord('q') and io.o_chanel == io.Output.DISPLAY:
                 break
             if args.time:
                 timer.stop()
