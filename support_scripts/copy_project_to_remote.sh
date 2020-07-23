@@ -57,7 +57,8 @@ case $1 in
         # copy test data
         sshpass -p "root" scp -r -P 22 /home/k/Videos/test_videos/ root@192.168.0.206:/root/face-detection
         # copy test networks
-        sshpass -p "root" scp -r -P 22 /home/k/PycharmProjects/face-detection/model_library/ root@192.168.0.206:/root/face-detection/
+        /bin/bash ./upload_model_library.sh -pi4
+#        sshpass -p "root" scp -r -P 22 /home/k/PycharmProjects/face-detection/model_library/ root@192.168.0.206:/root/face-detection/
         # copy face descriptor
         sshpass -p "root" scp -P 22 /home/k/PycharmProjects/face-detection/kristian_face_descriptor.csv root@192.168.0.206:/root/face-detection/experiment_2
         exit 0

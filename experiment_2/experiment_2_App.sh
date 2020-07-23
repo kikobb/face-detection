@@ -18,7 +18,7 @@ devices='CPU MYRIAD GPU'
 IP=$(hostname -I | awk -F ' ' '{print $1}' | awk -F '.' '{print $4}')
 if [[ "$IP" == 206 || "$IP" == 207 ]]; then
   devices='MYRIAD'
-  face_detection="./model_library/intel/face-detection-0100/FP32/face-detection-0100.xml"
+  face_detection="./model_library/intel/face-detection-0105/FP32/face-detection-0105.xml"
   landmarks_detection="./model_library/intel/landmarks-regression-retail-0009/FP32/landmarks-regression-retail-0009.xml"
   reidentification_model="./model_library/intel/face-reidentification-retail-0095/FP32/face-reidentification-retail-0095.xml"
 fi

@@ -213,7 +213,7 @@ class ProcessFrame:
         elif next(iter(args['device'])) == 'MYRIAD':
             pass
         # load to device for inferencing
-        # self.face_locator.deploy_network(next(iter(args['device'])), self.ie)
+        self.face_locator.deploy_network(next(iter(args['device'])), self.ie)
 
         if self.modes['landmark']:
             net_landmarks_detect = self.__prepare_network(args['landmarks_model'])
