@@ -276,43 +276,45 @@ def main():
     print(f'{type(args.input_video)}')
     # cap = cv2.VideoCapture('./test_videos/face_1/face_1_240p.mp4')
 
-    while(io.i_feed.isOpened()):
-        time.sleep(0.001)
-        _, frame = io.i_feed.read()
-        cv2.imshow('frame', frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-        continue
+    # while(io.i_feed.isOpened()):
+    #     time.sleep(0.001)
+    #     _, frame = io.i_feed.read()
+    #     cv2.imshow('frame', frame)
+    #     if cv2.waitKey(1) & 0xFF == ord('q'):
+    #         break
+    #     continue
 
 
     # timer = None
     # if args.time:
     #     timer = MeasureTime()
 
-    # while io.i_feed.isOpened():
-    #     io.show_frame('frame', io.get_frame())
-    #     continue
-    #
-    #     try:
-    #         if args.time:
-    #             timer.start()
-    #         frame = io.get_frame()
-    #         findings = proc.process_frame(frame)
-    #         frame = io.draw_findings(frame, findings)
-    #         io.write_output(frame)
-    #         if io.o_chanel == io.Output.DISPLAY and cv2.waitKey(1) & 0xFF == ord('q'):
-    #             break
-    #         if args.time:
-    #             timer.stop()
-    #     except EndOfStream:
-    #         break
-    #     except IOError:
-    #         break
+    while io.i_feed.isOpened():
+        io.show_frame('frame', io.get_frame())
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+        continue
+
+        try:
+            if args.time:
+                timer.start()
+            frame = io.get_frame()
+            findings = proc.process_frame(frame)
+            frame = io.draw_findings(frame, findings)
+            io.write_output(frame)
+            if io.o_chanel == io.Output.DISPLAY and cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+            if args.time:
+                timer.stop()
+        except EndOfStream:
+            break
+        except IOError:
+            break
 
     # if args.time:
     #     timer.print_data()
 
-    cap.release()
+    io.i_feed.release()
     cv2.destroyAllWindows()
 
 
