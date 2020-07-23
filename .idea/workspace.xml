@@ -16,19 +16,19 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="face recognition net changed different output format - errors expected">
-      <change afterPath="$PROJECT_DIR$/custom_exceptions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/network_identifier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/face_recong_remote.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/face_recong_remote.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Docker/support_scripts/docker_entrypoint.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Docker/support_scripts/docker_entrypoint.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/face_locator.py" beforeDir="false" afterPath="$PROJECT_DIR$/face_locator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commandline_parameters" beforeDir="false" afterPath="$PROJECT_DIR$/commandline_parameters" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/face_recognition.py" beforeDir="false" afterPath="$PROJECT_DIR$/face_recognition.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ncs_fifo.py" beforeDir="false" afterPath="$PROJECT_DIR$/ncs_fifo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support_scripts/copy_project_to_remote.sh" beforeDir="false" afterPath="$PROJECT_DIR$/support_scripts/copy_project_to_remote.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -412,6 +412,7 @@
       <workItem from="1595506962753" duration="1941000" />
       <workItem from="1595516370083" duration="3291000" />
       <workItem from="1595519768532" duration="8489000" />
+      <workItem from="1595536171515" duration="1274000" />
     </task>
     <task id="LOCAL-00007" summary="landmarks locator done&#10;TODO: visualize results and test, implement last NN">
       <created>1594206736237</created>
@@ -777,7 +778,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -840,13 +853,13 @@
       <screen x="0" y="1080" width="1920" height="1080" />
     </state>
     <state x="1218" y="1351" width="299" height="204" key="#Volume_binding/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593693869880" />
-    <state x="422" y="182" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595527666139">
+    <state x="422" y="167" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595537342828">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="428" y="1271" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704278662" />
     <state x="675" y="46" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595171274279" />
     <state x="422" y="77" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595412152267" />
-    <state x="422" y="182" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/1920.360.1280.720@0.27.1920.1053" timestamp="1595527666139" />
+    <state x="422" y="167" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/1920.360.1280.720@0.27.1920.1053" timestamp="1595537342828" />
     <state x="515" y="242" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1594302965373" />
     <state x="600" y="350" width="709" height="410" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1595272881773">
       <screen x="0" y="27" width="1920" height="1053" />
@@ -897,11 +910,12 @@
     </state>
     <state x="100" y="1180" width="1720" height="880" key="DirDiffDialog/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593694117123" />
     <state x="-234" y="48" width="1720" height="859" key="DirDiffDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594166504465" />
-    <state x="149" y="293" width="906" height="516" key="EnvironmentVariablesDialog" timestamp="1594743763153">
+    <state x="149" y="288" width="906" height="516" key="EnvironmentVariablesDialog" timestamp="1595537341801">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="149" y="1353" width="906" height="516" key="EnvironmentVariablesDialog/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593703274649" />
     <state x="149" y="293" width="833" height="629" key="EnvironmentVariablesDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1594743763153" />
+    <state x="149" y="288" key="EnvironmentVariablesDialog/0.27.1920.1053/1920.360.1280.720@0.27.1920.1053" timestamp="1595537341801" />
     <state x="745" y="491" width="424" height="491" key="FileChooserDialogImpl" timestamp="1595282366714">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -983,14 +997,14 @@
     </state>
     <state x="803" y="469" width="430" height="230" key="VCS.ChangelistChooser/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595172934282" />
     <state x="803" y="464" key="VCS.ChangelistChooser/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595286438459" />
-    <state x="555" y="86" width="800" height="540" key="Vcs.Push.Dialog.v2" timestamp="1595507840992">
+    <state x="555" y="81" width="800" height="540" key="Vcs.Push.Dialog.v2" timestamp="1595536186210">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="555" y="1356" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704292599" />
     <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595172957771" />
     <state x="555" y="171" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595432269214" />
     <state x="2364" y="406" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.216.1536.864@1920.216.1536.864" timestamp="1595189098731" />
-    <state x="555" y="86" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.360.1280.720@0.27.1920.1053" timestamp="1595507840992" />
+    <state x="555" y="81" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.360.1280.720@0.27.1920.1053" timestamp="1595536186210" />
     <state x="2290" y="428" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.360.1280.720@1920.360.1280.720" timestamp="1595480160563" />
     <state width="960" height="526" key="XDebugger.FullValuePopup" timestamp="1594721337471">
       <screen x="0" y="27" width="1920" height="1053" />
@@ -1146,7 +1160,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/face_recognition.py</url>
-          <line>66</line>
+          <line>67</line>
           <option name="timeStamp" value="103" />
         </line-breakpoint>
       </breakpoints>

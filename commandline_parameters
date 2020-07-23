@@ -31,3 +31,19 @@ MYRIAD \
 /home/openvino/face/models/intel/landmarks-regression-retail-0009/FP32/landmarks-regression-retail-0009.xml \
 -rm \
 /home/openvino/face/models/intel/face-reidentification-retail-0095/FP32/face-reidentification-retail-0095.xml
+
+
+pi4
+-d \
+CPU \
+-dm \
+/root/face-detection/model_library/intel/face-detection-0105/FP32/face-detection-0105.xml \
+-dm_t \
+0.65 \
+-lm \
+/root/face-detection/model_library/intel/landmarks-regression-retail-0009/FP32/landmarks-regression-retail-0009.xml \
+-rm \
+/root/face-detection/model_library/intel/face-reidentification-retail-0095/FP32/face-reidentification-retail-0095.xml \
+--input_video \
+/root/face-detection/test_videos/face_1 \
+-on

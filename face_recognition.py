@@ -16,6 +16,8 @@ from landmarks_locator import LandmarksLocator
 from measure_time import MeasureTime
 from network_identifier import NetworkType
 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 
 class ReadableFile(argparse.Action):
     def __call__(self, parser, namespace, values, option_string=None):
