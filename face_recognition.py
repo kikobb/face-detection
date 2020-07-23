@@ -277,6 +277,8 @@ def main():
 
     while io.i_feed.isOpened():
         io.show_frame('frame', io.get_frame())
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            exit()
         continue
         try:
             if args.time:
