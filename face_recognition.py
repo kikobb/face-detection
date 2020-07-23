@@ -199,7 +199,8 @@ class ProcessFrame:
         # load networks from file
         net_face_detect = self.__prepare_network(args['detection_model'])
         # put it to corresponding class
-        self.face_locator = FaceLocator(net_face_detect, args['detection_model_threshold'])
+        # self.face_locator = FaceLocator(net_face_detect, args['detection_model_threshold'])
+        self.face_locator = FaceLocator(net_face_detect, args['detection_model_threshold'], output_blob_index=1)
         # setup device plugins
         if next(iter(args['device'])) == 'CPU':
             # CPU

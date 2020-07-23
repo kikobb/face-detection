@@ -41,6 +41,7 @@ class FaceLocator(NetworkModel):
         return res_positions
 
     class FacePosition:
+        # todo: convert this to supperclass and make supclasses according to networks
         def __init__(self, face: List, input_shape: List):
             self.image_id = face[0]
             self.label = face[1]

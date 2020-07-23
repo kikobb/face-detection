@@ -17,6 +17,8 @@ case $1 in
         for file in $(find /home/k/PycharmProjects/face-detection/ -maxdepth 1 -type f ! -name "*.xlsx"); do
             sshpass -p "root" scp -P 22 "$file" root@172.17.0.2:/home/openvino/face
         done
+        # copy test data
+        sshpass -p "root" scp -r -P 22 /home/k/Videos/test_videos/ root@172.17.0.2:/home/openvino/face/
         ;;
     # OpenVino experiment 1
     -e1o)
@@ -26,7 +28,6 @@ case $1 in
         for file in $(find /home/k/PycharmProjects/face-detection/experiment_1/ -maxdepth 1 -type f ! -name "*.xlsx"); do
             sshpass -p "root" scp -P 22 "$file" root@172.17.0.2:/home/openvino/face/exp_1
         done
-        exit 0
 	      ;;
     # GPU Nvidia experiment 1
     -e1g)
@@ -36,7 +37,6 @@ case $1 in
         for file in $(find /home/k/PycharmProjects/face-detection/experiment_1/ -maxdepth 1 -type f ! -name "*.xlsx"); do
             sshpass -p "root" scp -P 22 "$file" root@172.18.0.22:/home/nvidia
         done
-        exit 0
         ;;
     -e2o)
         # copy app files
@@ -49,7 +49,6 @@ case $1 in
         sshpass -p "root" scp -P 22 /home/k/PycharmProjects/face-detection/experiment_2/experiment_2_App.sh \
         root@172.17.0.2:/home/openvino/face/experiment_2_App.sh
 #        sshpass -p "root" scp -r -P 22 /home/k/PycharmProjects/face-detection/experiment_2 root@172.17.0.2:/home/openvino/face
-        exit 0
         ;;
     -e2pi4)
         # copy app files including test script
@@ -61,7 +60,6 @@ case $1 in
 #        sshpass -p "root" scp -r -P 22 /home/k/PycharmProjects/face-detection/model_library/ root@192.168.0.206:/root/face-detection/
         # copy face descriptor
         sshpass -p "root" scp -P 22 /home/k/PycharmProjects/face-detection/kristian_face_descriptor.csv root@192.168.0.206:/root/face-detection/experiment_2
-        exit 0
         ;;
     -e2pi3)
         # copy app files including test script
@@ -72,11 +70,9 @@ case $1 in
         ;;
     -rasp4)
         sshpass -p "root" ssh root@192.168.0.206 'cd ./face-detection && git pull'
-        exit 0
         ;;
     -rasp3)
         sshpass -p "root" ssh root@192.168.0.207 'cd ./face-detection && git pull'
-        exit 0
         ;;
 esac
 
