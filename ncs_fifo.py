@@ -9,6 +9,7 @@ from typing import Dict
 
 from openvino.inference_engine import IECore
 
+
 def parse(argv: str) -> Dict:
     # order matches return dictionary order ( [0] = input, [1] = localize-mdl, [2] = device, ...)
     opt_groups = (':civ', ':m', ':d')
@@ -56,8 +57,10 @@ def parse(argv: str) -> Dict:
         'device': next((i for i in opts if i[0][1] in opt_groups[2]), None)
     }
 
+
 def main(argv):
     opts = parse(argv)
+
 
 if __name__ == '__main__':
     # cProfile.run(main(sys.argv[1:]))

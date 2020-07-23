@@ -1,7 +1,7 @@
 #!/bin/bash
 
-service ssh starts
-ource /opt/intel/openvino/bin/setupvars.sh 
+service ssh start
+source /opt/intel/openvino/bin/setupvars.sh 
 
 # python3 base.py
 # export XAUTHORITY=~/.Xauthority

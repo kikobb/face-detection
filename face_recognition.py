@@ -9,15 +9,12 @@ from enum import Enum
 import argparse
 from openvino.inference_engine import IECore, IENetwork
 
+from custom_exceptions import EndOfStream
 from face_locator import FaceLocator
 from face_recognizer import FaceRecognizer
 from landmarks_locator import LandmarksLocator
 from measure_time import MeasureTime
-
-
-class EndOfStream(Exception):
-    def __init__(self, message):
-        super().__init__(message)
+from network_identifier import NetworkType
 
 
 class ReadableFile(argparse.Action):
@@ -86,7 +83,7 @@ class IOChanel:
     def __init__(self, args: Dict):
         self.i_chanel, self.i_source = IOChanel.get_input_chanel_type(args)
         self.o_chanel = IOChanel.get_output_chanel_type(args)
-        self.i_feed = None 
+        self.i_feed = None
         self.__open_i_feed()
 
     @classmethod
@@ -200,7 +197,9 @@ class ProcessFrame:
         net_face_detect = self.__prepare_network(args['detection_model'])
         # put it to corresponding class
         # self.face_locator = FaceLocator(net_face_detect, args['detection_model_threshold'])
-        self.face_locator = FaceLocator(net_face_detect, args['detection_model_threshold'], output_blob_index=1)
+        self.face_locator = FaceLocator(net_face_detect,
+                                        args['detection_model_threshold'],
+                                        NetworkType(args['detection_model']))
         # setup device plugins
         if next(iter(args['device'])) == 'CPU':
             # CPU
