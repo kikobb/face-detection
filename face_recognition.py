@@ -276,7 +276,7 @@ def main():
 
     while cap.isOpened():
         time.sleep(0.001)
-        frame = cap.get_frame()
+        frame = cap.read()
         cv2.imshow('frame', frame)
         continue
 
