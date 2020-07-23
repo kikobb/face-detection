@@ -40,7 +40,7 @@ copy_from_raspberry_3_exp_1()
 
 copy_from_openvino_exp_2()
 {
-  sshpass -p "root" scp -P 22 root@172.17.0.2:/home/openvino/face/experiment_2/exp_2_data.txt \
+  sshpass -p "root" scp -P 22 root@172.17.0.2:/home/openvino/face/exp_2_data.txt \
                /home/k/PycharmProjects/face-detection/experiment_2/exp_2_data_openvino.txt
 }
 
