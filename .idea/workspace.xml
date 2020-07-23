@@ -295,17 +295,17 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Docker.Docker Image" />
       <item itemvalue="Python.base_docker" />
       <item itemvalue="Python.base_ssh" />
-      <item itemvalue="Python.base_ssh_raspbery" />
       <item itemvalue="Python.face_recong_remote" />
       <item itemvalue="Python.exp_1_OpenVino" />
       <item itemvalue="Python.exp_1_GPU" />
       <item itemvalue="Python.face_recong_local" />
+      <item itemvalue="Python.base_ssh_raspbery" />
       <item itemvalue="Python.merge" />
       <item itemvalue="Python.sort_by_difficulty" />
       <item itemvalue="Shell Script.run_exp_1_all_devices" />
+      <item itemvalue="Docker.Docker Image" />
     </list>
   </component>
   <component name="SvnConfiguration">

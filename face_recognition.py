@@ -132,7 +132,7 @@ class IOChanel:
             if self.i_chanel.VIDEO:
                 raise EndOfStream('app ended successfully')
             raise IOError("no fame received")
-        print('frame received')
+        print(f'frame received: {frame}')
         return frame
 
     # def process_frame(self, frame: np.ndarray):
