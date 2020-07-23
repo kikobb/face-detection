@@ -170,9 +170,9 @@ class IOChanel:
     def write_output(self, frame: np.ndarray):
         if self.o_chanel == self.Output.DISPLAY:
             # self.show_frame('face_recognition', frame)
-            pass
-        elif self.o_chanel == self.Output.NONE:
             self.show_frame('face_recognition', cv2.resize(frame, (1080, 720)))
+        elif self.o_chanel == self.Output.NONE:
+            pass
         else:
             # todo implement other output sources
             raise NotImplementedError('other output sources than camera not implemented')
@@ -183,6 +183,7 @@ class IOChanel:
 
     def __del__(self):
         self.i_feed.release()
+        cv2.destroyAllWindows()
 
 
 class ProcessFrame:
@@ -269,7 +270,7 @@ def main():
     check_args(args, p)
 
     io = IOChanel(vars(args))
-    # proc = ProcessFrame(vars(args))
+    proc = ProcessFrame(vars(args))
 
     timer = None
     if args.time:
@@ -280,8 +281,8 @@ def main():
             if args.time:
                 timer.start()
             frame = io.get_frame()
-            # findings = proc.process_frame(frame)
-            # frame = io.draw_findings(frame, findings)
+            findings = proc.process_frame(frame)
+            frame = io.draw_findings(frame, findings)
             io.write_output(frame)
             key = cv2.waitKey(1)
             if key & 0xFF == ord('q') and io.o_chanel == io.Output.DISPLAY:
