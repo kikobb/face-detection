@@ -273,6 +273,7 @@ def main():
     # proc = ProcessFrame(vars(args))
 
     while io.i_feed.isOpened():
+        time.sleep(0.5)
         io.show_frame('frame', io.get_frame())
         continue
 
