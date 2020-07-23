@@ -132,6 +132,7 @@ class IOChanel:
             if self.i_chanel.VIDEO:
                 raise EndOfStream('app ended successfully')
             raise IOError("no fame received")
+        print('frame received')
         return frame
 
     # def process_frame(self, frame: np.ndarray):
@@ -271,28 +272,34 @@ def main():
     io = IOChanel(vars(args))
     # proc = ProcessFrame(vars(args))
 
+    while io.i_feed.isOpened():
+        io.show_frame('frame', io.get_frame())
+        continue
+
+
     timer = None
     if args.time:
         timer = MeasureTime()
 
-    while io.i_feed.isOpened():
-        io.show_frame('frame', io.get_frame())
-        continue
-        try:
-            if args.time:
-                timer.start()
-            frame = io.get_frame()
-            findings = proc.process_frame(frame)
-            frame = io.draw_findings(frame, findings)
-            io.write_output(frame)
-            if io.o_chanel == io.Output.DISPLAY and cv2.waitKey(1) & 0xFF == ord('q'):
-                break
-            if args.time:
-                timer.stop()
-        except EndOfStream:
-            break
-        except IOError:
-            break
+    # while io.i_feed.isOpened():
+    #     io.show_frame('frame', io.get_frame())
+    #     continue
+    #
+    #     try:
+    #         if args.time:
+    #             timer.start()
+    #         frame = io.get_frame()
+    #         findings = proc.process_frame(frame)
+    #         frame = io.draw_findings(frame, findings)
+    #         io.write_output(frame)
+    #         if io.o_chanel == io.Output.DISPLAY and cv2.waitKey(1) & 0xFF == ord('q'):
+    #             break
+    #         if args.time:
+    #             timer.stop()
+    #     except EndOfStream:
+    #         break
+    #     except IOError:
+    #         break
 
     if args.time:
         timer.print_data()
