@@ -272,7 +272,7 @@ def main():
     # proc = ProcessFrame(vars(args))
 
 
-    cap = cv2.VideoCapture(args['input_video'])
+    cap = cv2.VideoCapture(args.input_video)
 
     while cap.isOpened():
         time.sleep(0.001)
