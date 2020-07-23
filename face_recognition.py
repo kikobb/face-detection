@@ -276,15 +276,12 @@ def main():
         timer = MeasureTime()
 
     while io.i_feed.isOpened():
-        io.show_frame('frame', io.get_frame())
-
-        continue
         try:
             if args.time:
                 timer.start()
             frame = io.get_frame()
-            findings = proc.process_frame(frame)
-            frame = io.draw_findings(frame, findings)
+            # findings = proc.process_frame(frame)
+            # frame = io.draw_findings(frame, findings)
             io.write_output(frame)
             if cv2.waitKey(1) & 0xFF == ord('q') and io.o_chanel == io.Output.DISPLAY:
                 break
