@@ -283,7 +283,8 @@ def main():
             # findings = proc.process_frame(frame)
             # frame = io.draw_findings(frame, findings)
             io.write_output(frame)
-            if cv2.waitKey(1) & 0xFF == ord('q') and io.o_chanel == io.Output.DISPLAY:
+            key = cv2.waitKey(1)
+            if key & 0xFF == ord('q') and io.o_chanel == io.Output.DISPLAY:
                 break
             if args.time:
                 timer.stop()
