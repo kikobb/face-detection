@@ -268,17 +268,17 @@ def main():
     args = p.parse_args()
     check_args(args, p)
 
-    # io = IOChanel(vars(args))
+    io = IOChanel(vars(args))
     # proc = ProcessFrame(vars(args))
 
 
     # cap = cv2.VideoCapture(args.input_video)
-    print(f'{args.input_video}')
-    cap = cv2.VideoCapture('./test_videos/face_1/face_1_240p.mp4')
+    print(f'{type(args.input_video)}')
+    # cap = cv2.VideoCapture('./test_videos/face_1/face_1_240p.mp4')
 
-    while(cap.isOpened()):
+    while(io.i_feed.isOpened()):
         time.sleep(0.001)
-        _, frame = cap.read()
+        _, frame = io.i_feed.read()
         cv2.imshow('frame', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
