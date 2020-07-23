@@ -36,8 +36,8 @@ for dev in $devices; do
       if [[ "$IP" == 206 || "$IP" == 207 ]]; then
         cd ..
       fi
-      times=$(python3 face_recognition.py -d "$dev" -dm "$face_detection" -dm_t 0.65 -lm "$landmarks_detection" \
-      -rm "$reidentification_model" -on -t --input_video  "./test_videos/face_${count}/face_${count}_${res}p.mp4")
+      times=$( (python3 face_recognition.py -d "$dev" -dm "$face_detection" -dm_t 0.65 -lm "$landmarks_detection" \
+      -rm "$reidentification_model" -on -t --input_video  "./test_videos/face_${count}/face_${count}_${res}p.mp4") 2> /dev/null)
       echo "$times"
       if [[ "$IP" == 206 || "$IP" == 207 ]]; then
         cd "$SCRIPTPATH" || exit

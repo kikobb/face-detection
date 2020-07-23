@@ -26,9 +26,8 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="face recognition net changed different output format - errors expected">
-      <change beforePath="$PROJECT_DIR$/commandline_parameters" beforeDir="false" afterPath="$PROJECT_DIR$/commandline_parameters" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/face_recognition.py" beforeDir="false" afterPath="$PROJECT_DIR$/face_recognition.py" afterDir="false" />
+    <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="suppressed warnings">
+      <change beforePath="$PROJECT_DIR$/experiment_2/experiment_2_App.sh" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_2/experiment_2_App.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -412,14 +411,7 @@
       <workItem from="1595506962753" duration="1941000" />
       <workItem from="1595516370083" duration="3291000" />
       <workItem from="1595519768532" duration="8489000" />
-      <workItem from="1595536171515" duration="1274000" />
-    </task>
-    <task id="LOCAL-00007" summary="landmarks locator done&#10;TODO: visualize results and test, implement last NN">
-      <created>1594206736237</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1594206736237</updated>
+      <workItem from="1595536171515" duration="2721000" />
     </task>
     <task id="LOCAL-00008" summary="little base.py change">
       <created>1595032633355</created>
@@ -757,7 +749,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595507838821</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="suppressed warnings">
+      <created>1595537467385</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1595537467385</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -798,7 +797,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="raspberry convert to root access, untested experiment for CPU (tf lite)" />
     <MESSAGE value="raspberry imported .tflite" />
     <MESSAGE value="raspberry network data path update" />
     <MESSAGE value="result data handling include raspberry" />
@@ -823,7 +821,8 @@
     <MESSAGE value="network debug base" />
     <MESSAGE value="face recognition net changed - errors expected" />
     <MESSAGE value="face recognition net changed different output format - errors expected" />
-    <option name="LAST_COMMIT_MESSAGE" value="face recognition net changed different output format - errors expected" />
+    <MESSAGE value="suppressed warnings" />
+    <option name="LAST_COMMIT_MESSAGE" value="suppressed warnings" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="313" width="800" height="586" key="#Deployment" timestamp="1594951388544">
@@ -997,14 +996,14 @@
     </state>
     <state x="803" y="469" width="430" height="230" key="VCS.ChangelistChooser/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595172934282" />
     <state x="803" y="464" key="VCS.ChangelistChooser/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595286438459" />
-    <state x="555" y="81" width="800" height="540" key="Vcs.Push.Dialog.v2" timestamp="1595536186210">
+    <state x="555" y="76" width="800" height="540" key="Vcs.Push.Dialog.v2" timestamp="1595537469010">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="555" y="1356" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704292599" />
     <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595172957771" />
     <state x="555" y="171" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595432269214" />
     <state x="2364" y="406" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.216.1536.864@1920.216.1536.864" timestamp="1595189098731" />
-    <state x="555" y="81" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.360.1280.720@0.27.1920.1053" timestamp="1595536186210" />
+    <state x="555" y="76" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.360.1280.720@0.27.1920.1053" timestamp="1595537469010" />
     <state x="2290" y="428" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.360.1280.720@1920.360.1280.720" timestamp="1595480160563" />
     <state width="960" height="526" key="XDebugger.FullValuePopup" timestamp="1594721337471">
       <screen x="0" y="27" width="1920" height="1053" />
@@ -1160,7 +1159,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/face_recognition.py</url>
-          <line>67</line>
+          <line>68</line>
           <option name="timeStamp" value="103" />
         </line-breakpoint>
       </breakpoints>
