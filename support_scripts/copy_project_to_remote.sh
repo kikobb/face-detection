@@ -56,6 +56,10 @@ case $1 in
         sshpass -p "root" ssh root@192.168.0.206 'cd ./face-detection && git pull'
         # copy test data
         sshpass -p "root" scp -r -P 22 /home/k/Videos/test_videos/ root@192.168.0.206:/root/face-detection
+        # copy test networks
+        sshpass -p "root" scp -r -P 22 /home/k/PycharmProjects/face-detection/model_library/ root@192.168.0.206:/root/face-detection/
+        # copy face descriptor
+        sshpass -p "root" scp -P 22 /home/k/PycharmProjects/face-detection/kristian_face_descriptor.csv root@192.168.0.206:/root/face-detection/experiment_2
         exit 0
         ;;
     -e2pi3)
