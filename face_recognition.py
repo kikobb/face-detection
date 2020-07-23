@@ -273,7 +273,7 @@ def main():
 
 
     # cap = cv2.VideoCapture(args.input_video)
-    cap = cv2.VideoCapture('/home/pi/Documents/face_1_240p.mp4')
+    cap = cv2.VideoCapture('./test_videos/face_1/face_1_240p.mp4')
 
     while(cap.isOpened()):
         time.sleep(0.001)
