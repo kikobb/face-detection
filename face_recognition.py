@@ -268,19 +268,22 @@ def main():
     args = p.parse_args()
     check_args(args, p)
 
-    io = IOChanel(vars(args))
+    # io = IOChanel(vars(args))
     # proc = ProcessFrame(vars(args))
 
-    while io.i_feed.isOpened():
+
+    cap = cv2.VideoCapture(args['input_video'])
+
+    while cap.isOpened():
         time.sleep(0.001)
-        frame = io.get_frame()
+        frame = cap.get_frame()
         cv2.imshow('frame', frame)
         continue
 
 
-    timer = None
-    if args.time:
-        timer = MeasureTime()
+    # timer = None
+    # if args.time:
+    #     timer = MeasureTime()
 
     # while io.i_feed.isOpened():
     #     io.show_frame('frame', io.get_frame())
@@ -305,7 +308,7 @@ def main():
     # if args.time:
     #     timer.print_data()
 
-    io.i_feed.release()
+    cap.release()
     cv2.destroyAllWindows()
 
 
