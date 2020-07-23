@@ -272,8 +272,9 @@ def main():
     # proc = ProcessFrame(vars(args))
 
     while io.i_feed.isOpened():
-        time.sleep(0.5)
-        io.show_frame('frame', io.get_frame())
+        time.sleep(0.001)
+        frame = io.get_frame()
+        cv2.imshow('frame', frame)
         continue
 
 
