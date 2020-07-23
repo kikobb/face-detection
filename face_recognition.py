@@ -272,12 +272,15 @@ def main():
     # proc = ProcessFrame(vars(args))
 
 
-    cap = cv2.VideoCapture(args.input_video)
+    # cap = cv2.VideoCapture(args.input_video)
+    cap = cv2.VideoCapture('/home/pi/Documents/face_1_240p.mp4')
 
-    while cap.isOpened():
+    while(cap.isOpened()):
         time.sleep(0.001)
         _, frame = cap.read()
         cv2.imshow('frame', frame)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
         continue
 
 
