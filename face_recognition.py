@@ -86,7 +86,7 @@ class IOChanel:
     def __init__(self, args: Dict):
         self.i_chanel, self.i_source = IOChanel.get_input_chanel_type(args)
         self.o_chanel = IOChanel.get_output_chanel_type(args)
-        self.i_feed = None
+        self.i_feed = None 
         self.__open_i_feed()
 
     @classmethod
@@ -181,6 +181,9 @@ class IOChanel:
     def show_frame(name: str, frame: np.ndarray) -> None:
         cv2.imshow(name, frame)
 
+    def __del__(self):
+        self.i_feed.release()
+
 
 class ProcessFrame:
 
@@ -272,11 +275,12 @@ def main():
     if args.time:
         timer = MeasureTime()
 
-    while True:
+    while io.i_feed.isOpened():
+        io.show_frame('frame', io.get_frame())
+        continue
         try:
             if args.time:
                 timer.start()
-            # io.show_frame('frame', io.get_frame())
             frame = io.get_frame()
             findings = proc.process_frame(frame)
             frame = io.draw_findings(frame, findings)
@@ -286,6 +290,8 @@ def main():
             if args.time:
                 timer.stop()
         except EndOfStream:
+            break
+        except IOError:
             break
 
     if args.time:
