@@ -132,7 +132,6 @@ class IOChanel:
             if self.i_chanel.VIDEO:
                 raise EndOfStream('app ended successfully')
             raise IOError("no fame received")
-        print(f'frame received: {frame}')
         return frame
 
     # def process_frame(self, frame: np.ndarray):
@@ -302,8 +301,12 @@ def main():
     #     except IOError:
     #         break
 
-    if args.time:
-        timer.print_data()
+    # if args.time:
+    #     timer.print_data()
+
+    io.i_feed.release()
+    cv2.destroyAllWindows()
+
 
 
 if __name__ == '__main__':
