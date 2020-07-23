@@ -170,9 +170,9 @@ class IOChanel:
     def write_output(self, frame: np.ndarray):
         if self.o_chanel == self.Output.DISPLAY:
             # self.show_frame('face_recognition', frame)
-            self.show_frame('face_recognition', cv2.resize(frame, (1080, 720)))
-        elif self.o_chanel == self.Output.NONE:
             pass
+        elif self.o_chanel == self.Output.NONE:
+            self.show_frame('face_recognition', cv2.resize(frame, (1080, 720)))
         else:
             # todo implement other output sources
             raise NotImplementedError('other output sources than camera not implemented')
