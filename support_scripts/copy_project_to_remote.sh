@@ -69,10 +69,14 @@ case $1 in
         exit 0
         ;;
     -rasp4)
-        sshpass -p "root" ssh root@192.168.0.206 'cd ./face-detection && git pull'
+        sshpass -p "root" ssh root@192.168.0.206 'cd /root/face-detection && git pull'
+        # copy test networks
+        /bin/bash ./upload_model_library.sh -pi4
         ;;
     -rasp3)
-        sshpass -p "root" ssh root@192.168.0.207 'cd ./face-detection && git pull'
+        sshpass -p "root" ssh root@192.168.0.207 'cd /root/face-detection && git pull'
+        # copy test networks
+        /bin/bash ./upload_model_library.sh -pi3
         ;;
 esac
 

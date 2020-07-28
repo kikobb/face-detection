@@ -48,9 +48,10 @@ class FaceLocator(NetworkModel):
     class FacePosition(ABC):
         @staticmethod
         def get_instance(network_type: NetworkType, face: List, input_shape: List):
-            if network_type.get_name() == 'face-detection-0100':
+            if network_type.get_name() == 'face-detection-0100' or network_type.get_name() == 'face-detection-0102' or \
+                    network_type.get_name() == 'face-detection-0104':
                 return FaceLocator.FacePosition0100(face, input_shape)
-            elif network_type.get_name() == 'face-detection-0105':
+            elif network_type.get_name() == 'face-detection-0105' or network_type.get_name() == 'face-detection-0106':
                 return FaceLocator.FacePosition0105(face, input_shape)
             else:
                 raise UnknownNetworkType(f"Network {network_type.get_name()} has no adequate FacePosition class")

@@ -4,7 +4,10 @@ from custom_exceptions import UnknownNetworkType
 class NetworkType:
     #           data in order: (input_blob_index, output_blob_index)
     _known_networks = {'face-detection-0100': (0, 0),
-                       'face-detection-0105': (0, 1)}
+                       'face-detection-0102': (0, 0),
+                       'face-detection-0104': (0, 0),
+                       'face-detection-0105': (0, 1),
+                       'face-detection-0106': (0, 1),}
 
     def __init__(self, name: str):
         network_name = name.rsplit("/", 1)[1].rsplit('.', 1)[0]
