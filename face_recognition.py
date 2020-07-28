@@ -141,7 +141,8 @@ class IOChanel:
     @staticmethod
     def draw_findings(frame: np.ndarray, findings: List[Union[List[FaceLocator.FacePosition],
                                                               List[LandmarksLocator.FaceLandmarks],
-                                                              List[FaceRecognizer.FaceIdentity]]]) -> np.ndarray:
+                                                              List[FaceRecognizer.FaceIdentity]]],
+                      fps: float) -> np.ndarray:
         rec_color = (0, 255, 0)
 
         # draw rectangle around detected faces, write confidence in % below
@@ -163,7 +164,10 @@ class IOChanel:
             for landmark in face_landmarks.get_points():
                 cv2.circle(frame, tuple(landmark), 2, (0, 0, 255), cv2.FILLED, cv2.LINE_8)
 
-        # todo add loop for landmarks and detection
+        # draw current FPS
+        if fps:
+            frame = cv2.putText(frame, 'FPS: {}'.format(fps), (10, 10),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
         return frame
 
     def write_output(self, frame: np.ndarray):
@@ -284,7 +288,7 @@ def main():
                 timer.start()
             frame = io.get_frame()
             findings = proc.process_frame(frame)
-            frame = io.draw_findings(frame, findings)
+            frame = io.draw_findings(frame, findings, timer.get_fps())
             io.write_output(frame)
             key = cv2.waitKey(1)
             if key & 0xFF == ord('q') and io.o_chanel == io.Output.DISPLAY:
@@ -296,7 +300,7 @@ def main():
         except IOError:
             break
 
-    if args.time:
+    if args.time and io.o_chanel == io.Output.FILE:
         timer.print_data()
 
 
