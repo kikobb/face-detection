@@ -142,7 +142,7 @@ class IOChanel:
     def draw_findings(frame: np.ndarray, findings: List[Union[List[FaceLocator.FacePosition],
                                                               List[LandmarksLocator.FaceLandmarks],
                                                               List[FaceRecognizer.FaceIdentity]]],
-                      fps: float) -> np.ndarray:
+                      fps: (float, float)) -> np.ndarray:
         rec_color = (0, 255, 0)
 
         # draw rectangle around detected faces, write confidence in % below
@@ -166,14 +166,14 @@ class IOChanel:
 
         # draw current FPS
         if fps:
-            frame = cv2.putText(frame, 'FPS: {}'.format(fps), (10, 10),
+            frame = cv2.putText(frame, 'FPS average: {}; FPS current: {}'.format(fps[1], fps[0]), (10, 10),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 255, 255), 1)
         return frame
 
     def write_output(self, frame: np.ndarray):
         if self.o_chanel == self.Output.DISPLAY:
-            # self.show_frame('face_recognition', frame)
-            self.show_frame('face_recognition', cv2.resize(frame, (1080, 720)))
+            self.show_frame('face_recognition', frame)
+            # self.show_frame('face_recognition', cv2.resize(frame, (1080, 720)))
         elif self.o_chanel == self.Output.NONE:
             pass
         else:
@@ -288,7 +288,7 @@ def main():
                 timer.start()
             frame = io.get_frame()
             findings = proc.process_frame(frame)
-            frame = io.draw_findings(frame, findings, timer.get_fps())
+            frame = io.draw_findings(frame, findings, None if timer is None else timer.get_extended_fps())
             io.write_output(frame)
             key = cv2.waitKey(1)
             if key & 0xFF == ord('q') and io.o_chanel == io.Output.DISPLAY:

@@ -26,7 +26,8 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="ignore shell error output">
+    <list default="true" id="b59fbf04-2000-4be9-9b1b-1287eb4f8cb5" name="Default Changelist" comment="FPS shower for display output">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/face_recong_remote.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/face_recong_remote.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/face_recognition.py" beforeDir="false" afterPath="$PROJECT_DIR$/face_recognition.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/measure_time.py" beforeDir="false" afterPath="$PROJECT_DIR$/measure_time.py" afterDir="false" />
@@ -414,14 +415,7 @@
       <workItem from="1595516370083" duration="3291000" />
       <workItem from="1595519768532" duration="8489000" />
       <workItem from="1595536171515" duration="3365000" />
-      <workItem from="1595938868758" duration="1066000" />
-    </task>
-    <task id="LOCAL-00010" summary="helpers scripts modified for raspberry support (via ssh)">
-      <created>1595096726835</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1595096726835</updated>
+      <workItem from="1595938868758" duration="2002000" />
     </task>
     <task id="LOCAL-00011" summary="raspberry support">
       <created>1595096789553</created>
@@ -759,7 +753,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595541708834</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="FPS shower for display output">
+      <created>1595939954715</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1595939954716</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -800,7 +801,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="raspberry network data path update" />
     <MESSAGE value="result data handling include raspberry" />
     <MESSAGE value="tidying up experimnet 1 and adding univeral script run to run all tests on all devices" />
     <MESSAGE value="universal script(run_experimrnt.sh) done for PC todo Raspberry" />
@@ -825,7 +825,8 @@
     <MESSAGE value="face recognition net changed different output format - errors expected" />
     <MESSAGE value="suppressed warnings" />
     <MESSAGE value="ignore shell error output" />
-    <option name="LAST_COMMIT_MESSAGE" value="ignore shell error output" />
+    <MESSAGE value="FPS shower for display output" />
+    <option name="LAST_COMMIT_MESSAGE" value="FPS shower for display output" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="313" width="800" height="586" key="#Deployment" timestamp="1594951388544">
@@ -855,14 +856,14 @@
       <screen x="0" y="1080" width="1920" height="1080" />
     </state>
     <state x="1218" y="1351" width="299" height="204" key="#Volume_binding/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593693869880" />
-    <state x="2124" y="407" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595939027020">
+    <state x="2124" y="397" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595940306693">
       <screen x="1920" y="360" width="1280" height="720" />
     </state>
     <state x="428" y="1271" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704278662" />
     <state x="675" y="46" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595171274279" />
     <state x="422" y="77" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595412152267" />
     <state x="422" y="167" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/1920.360.1280.720@0.27.1920.1053" timestamp="1595537342828" />
-    <state x="2124" y="407" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/1920.360.1280.720@1920.360.1280.720" timestamp="1595939027020" />
+    <state x="2124" y="397" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053/1920.360.1280.720@1920.360.1280.720" timestamp="1595940306693" />
     <state x="515" y="242" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1594302965373" />
     <state x="600" y="350" width="709" height="410" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1595272881773">
       <screen x="0" y="27" width="1920" height="1053" />
@@ -925,41 +926,45 @@
     <state x="745" y="1561" key="FileChooserDialogImpl/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593693317972" />
     <state x="745" y="496" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595168327165" />
     <state x="745" y="491" key="FileChooserDialogImpl/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595282366714" />
-    <state width="1874" height="310" key="GridCell.Tab.0.bottom" timestamp="1595527675309">
-      <screen x="0" y="27" width="1920" height="1053" />
+    <state width="1234" height="187" key="GridCell.Tab.0.bottom" timestamp="1595940518398">
+      <screen x="1920" y="360" width="1280" height="720" />
     </state>
     <state width="1874" height="458" key="GridCell.Tab.0.bottom/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704492659" />
     <state width="1874" height="284" key="GridCell.Tab.0.bottom/0.27.1920.1053/0.1080.1920.1080@0.27.1920.1053" timestamp="1593695166540" />
     <state width="1874" height="402" key="GridCell.Tab.0.bottom/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595172966534" />
     <state width="1874" height="310" key="GridCell.Tab.0.bottom/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595420438678" />
     <state width="1874" height="310" key="GridCell.Tab.0.bottom/0.27.1920.1053/1920.360.1280.720@0.27.1920.1053" timestamp="1595527675309" />
+    <state width="1234" height="187" key="GridCell.Tab.0.bottom/0.27.1920.1053/1920.360.1280.720@1920.360.1280.720" timestamp="1595940518398" />
     <state width="1874" height="275" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1594302817482" />
-    <state width="1874" height="310" key="GridCell.Tab.0.center" timestamp="1595527675308">
-      <screen x="0" y="27" width="1920" height="1053" />
+    <state width="1234" height="187" key="GridCell.Tab.0.center" timestamp="1595940518397">
+      <screen x="1920" y="360" width="1280" height="720" />
     </state>
     <state width="1874" height="458" key="GridCell.Tab.0.center/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704492659" />
     <state width="1874" height="284" key="GridCell.Tab.0.center/0.27.1920.1053/0.1080.1920.1080@0.27.1920.1053" timestamp="1593695166540" />
     <state width="1874" height="402" key="GridCell.Tab.0.center/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595172966534" />
     <state width="1874" height="310" key="GridCell.Tab.0.center/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595420438678" />
     <state width="1874" height="310" key="GridCell.Tab.0.center/0.27.1920.1053/1920.360.1280.720@0.27.1920.1053" timestamp="1595527675308" />
+    <state width="1234" height="187" key="GridCell.Tab.0.center/0.27.1920.1053/1920.360.1280.720@1920.360.1280.720" timestamp="1595940518397" />
     <state width="1874" height="275" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1594302817481" />
-    <state width="1874" height="310" key="GridCell.Tab.0.left" timestamp="1595527675308">
-      <screen x="0" y="27" width="1920" height="1053" />
+    <state width="1234" height="187" key="GridCell.Tab.0.left" timestamp="1595940518397">
+      <screen x="1920" y="360" width="1280" height="720" />
     </state>
     <state width="1874" height="458" key="GridCell.Tab.0.left/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704492659" />
     <state width="1874" height="284" key="GridCell.Tab.0.left/0.27.1920.1053/0.1080.1920.1080@0.27.1920.1053" timestamp="1593695166540" />
     <state width="1874" height="402" key="GridCell.Tab.0.left/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595172966534" />
     <state width="1874" height="310" key="GridCell.Tab.0.left/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595420438678" />
     <state width="1874" height="310" key="GridCell.Tab.0.left/0.27.1920.1053/1920.360.1280.720@0.27.1920.1053" timestamp="1595527675308" />
+    <state width="1234" height="187" key="GridCell.Tab.0.left/0.27.1920.1053/1920.360.1280.720@1920.360.1280.720" timestamp="1595940518397" />
     <state width="1874" height="275" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1594302817481" />
-    <state width="1874" height="310" key="GridCell.Tab.0.right" timestamp="1595527675308">
-      <screen x="0" y="27" width="1920" height="1053" />
+    <state width="1234" height="187" key="GridCell.Tab.0.right" timestamp="1595940518398">
+      <screen x="1920" y="360" width="1280" height="720" />
     </state>
     <state width="1874" height="458" key="GridCell.Tab.0.right/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704492659" />
     <state width="1874" height="284" key="GridCell.Tab.0.right/0.27.1920.1053/0.1080.1920.1080@0.27.1920.1053" timestamp="1593695166540" />
     <state width="1874" height="402" key="GridCell.Tab.0.right/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595172966534" />
     <state width="1874" height="310" key="GridCell.Tab.0.right/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595420438678" />
     <state width="1874" height="310" key="GridCell.Tab.0.right/0.27.1920.1053/1920.360.1280.720@0.27.1920.1053" timestamp="1595527675308" />
+    <state width="1234" height="187" key="GridCell.Tab.0.right/0.27.1920.1053/1920.360.1280.720@1920.360.1280.720" timestamp="1595940518398" />
     <state width="1874" height="275" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1594302817481" />
     <state width="1874" height="405" key="GridCell.Tab.1.bottom" timestamp="1595527670905">
       <screen x="0" y="27" width="1920" height="1053" />
@@ -1000,15 +1005,15 @@
     </state>
     <state x="803" y="469" width="430" height="230" key="VCS.ChangelistChooser/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595172934282" />
     <state x="803" y="464" key="VCS.ChangelistChooser/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595286438459" />
-    <state x="555" y="66" width="800" height="540" key="Vcs.Push.Dialog.v2" timestamp="1595541714761">
-      <screen x="0" y="27" width="1920" height="1053" />
+    <state x="2290" y="423" width="800" height="540" key="Vcs.Push.Dialog.v2" timestamp="1595939959287">
+      <screen x="1920" y="360" width="1280" height="720" />
     </state>
     <state x="555" y="1356" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593704292599" />
     <state x="555" y="296" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595172957771" />
     <state x="555" y="171" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595432269214" />
     <state x="2364" y="406" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.216.1536.864@1920.216.1536.864" timestamp="1595189098731" />
     <state x="555" y="66" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.360.1280.720@0.27.1920.1053" timestamp="1595541714761" />
-    <state x="2290" y="428" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.360.1280.720@1920.360.1280.720" timestamp="1595480160563" />
+    <state x="2290" y="423" width="800" height="540" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.360.1280.720@1920.360.1280.720" timestamp="1595939959287" />
     <state width="960" height="526" key="XDebugger.FullValuePopup" timestamp="1594721337471">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -1017,14 +1022,14 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="223" y="890" width="187" height="190" key="com.intellij.docker.deployment.ui.DockerVolumeBindingsField.v173.dialogSize/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1593680732865" />
-    <state x="104" y="29" width="442" height="649" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1595523596112">
-      <screen x="0" y="27" width="1920" height="1053" />
+    <state x="1989" y="355" width="770" height="725" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1595940870687">
+      <screen x="1920" y="360" width="1280" height="720" />
     </state>
     <state x="0" y="1380" width="770" height="780" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/0.1080.1920.1080@0.1080.1920.1080" timestamp="1593698004740" />
     <state x="0" y="394" width="762" height="686" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/1920.0.1920.1080@0.27.1920.1053" timestamp="1595170403998" />
     <state x="103" y="225" width="762" height="691" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/1920.216.1536.864@0.27.1920.1053" timestamp="1595456931628" />
     <state x="104" y="29" width="442" height="649" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/1920.360.1280.720@0.27.1920.1053" timestamp="1595523596112" />
-    <state x="1989" y="490" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/1920.360.1280.720@1920.360.1280.720" timestamp="1595479852424" />
+    <state x="1989" y="355" width="770" height="725" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053/1920.360.1280.720@1920.360.1280.720" timestamp="1595940870687" />
     <state x="731" y="468" width="458" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595097827814">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -1184,7 +1189,7 @@
     <SUITE FILE_PATH="coverage/face_detection$base_ssh.coverage" NAME="base_ssh Coverage Results" MODIFIED="1594192408029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../openvino/face" />
     <SUITE FILE_PATH="coverage/face_detection$sort_by_difficulty.coverage" NAME="sort_by_difficulty Coverage Results" MODIFIED="1595284515912" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/support_scripts" />
     <SUITE FILE_PATH="coverage/face_detection$face_recong.coverage" NAME="face_recong Coverage Results" MODIFIED="1594055402130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/face_detection$face_recong_remote.coverage" NAME="face_recong_remote Coverage Results" MODIFIED="1595527675299" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../openvino/face" />
+    <SUITE FILE_PATH="coverage/face_detection$face_recong_remote.coverage" NAME="face_recong_remote Coverage Results" MODIFIED="1595941152440" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../openvino/face" />
     <SUITE FILE_PATH="coverage/face_detection$base_ssh_raspbery.coverage" NAME="base_ssh_raspbery Coverage Results" MODIFIED="1595033162504" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../pi/face" />
     <SUITE FILE_PATH="coverage/face_detection$exp_1_OpenVino.coverage" NAME="exp_1_OpenVino Coverage Results" MODIFIED="1595173300612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../openvino/face/exp_1" />
     <SUITE FILE_PATH="coverage/face_detection$merge.coverage" NAME="merge Coverage Results" MODIFIED="1595282309682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
