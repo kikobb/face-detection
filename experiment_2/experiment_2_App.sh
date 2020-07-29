@@ -9,7 +9,7 @@ if [[ -f "$out_name" ]]; then
 fi
 touch "$out_name"
 
-face_detection="./models/intel/face-detection-0100/FP32/face-detection-0100.xml"
+face_detection="./models/intel/face-detection-0105/FP32/face-detection-0105.xml"
 landmarks_detection="./models/intel/landmarks-regression-retail-0009/FP32/landmarks-regression-retail-0009.xml"
 reidentification_model="./models/intel/face-reidentification-retail-0095/FP32/face-reidentification-retail-0095.xml"
 
@@ -24,7 +24,7 @@ if [[ "$IP" == 206 || "$IP" == 207 ]]; then
 fi
 
 # all supported people count
-people_counts='1 2 4 8'
+people_counts='8 4 2 1'
 # all supported resolutions
 resolutions='240 360 480 720 1080 1440 2160'
 
@@ -36,13 +36,14 @@ for dev in $devices; do
       if [[ "$IP" == 206 || "$IP" == 207 ]]; then
         cd ..
       fi
-      times=$( (python3 face_recognition.py -d "$dev" -dm "$face_detection" -dm_t 0.65 -lm "$landmarks_detection" \
+      times=$( (python3 face_recognition.py -d "$dev" -dm "$face_detection" -dm_t 0.3 -lm "$landmarks_detection" \
       -rm "$reidentification_model" -on -t --input_video  "./test_videos/face_${count}/face_${count}_${res}p.mp4") 2> /dev/null)
       echo "$times"
       if [[ "$IP" == 206 || "$IP" == 207 ]]; then
         cd "$SCRIPTPATH" || exit
       fi
       for time in $(echo "$times" | sed "s/;/ /g"); do
+        echo "$dev;$count;$res;$time"
         echo "$dev;$count;$res;$time" >> "$out_name"
       done
     done

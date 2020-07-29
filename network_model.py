@@ -12,7 +12,7 @@ class NetworkModel:
     # if async supported add param for queue max size
     def deploy_network(self, device: str, ie_core: IECore):
         # num_requests=0 -> optimal nmbr of requests
-        pom = self.exec_model = ie_core.load_network(self.model, device, num_requests=0)
+        self.exec_model = ie_core.load_network(self.model, device, num_requests=0)
         self.model = None
 
     def sync_infer(self, inp: Dict[str, np.ndarray]) -> Dict[str, np.ndarray]:

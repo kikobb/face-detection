@@ -215,6 +215,7 @@ class ProcessFrame:
             }, device_name='CPU')
         elif next(iter(args['device'])) == 'GPU':
             # GPU
+            pass
             self.ie.set_config(config={"GPU_THROUGHPUT_STREAMS": "1"}, device_name='GPU')
         elif next(iter(args['device'])) == 'MYRIAD':
             pass
@@ -278,6 +279,9 @@ def main():
     io = IOChanel(vars(args))
     proc = ProcessFrame(vars(args))
 
+    # tmp restriction to 100 inferences
+    counter = 0
+
     timer = None
     if args.time:
         timer = MeasureTime()
@@ -295,12 +299,16 @@ def main():
                 break
             if args.time:
                 timer.stop()
+            # tmp restriction
+            counter += 1
+            if counter == 100:
+                break
         except EndOfStream:
             break
         except IOError:
             break
 
-    if args.time and io.o_chanel == io.Output.FILE:
+    if args.time and io.o_chanel != io.Output.DISPLAY:
         timer.print_data()
 
 
