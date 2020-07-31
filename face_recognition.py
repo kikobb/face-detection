@@ -42,23 +42,34 @@ class ReadableFile(argparse.Action):
 def create_argparser():
     p = argparse.ArgumentParser()
     input_group = p.add_mutually_exclusive_group()
-    input_group.add_argument('-ii', '--input_image', action=ReadableFile, nargs=1)
-    input_group.add_argument('-ic', '--input_camera', const=0, nargs='?')
-    input_group.add_argument('-iv', '--input_video', action=ReadableFile, nargs=1)
+    input_group.add_argument('-ii', '--input_image', action=ReadableFile, nargs=1, help='option currently unsupported')
+    input_group.add_argument('-ic', '--input_camera', const=0, nargs='?',
+                             help='sets input stream to environment camera, you could provide camera index (default 0)')
+    input_group.add_argument('-iv', '--input_video', action=ReadableFile, nargs=1,
+                             help='specify input video file, have to be supported by OpenCv')
 
     output_group = p.add_mutually_exclusive_group()  # todo check if file is possible to write
-    output_group.add_argument('-od', '--output_display', action='store_true')
-    output_group.add_argument('-of', '--output_file', nargs=1)
-    output_group.add_argument('-on', '--output_none', action='store_true')
+    output_group.add_argument('-od', '--output_display', action='store_true',
+                              help='shows output stream on display')
+    output_group.add_argument('-of', '--output_file', nargs=1,
+                              help='stores output stream to file (experimnetal)')
+    output_group.add_argument('-on', '--output_none', action='store_true',
+                              help='does not show output stream ')
 
     models = p.add_argument_group('Models')
-    models.add_argument('-dm', '--detection_model', action=ReadableFile, nargs=1, required=True)
-    models.add_argument('-dm_t', '--detection_model_threshold', metavar='[0..1]', type=float, default=0.5, nargs=1)
-    models.add_argument('-lm', '--landmarks_model', action=ReadableFile, nargs=1)
-    models.add_argument('-rm', '--recognition_model', action=ReadableFile, nargs=1)
+    models.add_argument('-dm', '--detection_model', action=ReadableFile, nargs=1, required=True,
+                        help='specify .xml file for supported CNN in IR format for face detection  (defined in thesis)')
+    models.add_argument('-dm_t', '--detection_model_threshold', metavar='[0..1]', type=float, default=0.5, nargs=1,
+                        help='specify sensitivity threshold for face detection ')
+    models.add_argument('-lm', '--landmarks_model', action=ReadableFile, nargs=1,
+                        help='specify .xml file for supported CNN in IR format for landmarks detection (defined in thesis)')
+    models.add_argument('-rm', '--recognition_model', action=ReadableFile, nargs=1,
+                        help='specify .xml file for supported CNN in IR format for face recognition (defined in thesis)')
 
-    p.add_argument('-d', '--device', choices=['CPU', 'MYRIAD', 'GPU'], required=True, nargs=1)
-    p.add_argument('-t', '--time', action='store_true')
+    p.add_argument('-d', '--device', choices=['CPU', 'MYRIAD', 'GPU'], required=True, nargs=1,
+                   help='specify which PLUGIN should be used and on which device is inference performed (Raspberry PI supprts only MYRIAD option)')
+    p.add_argument('-t', '--time', action='store_true',
+                   help='enables time and FPS statistics')
 
     return p
 
@@ -280,7 +291,7 @@ def main():
     proc = ProcessFrame(vars(args))
 
     # tmp restriction to 100 inferences
-    counter = 0
+    # counter = 0
 
     timer = None
     if args.time:
@@ -300,9 +311,9 @@ def main():
             if args.time:
                 timer.stop()
             # tmp restriction
-            counter += 1
-            if counter == 100:
-                break
+            # counter += 1
+            # if counter == 100:
+            #     break
         except EndOfStream:
             break
         except IOError:
